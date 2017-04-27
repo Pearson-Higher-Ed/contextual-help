@@ -2,6 +2,7 @@
   "name": "@pearson-components/contextual-help",
   "version": "2.1.4",
   "description": "Contextual help for web applications.",
+  "main": "main.js",
   "scripts": {
     "test": "./node_modules/karma/bin/karma start karma.conf.js",
     "build": "webpack -p",
