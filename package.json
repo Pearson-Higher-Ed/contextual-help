@@ -12,9 +12,9 @@
     "dev": "npm run dev-setup && webpack-dev-server --devtool source-map --hot --host 0.0.0.0 --progress --colors",
     "start": "npm run dev",
     "version": "npm run gen-changelog && git add CHANGELOG.md",
-    "ci": "npm run build",
-    "gen-changelog": "node ./npm_scripts/gen-changelog.js",
-    "release": "node ./npm_scripts/release.js"
+    "ci": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/ci.js",
+    "gen-changelog": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/gen-changelog.js",
+    "release": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/release.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "contextual-help"
   ],
   "devDependencies": {
+    "@pearson-components/npm-scripts": "^0.5.6",
     "conventional-changelog": "^1.1.0",
     "coveralls": "^2.11.4",
     "css-loader": "^0.23.1",
