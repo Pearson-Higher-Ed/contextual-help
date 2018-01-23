@@ -1,40 +1,93 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Demo Component</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <title>o-contextual-help demo</title>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 </head>
 <body>
-    <!-- Customize the demo for your component -->
-    <h1>Component Archetype Demo</h1>
-    <p>Styled using the Elements SDK.</p>
-    <br />
-    <div id="translationDemo"></div>
+  <h1>Contextual Help demo</h1>
+  <p> Check the page source for a demonstration of using the config for adding help items: </p>
 
-    <!-- Icons -->
-    <script>
-      if (document.body.children[0].nodeName !== 'svg') {
-        var pe_ajax = new XMLHttpRequest();
-        pe_ajax.open("GET", "https://unpkg.com/@pearson-components/elements-sdk/build/icons/p-icons-sprite-1.1.svg", true);
-        pe_ajax.responseType = "document";
-        pe_ajax.onload = function(e) {
-          document.body.insertBefore(
-            pe_ajax.responseXML.documentElement,
-            document.body.childNodes[0]
-          );
-        }
-        pe_ajax.send();
+  <script type="application/json" data-o-contextual-help-config>
+    {
+      "helpTopics": [
+        "console/student/freetrial",
+        "console/student/studentresources",
+        "console/student/contactsupport"
+      ]
+    }
+  </script>
+  <script>
+    if (!document.getElementById('pe-icons-sprite')) {
+      var pe_ajax = new XMLHttpRequest();
+      pe_ajax.open("GET", "/icons/p-icons-sprite-1.1.svg", true);
+      pe_ajax.responseType = "document";
+      pe_ajax.onload = function(e) {
+        document.body.insertBefore(
+          pe_ajax.responseXML.documentElement,
+          document.body.childNodes[0]
+        );
       }
-    </script>
-    <!-- Provide React and ReactDOM as a depedency external to the component -->
-    <script crossorigin src="https://unpkg.com/react@latest/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
-    <script crossorigin src="https://unpkg.com/prop-types@latest/prop-types.js"></script>
-    <!-- CustomEvent, Array.from, Object.assign and Promise polyfills are for IE, Intl.js polyfill is for Safari -->
-    <script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Array.from,Object.assign,Promise,Intl.~locale.en,Intl.~locale.fr"></script>
-    <!-- Demo build of component Injected on build -->
-    <!-- Build Component to View Demo: npm run build && npm start -->
-    <!-- View at: http://localhost:8081/component-archetype/ -->
+      pe_ajax.send();
+    }
+  </script>
+
+  <header class="o-app-header"></header>
+
+  <button type="button" data-target="#o-contextual-help-drawer" data-toggle="o-drawer" class="pe-btn">Toggle Help Drawer (direct)</button>
+  <br/>
+  <a href="#" onclick="issueHelpClickFromHeader()">Trigger Help via Header Menu Item Click (simulated here)</a>
+  <br/>
+  <a  href="#o-contextual-help-drawer" data-open="o-drawer">Open via Drawer</a>
+
+
+  <br/><br/>
+
+  <a href="#" onclick="getAndConsoleLogHelp()">console.log() the Help object</a>
+  <br/>
+  <a href="#" onclick="openSpecificArticle('console/student/droppedcourse')">Open Specific Article (Dropped Course)</a>
+
+  <br/><br/>
+
+  <a href="#" onclick="openThenAddATopicsAfterTime('console/instructor/courseregsettings', 1000)">Open, then add item after 1s (adds 'console/instructor/courseregsettings')</a>
+  <br/>
+  <a href="#" onclick="openThenAddATopicsAfterTime(['console/instructor/educatorresources', 'console/instructor/validatedinstructor'], 500)">Open, add multiple items after 500ms (adds 'console/instructor/educatorresources', 'console/instructor/validatedinstructor')</a>
+  <br/>
+  <a href="#" onclick="openThenRemoveTopics(['console/instructor/educatorresources', 'console/instructor/validatedinstructor'], 500)">Open, remove multiple items after 500ms (removes 'console/instructor/educatorresources', 'console/instructor/validatedinstructor')</a>
+  <br/>
+  <a href="#" onclick="openThenRemoveAll()">Open, then remove all topics.</a>
+
+  <br/><br/>
+
+  <a href="#" onclick="openAndRandomSort()">Open, then sort topics randomly for 5 seconds</a>
+
+  <br/><br/>
+
+  <a href="#" onclick="testAccordion()">Test Accordion Content</a>
+
+  <br/><br/>
+
+  <a href="#" onclick="signinTest()">Test Signin Content Swap</a>
+
+  <br/><br/>
+  <a href="#" onclick="setLanguageThenOpen()">Remove all topics, setLanguage('fr'), add topics, open drawer</a>
+  <br><br>
+
+  <br/><br/>
+  <h2>Test Your Content</h2>
+  <div id="secret-dom" style="display: none;"></div>
+  <div class="pe-textarea">
+    <label for="custom-content">Paste your content: </label>
+    <textarea id="custom-content" cols="120" rows="15" placeholder="Paste Your Content Here"></textarea>
+  </div>
+  <button onclick="testCustomContent()">Test This Content</button>
+
+  <!-- CustomEvent polyfill for IE -->
+  <script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent"></script>
+
+  <script src="http://localhost:8080/webpack-dev-server.js"></script>
+  <script src="../build/dev_demo.contextual-help.js"></script>
 </body>
 </html>
