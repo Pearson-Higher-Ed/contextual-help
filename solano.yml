@@ -1,0 +1,11 @@
+# Solano configuration
+# test
+---
+nodejs:
+  version: '4.2.1'
+hooks:
+  pre: npm install
+tests:
+- npm run ci
+- chmod 777 ./test/shell_scripts/run_tests.sh
+#- ./test/shell_scripts/run_tests.sh
