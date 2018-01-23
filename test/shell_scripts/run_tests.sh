@@ -1,19 +1,19 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-echo "Trigger the Selenium tests for 'rebrand' branch: ux-test-platform repo...."
+echo "Trigger the Selenium tests for master branch: ux-test-platform repo...."
 
 #Step 1: API to trigger the ux-test-platform build with the below config
 body="{
 \"request\": {
-\"message\": \"feat(contextual-help): Run Contextual Help Tests\",
-\"branch\":\"rebrand\",
+\"message\": \"feat(component-archetype): Run Demo Tests\",
+\"branch\":\"master\",
 \"config\": {
 \"script\": [
-\"export component=contextual-help\",
+\"export component=component-archetype\",
 \"export feature_branch=$TRAVIS_BRANCH\",
 \"chmod 777 ./src/main/shell_scripts/components.sh\",
 \"./src/main/shell_scripts/components.sh\",
-\"mvn -Dtest_suite_xml=contextual_help.xml test\"
+\"mvn -Dtest_suite_xml=component_archetype.xml test\"
 ]
 }
 }}"
@@ -44,11 +44,11 @@ do
   get_state_value=${BRANCH#*:}
   BRANCH="${get_state_value//\"}"
 
-  if [ $BRANCH == "rebrand" ] #If condition to check if the last triggered build is 'rebrand'
+  if [ $BRANCH == "master" ] #If condition to check if the last triggered build is master
     sleep 5
     curl -i $REPO_URI > test.json
   then LATEST_ID=$(grep -o '"id":.[0-9]*' test.json | head -1  | grep ':.[0-9]*') #
-  echo "LATEST_ID of rebrand branch.............................. $LATEST_ID"
+  echo "LATEST_ID of master branch.............................. $LATEST_ID"
   export LATEST_ID
     break 
   else  
@@ -57,7 +57,7 @@ do
   fi
 done
 
-#Step 2 : Fetch the build status of the 'rebrand' branch
+#Step 2 : Fetch the build status of the 'master' branch
 get_buildId_value=${LATEST_ID#*:}
 BUILD_ID="${get_buildId_value//\"}"
 
@@ -71,9 +71,9 @@ do
 
 curl -i $REPO_URI_WITH_BUILDID > test.json 
 
-STATE=$(grep -o '"state":.[a-z\"]*' test.json | head -1 ) #Fetch the state of 'rebrand' build
+STATE=$(grep -o '"state":.[a-z\"]*' test.json | head -1 ) #Fetch the state of master build
 #RESULT=$(grep -o '"result":.[0-9]*' test.json | head -1  | grep ':.[0-9]*') #For debug
-STATUS=$(grep -o '"status":.[0-9]*' test.json | head -1  | grep ':.[0-9]*') #Fetch the status of 'rebrand' build
+STATUS=$(grep -o '"status":.[0-9]*' test.json | head -1  | grep ':.[0-9]*') #Fetch the status of master build
 
 echo "--------------------------------------------"
 echo "Polling for the tests run build status..."
