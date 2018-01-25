@@ -1,11 +1,16 @@
 .DS_Store
-.sass-cache/
-node_modules/
 .idea
-build/*.js
-build/reports
-npm_scripts/*.js
-fonts
-icons
 *.iml
-.scannerwork/
+*.swo
+*.swp
+npm-debug.log
+yarn.lock
+package-lock.json
+/node_modules
+/coverage
+
+#====-Build Section-=========
+# comment out for gh_pages...
+# or run: npm run gh-pages
+/build
+#============================

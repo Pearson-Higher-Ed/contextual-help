@@ -2,6 +2,7 @@ import React              from 'react';
 import { injectIntl }     from 'react-intl';
 import { messages }       from './translations/defaultMessages';
 import { ComponentOwner as MyComponent} from '../index';
+import { ContextualHelp } from '../index';
 
 
 const IntlInjection = (props) => {
@@ -20,7 +21,12 @@ const IntlInjection = (props) => {
       let data  = {};
       data.text = intlText;
 
-      return <MyComponent data={data} />
+    return ( 
+      <div>
+        <MyComponent data={data} /> 
+        <ContextualHelp data={data} /> 
+      </div>
+    )
 }
 
 

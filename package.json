@@ -1,13 +1,13 @@
 {
-  "name": "",
+  "name": "@pearson-components/contextual-help",
   "version": "0.0.0",
-  "description": "",
-  "author": "",
-  "license": "MIT",
-  "homepage": "https://pearson-higher-ed.github.io/component-archetype/",
+  "description": "Contextual help for web applications.",
+  "author": "Pearson Design Accelerator pearson-design-accelerator@pearson.com",
+  "license": "PEARSON PROPRIETARY AND CONFIDENTIAL INFORMATION SUBJECT TO NDA",
+  "homepage": "https://github.com/Pearson-Higher-Ed/contextual-help",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Pearson-Higher-Ed/component-archetype/"
+    "url": "https://github.com/Pearson-Higher-Ed/contextual-help.git"
   },
   "main": "./build/dist.component-name.js",
   "scripts": {
@@ -58,7 +58,10 @@
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.10.0"
   },
-  "keywords": [],
+  "keywords": [
+    "pearson-components",
+    "contextual-help"
+  ],
   "dependencies": {
     "@pearson-components/elements-sdk": "^1.8.0"
   }
