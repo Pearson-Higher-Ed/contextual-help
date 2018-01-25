@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import HelpTopics from './HelpTopics';
 import HelpTopicContent from './HelpTopicContent';
 
+import '../scss/component-specific.scss';
+
 const helpList = [
   { 
     title: 'Here is Title #1',
@@ -47,11 +49,17 @@ class ContextualHelp extends Component {
   };
 
   _topicClick = (topic) => {
-    this.setState({currentTopic: topic});
+    this.setState({
+      currentTopic: topic,
+      hideTopics: topic.title !== ''
+    });
   };
 
   _backToTopics = () => {
-    this.setState({currentTopic: { title: '', content: '' }});
+    this.setState({
+      currentTopic: { title: '', content: '' },
+      hideTopics: false
+    });
   }
 
   render() {
@@ -60,7 +68,9 @@ class ContextualHelp extends Component {
     // FOR DEMO and should be refactored for your purposes:
     //
     return (
-      <div>
+      <div
+        className={`${this.state.hideTopics ? 'o-contextual-help__content--visible' : ''}`}
+      >
         <HelpTopics
           helpList={this.state.topics}
           topicClick={this._topicClick}

@@ -4,6 +4,7 @@ import { messages }       from './translations/defaultMessages';
 import { ComponentOwner as MyComponent} from '../index';
 import { ContextualHelp } from '../index';
 
+import './demoStyles.css';
 
 const IntlInjection = (props) => {
 
@@ -22,9 +23,8 @@ const IntlInjection = (props) => {
       data.text = intlText;
 
     return ( 
-      <div>
-        <MyComponent data={data} /> 
-        <ContextualHelp data={data} /> 
+      <div className="demo-container">
+        <ContextualHelp data={data} />
       </div>
     )
 }

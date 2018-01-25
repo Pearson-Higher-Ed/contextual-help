@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import HelpHeader from './HelpHeader';
 
 const HelpTopicContent = ({ title, content, backToTopics }) => (
-  <div className="o-contextual-help__topic-content">
+  <div className="o-contextual-help__topic-content" >
     <HelpHeader
       contentLevel={true}
       backToTopics={backToTopics}

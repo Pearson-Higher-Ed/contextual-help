@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const HelpHeader = ({ backToTopics, contentLevel }) => {
   const titleId = contentLevel ? "close_sub" : "close_main"
-  console.log('contentLevel', contentLevel);
 
   const showHeaderText = () => {
     if (!contentLevel) {
