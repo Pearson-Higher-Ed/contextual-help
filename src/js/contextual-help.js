@@ -51,15 +51,24 @@ class ContextualHelp extends Component {
   _topicClick = (topic) => {
     this.setState({
       currentTopic: topic,
-      hideTopics: topic.title !== ''
+      displayTopics: false
     });
+    setTimeout(() => {
+      // closeTopicsBtn.focus();
+      this.setState({ hideTopics: true });
+    }, 450);
   };
 
   _backToTopics = () => {
     this.setState({
       currentTopic: { title: '', content: '' },
-      hideTopics: false
+      hideTopics: false,
+      displayTopics: false
     });
+    setTimeout(() => {
+      // setFocus to appropriate close button
+      this.setState({ hideTopicContent: true });
+    }, 450);
   }
 
   render() {
@@ -69,7 +78,7 @@ class ContextualHelp extends Component {
     //
     return (
       <div
-        className={`${this.state.hideTopics ? 'o-contextual-help__content--visible' : ''}`}
+        className={`${this.state.displayTopics ? '' : 'o-contextual-help__content--visible'}`}
       >
         <HelpTopics
           helpList={this.state.topics}
