@@ -34,6 +34,7 @@ class ContextualHelp extends Component {
     this.state = {
       text: '',
       topics: helpList,
+      displayTopics: true,
       currentTopic: { title: '', content: '' }
     };
   }
@@ -51,7 +52,8 @@ class ContextualHelp extends Component {
   _topicClick = (topic) => {
     this.setState({
       currentTopic: topic,
-      displayTopics: false
+      displayTopics: false,
+      hideTopicContent: false
     });
     setTimeout(() => {
       // closeTopicsBtn.focus();
@@ -63,7 +65,7 @@ class ContextualHelp extends Component {
     this.setState({
       currentTopic: { title: '', content: '' },
       hideTopics: false,
-      displayTopics: false
+      displayTopics: true
     });
     setTimeout(() => {
       // setFocus to appropriate close button
@@ -83,11 +85,13 @@ class ContextualHelp extends Component {
         <HelpTopics
           helpList={this.state.topics}
           topicClick={this._topicClick}
+          hide={this.state.hideTopics}
         />
         <HelpTopicContent 
           title={this.state.currentTopic.title}
           content={this.state.currentTopic.content}
           backToTopics={this._backToTopics}
+          hide={this.state.hideTopicContent}
         />
       </div>
     )

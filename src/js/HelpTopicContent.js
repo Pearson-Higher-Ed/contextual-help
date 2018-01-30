@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import HelpHeader from './HelpHeader';
 
-const HelpTopicContent = ({ title, content, backToTopics }) => (
-  <div className="o-contextual-help__topic-content" >
+const HelpTopicContent = ({ title, content, backToTopics, hide }) => (
+  <div
+    className={`o-contextual-help__topic-content ${hide ? 'hide' : ''}`}
+  >
     <HelpHeader
       contentLevel={true}
       backToTopics={backToTopics}
@@ -25,7 +27,8 @@ const HelpTopicContent = ({ title, content, backToTopics }) => (
 
 HelpTopicContent.propTypes = {
   title: PropTypes.string,
-  content: PropTypes.string
+  content: PropTypes.string,
+  hide: PropTypes.bool
 };
 
 export default HelpTopicContent;

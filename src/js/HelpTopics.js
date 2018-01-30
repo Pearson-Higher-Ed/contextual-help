@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import HelpHeader from './HelpHeader';
 import HelpTopicExcerpt from './HelpTopicExcerpt';
 
-const HelpTopics = ({ helpList, topicClick }) => {
+const HelpTopics = ({ helpList, topicClick, hide }) => {
   const helpTopicEntry = (helpTopic, idx) => {
     return (
       <HelpTopicExcerpt
@@ -16,7 +16,9 @@ const HelpTopics = ({ helpList, topicClick }) => {
   };
 
   return (
-    <div className="o-contextual-help__topics">
+    <div
+      className={`o-contextual-help__topics ${hide ? 'hide' : ''}`}
+    >
       <HelpHeader contentLevel={false} />
       <div
         aria-live="polite"
@@ -30,7 +32,8 @@ const HelpTopics = ({ helpList, topicClick }) => {
 
 HelpTopics.propTypes = {
   helpList: PropTypes.array,
-  topicClick: PropTypes.func
+  topicClick: PropTypes.func,
+  hide: PropTypes.bool
 };
 
 export default HelpTopics;

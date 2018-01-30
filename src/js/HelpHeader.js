@@ -3,6 +3,13 @@ import PropTypes from 'prop-types';
 
 const HelpHeader = ({ backToTopics, contentLevel }) => {
   const titleId = contentLevel ? "close_sub" : "close_main"
+  let closeButton;
+
+  const focusCloseButton = () => {
+    if (closeButton) {
+      closeButton.focus();
+    }
+  }
 
   const showHeaderText = () => {
     if (!contentLevel) {
@@ -16,6 +23,7 @@ const HelpHeader = ({ backToTopics, contentLevel }) => {
         className="pe-icon--btn back-to-help"
         id="contextual-help-close-content"
         onClick={backToTopics}
+        ref={(button) => { closeButton = button; }}
       >
         <svg 
           aria-hidden="false"
