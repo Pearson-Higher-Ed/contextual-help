@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import HelpTopics from './HelpTopics';
 import HelpTopicContent from './HelpTopicContent';
 
-import '../scss/component-specific.scss';
+import '../scss/ContextualHelp.scss';
 
 const helpList = [
   { 
@@ -26,28 +26,14 @@ const helpList = [
 class ContextualHelp extends Component {
 
   constructor(props) {
-
     super(props);
-    //
-    // FOR DEMO - use state when you need to respond to user input, a server request or the passage of time
-    //
     this.state = {
       text: '',
-      topics: helpList,
+      topics: props.indexDetailList,
       displayTopics: true,
       currentTopic: { title: '', content: '' }
     };
   }
-
-  //
-  // Note that combining the fat arrow syntax with ES7 class properties (transpiled by Babel Stage 0), we eliminate the
-  // need to do manual binding of the 'this' context in event handlers or callbacks. React binds all other contexts
-  // as expected.
-  //
-  // FOR DEMO and should be removed:
-  _change = () => {
-    this.setState({text: this.props.data.text.greeting});
-  };
 
   _topicClick = (topic) => {
     this.setState({
@@ -75,9 +61,6 @@ class ContextualHelp extends Component {
 
   render() {
     const { data } = this.props;
-    //
-    // FOR DEMO and should be refactored for your purposes:
-    //
     return (
       <div
         className={`${this.state.displayTopics ? '' : 'o-contextual-help__content--visible'}`}
@@ -99,5 +82,8 @@ class ContextualHelp extends Component {
 
 }
 
+ContextualHelp.defaultProps = {
+  indexDetailList: helpList
+};
 
 export default ContextualHelp;

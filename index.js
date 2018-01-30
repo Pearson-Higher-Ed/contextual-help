@@ -1,1 +1,1 @@
-export ContextualHelp from './src/js/contextual-help';
+export ContextualHelp from './src/js/ContextualHelp';
