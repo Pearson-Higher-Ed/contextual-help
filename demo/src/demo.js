@@ -64,7 +64,7 @@ window.openAndRandomSort = function() {
   help.open();
   function rndSort() {
     var ts = help.getTopics(),
-        l = ts.length; 
+        l = ts.length;
     ts.sort(function() {
       return Math.floor(Math.random()*l) - 1;
     });
@@ -93,7 +93,7 @@ window.signinTest = function(){
       'console/instructor/validatedinstructor',
       'console/instructor/courseregsettings',
       'console/instructor/educatorresources',
-      'console/instructor/contactsupport'
+      'contactsupport'
   ];
   help.addTopics(newTopics);
 }

@@ -69,7 +69,7 @@
   padding-bottom: 25px;
   margin-bottom: 25px;
   border-bottom: 1px solid $pe-color-alto;
-  
+
   &:after {
     content: '';
     display: block;
@@ -98,12 +98,13 @@
     span {
       margin-left: 5px;
       line-height: 18px;
+      font-weight: 600;
     }
   }
 }
 
 .o-contextual-help__excerpt {
-  margin-top: 25px; 
+  margin-top: 25px;
   cursor: pointer;
 
   h3 a {
@@ -162,7 +163,7 @@
   }
   .o-contextual-help__accordion h3:first-child button {
     margin-top: 0;
-  } 
+  }
   .o-panel--closed {
     display: none;
   }
