@@ -27,7 +27,7 @@ module.exports = {
   devtool: "source-map",
   devServer: {
     host               : "0.0.0.0",
-    port               : 8000,
+    port               : 8081,
     publicPath         : "/contextual-help/",
     hot                : true,
     https              : false,
