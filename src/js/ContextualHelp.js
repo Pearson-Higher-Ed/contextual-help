@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import HelpTopics from './HelpTopics';
 import HelpTopicContent from './HelpTopicContent';
 
+import HelpTopicsList from './HelpTopicsList';
+
 import '../scss/ContextualHelp.scss';
 
 const helpList = [
@@ -22,17 +24,35 @@ const helpList = [
   }
 ];
 
-
 class ContextualHelp extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       text: '',
-      topics: props.indexDetailList,
+      topics: [],
       displayTopics: true,
       currentTopic: { title: '', content: '' }
     };
+
+    this.helpTopicsList = new HelpTopicsList(this._updateTopics, 'en-us');
+
+    setTimeout(() => {
+      this.helpTopicsList.addTopics('console/instructor/validatedinstructor');
+    }, 400);
+
+
+    setTimeout(() => {
+      this.helpTopicsList.addTopics('console/instructor/courseregsettings');
+    }, 1000);
+  
+    setTimeout(() => {
+      this.helpTopicsList.addTopics(['console/instructor/courseregsettings',
+        'console/instructor/educatorresources',
+        'console/student/studentresources',
+        'invalid/topic/name'
+      ]);
+    }, 1300);
   }
 
   _topicClick = (topic) => {
@@ -57,10 +77,15 @@ class ContextualHelp extends Component {
       // setFocus to appropriate close button
       this.setState({ hideTopicContent: true });
     }, 450);
-  }
+  };
+
+  _updateTopics = (newList) => {
+    this.setState({ topics: newList });
+  };
 
   render() {
     const { data } = this.props;
+
     return (
       <div
         className={`${this.state.displayTopics ? '' : 'o-contextual-help__content--visible'}`}
@@ -82,8 +107,8 @@ class ContextualHelp extends Component {
 
 }
 
-ContextualHelp.defaultProps = {
-  indexDetailList: helpList
-};
+//ContextualHelp.defaultProps = {
+//  indexDetailList: helpList
+//};
 
 export default ContextualHelp;

@@ -63,6 +63,7 @@
     "contextual-help"
   ],
   "dependencies": {
-    "@pearson-components/elements-sdk": "^1.8.0"
+    "@pearson-components/elements-sdk": "^1.8.0",
+    "isomorphic-fetch": "^2.2.1"
   }
 }

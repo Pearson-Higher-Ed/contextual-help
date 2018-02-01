@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import HelpHeader from './HelpHeader';
 
+//       <div dangerouslySetInnerHTML={{__html: content}}>
+
+
 const HelpTopicContent = ({ title, content, backToTopics, hide }) => (
   <div
     className={`o-contextual-help__topic-content ${hide ? 'hide' : ''}`}
@@ -18,8 +21,7 @@ const HelpTopicContent = ({ title, content, backToTopics, hide }) => (
       <h2 className="pe-title">
         {title}
       </h2>
-      <div>
-        {content}
+      <div dangerouslySetInnerHTML={{__html: content}}>
       </div>
     </div>
   </div>
