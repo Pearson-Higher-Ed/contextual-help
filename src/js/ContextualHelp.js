@@ -45,12 +45,15 @@ class ContextualHelp extends Component {
     setTimeout(() => {
       this.helpTopicsList.addTopics('console/instructor/courseregsettings');
     }, 1000);
-  
+
     setTimeout(() => {
       this.helpTopicsList.addTopics(['console/instructor/courseregsettings',
         'console/instructor/educatorresources',
         'console/student/studentresources',
-        'invalid/topic/name'
+        'invalid/topic/name',
+        'console/student/freetrial',
+        'console/student/studentresources',
+        'contactsupport'
       ]);
     }, 1300);
   }

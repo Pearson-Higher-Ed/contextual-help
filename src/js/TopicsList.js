@@ -3,7 +3,7 @@ const TopicsList = (update, fetchTopic) => ({
   update,
   fetchTopic,
 
-  show: function() {
+  debugShow: function() {
     for(var i = 0; i < this.topics.length; i++) {
       console.log(i, this.topics[i]);
     }
@@ -14,11 +14,11 @@ const TopicsList = (update, fetchTopic) => ({
       return !element.title && !element.fetching && !element.failed;
     });
     if (topicToRetrieve) {
-      this.retrieve(topicToRetrieve);
+      this.retrieveTopic(topicToRetrieve);
     }
   },
   
-  retrieve: function(topic) {
+  retrieveTopic: function(topic) {
     topic.fetching = true;
 
     this.fetchTopic(topic.name)
@@ -81,4 +81,3 @@ const TopicsList = (update, fetchTopic) => ({
 });
 
 export default TopicsList;
-
