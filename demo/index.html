@@ -15,14 +15,14 @@
       "helpTopics": [
         "console/student/freetrial",
         "console/student/studentresources",
-        "console/student/contactsupport"
+        "contactsupport"
       ]
     }
   </script>
   <script>
     if (!document.getElementById('pe-icons-sprite')) {
       var pe_ajax = new XMLHttpRequest();
-      pe_ajax.open("GET", "/icons/p-icons-sprite-1.1.svg", true);
+      pe_ajax.open("GET", "https://unpkg.com/@pearson-components/elements-sdk/build/icons/p-icons-sprite-1.1.svg", true);
       pe_ajax.responseType = "document";
       pe_ajax.onload = function(e) {
         document.body.insertBefore(
@@ -86,7 +86,7 @@
 
   <!-- CustomEvent polyfill for IE -->
   <script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent"></script>
-
+  
   <script src="http://localhost:8080/webpack-dev-server.js"></script>
   <script src="../build/dev_demo.contextual-help.js"></script>
 </body>

@@ -76,7 +76,7 @@ Start by adding a list of help topics to display, via configuration script eleme
 </script>
 ```
 
-This gives contextual-help something to load.  The topics list is presented in order and the values are derived from the path of the files at https://github.com/Pearson-Higher-Ed/help-content in the /out directory without the language code.  The language code can be set dynamically in this component and it's addition to the fetch URL is managed for you.
+This gives contextual-help something to load.  The topics list is presented in order and the values are derived from the path of the files at http://context-help.pearson.com/help/de6fde00-d9d7-4e45-b506-82c01fd7202a in the /Out/ directory without the language code.  The language code can be set dynamically in this component and its addition to the fetch URL is managed for you.
 
 Do not include the filename extension in the list of configured topics.
 

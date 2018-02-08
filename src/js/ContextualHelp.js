@@ -11,7 +11,7 @@ var topicTemplate = require('../html/contentT.html');
 function ContextualHelp(el) {
 
   var me = this,
-      baseURL = 'https://raw.githubusercontent.com/Pearson-Higher-Ed/help-content/master/out/';
+      baseURL = 'http://context-help.pearson.com/help/de6fde00-d9d7-4e45-b506-82c01fd7202a/Out/';
 
   function getConfig() {
     var conf = {},
@@ -205,7 +205,7 @@ ContextualHelp.prototype.setLanguage = function(langCode) {
  */
 ContextualHelp.prototype.manageLayers = function(has_topic) {
   var el = this._el,
-      _this = this,      
+      _this = this,
       layer1 = el.querySelector('.o-contextual-help__topics'),
       layer2 = el.querySelector('.o-contextual-help__topic-content'),
       layer1_close_btn = layer1.querySelector('.close-help'),
@@ -272,10 +272,10 @@ ContextualHelp.prototype.accordion = function() {
   }
 };
 
-/**                                                                             
+/**
  * Retrieves topic content. If drawer is not already open, opens it.
- * Calls layerManagement to ensure layer2 (content) is visible 
- * @param {String} topic - topic name.                
+ * Calls layerManagement to ensure layer2 (content) is visible
+ * @param {String} topic - topic name.
  */
 ContextualHelp.prototype.openHelpTopic = function(topic) {
   var contentTarget = this._el.querySelector('#o-contextual-help-topic-content-target'),

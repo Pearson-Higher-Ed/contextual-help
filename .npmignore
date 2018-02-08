@@ -3,7 +3,6 @@ webpack.config.js
 karma.conf.js
 demo
 test
-npm_scripts
 .idea
 build/dev*.js
 node_modules

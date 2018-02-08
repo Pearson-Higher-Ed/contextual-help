@@ -2,7 +2,7 @@
   "name": "@pearson-components/contextual-help",
   "version": "2.2.4",
   "author": "Pearson Design Accelerator pearson-design-accelerator@pearson.com",
-  "license": "PEARSON PROPRIETARY AND CONFIDENTIAL INFORMATION SUBJECT TO NDA",
+  "license": "MIT",
   "description": "Contextual help for web applications.",
   "main": "main.js",
   "scripts": {
@@ -10,11 +10,11 @@
     "build": "webpack -p",
     "dev-setup": "mkdir -p fonts && mkdir -p icons && cp ./node_modules/pearson-elements/dist/fonts/* ./fonts && cp ./node_modules/pearson-elements/dist/icons/* ./icons",
     "dev": "npm run dev-setup && webpack-dev-server --devtool source-map --hot --host 0.0.0.0 --progress --colors",
-    "start": "npm run dev",
+    "start": "webpack-dev-server --hot",
     "version": "npm run gen-changelog && git add CHANGELOG.md",
-    "ci": "npm run build",
-    "gen-changelog": "node ./npm_scripts/gen-changelog.js",
-    "release": "node ./npm_scripts/release.js"
+    "ci": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/ci.js",
+    "gen-changelog": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/gen-changelog.js",
+    "release": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/release.js"
   },
   "repository": {
     "type": "git",
@@ -25,12 +25,13 @@
     "contextual-help"
   ],
   "devDependencies": {
+    "@pearson-components/npm-scripts": "^0.5.6",
     "conventional-changelog": "^1.1.0",
     "coveralls": "^2.11.4",
     "css-loader": "^0.23.1",
     "expect.js": "^0.3.1",
     "fs-extra": "^1.0.0",
-    "html-loader": "^0.4.3",
+    "html-loader": "^0.4.5",
     "karma": "^0.13.3",
     "karma-coverage": "^0.2.6",
     "karma-mocha": "^0.1.10",
@@ -46,7 +47,6 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "@pearson-components/drawer": "~1.0.0",
-    "dom-delegate": "~2.0.3"
+    "@pearson-components/drawer": "~1.0.0"
   }
 }

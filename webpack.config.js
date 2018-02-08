@@ -1,4 +1,3 @@
-// [name] under the output section denotes the entry prop names
 module.exports = {
   entry: {
    dev_demo: ['webpack/hot/dev-server', './demo/src/demo.js'],
