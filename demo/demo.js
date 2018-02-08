@@ -53,5 +53,5 @@ ReactDOM.render(
   <IntlProvider locale={language} key={language} messages={translations[language]}>
     <IntlInjection />
   </IntlProvider>,
-  document.getElementById('translationDemo')
+  document.getElementById('conHelpDemo')
 )

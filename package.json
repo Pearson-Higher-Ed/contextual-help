@@ -1,6 +1,6 @@
 {
   "name": "@pearson-components/contextual-help",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Contextual help for web applications.",
   "author": "Pearson Design Accelerator pearson-design-accelerator@pearson.com",
   "license": "PEARSON PROPRIETARY AND CONFIDENTIAL INFORMATION SUBJECT TO NDA",
@@ -64,6 +64,7 @@
   ],
   "dependencies": {
     "@pearson-components/elements-sdk": "^1.8.0",
+    "@pearson-components/drawer": "~1.0.0",
     "isomorphic-fetch": "^2.2.1"
   }
 }

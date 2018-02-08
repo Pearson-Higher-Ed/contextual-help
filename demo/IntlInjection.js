@@ -1,10 +1,7 @@
 import React              from 'react';
 import { injectIntl }     from 'react-intl';
 import { messages }       from './translations/defaultMessages';
-import { ComponentOwner as MyComponent} from '../index';
-import { ContextualHelp } from '../index';
-
-import './demoStyles.css';
+import ContextualHelpDemoPage from './ContextualHelpDemoPage';
 
 const IntlInjection = (props) => {
 
@@ -22,10 +19,8 @@ const IntlInjection = (props) => {
       let data  = {};
       data.text = intlText;
 
-    return ( 
-      <div className="demo-container">
-        <ContextualHelp data={data} />
-      </div>
+    return (
+      <ContextualHelpDemoPage data={data} />
     )
 }
 
