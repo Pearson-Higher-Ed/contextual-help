@@ -1,3 +1,20 @@
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/Pearson-Higher-Ed/contextual-help/compare/v2.2.4...v2.3.0) (2018-02-08)
+
+
+### Bug Fixes
+
+* Add reference to verify script ([7c58c2b](https://github.com/Pearson-Higher-Ed/contextual-help/commit/7c58c2b))
+* Update 2nd level title text ([a1a6e30](https://github.com/Pearson-Higher-Ed/contextual-help/commit/a1a6e30))
+
+
+### Features
+
+* Update baseURL pointing to new content storage ([e5b8959](https://github.com/Pearson-Higher-Ed/contextual-help/commit/e5b8959))
+* Update LICENSE and npm-scripts ([3f968fe](https://github.com/Pearson-Higher-Ed/contextual-help/commit/3f968fe))
+
+
+
 <a name="2.2.4"></a>
 ## [2.2.4](https://github.com/Pearson-Higher-Ed/contextual-help/compare/v2.2.3...v2.2.4) (2017-11-13)
 
@@ -106,7 +123,7 @@
 
 ### Features
 
-* v2 styles ([c112016](https://github.com/Pearson-Higher-Ed/contextual-help/commit/c112016))
+* v2 styles ([c112016](https://github.com/Pearson-Higher-Ed/contextual-help/commit/c112016)), closes [#33333](https://github.com/Pearson-Higher-Ed/contextual-help/issues/33333) [#8](https://github.com/Pearson-Higher-Ed/contextual-help/issues/8) [#5](https://github.com/Pearson-Higher-Ed/contextual-help/issues/5)
 
 
 
