@@ -14,7 +14,8 @@
     "version": "npm run gen-changelog && git add CHANGELOG.md",
     "ci": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/ci.js",
     "gen-changelog": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/gen-changelog.js",
-    "release": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/release.js"
+    "release": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/release.js",
+    "verify": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/verify.js"
   },
   "repository": {
     "type": "git",
