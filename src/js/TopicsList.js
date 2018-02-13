@@ -22,6 +22,7 @@ const TopicsList = (update, fetchTopic) => ({
     topic.fetching = true;
 
     this.fetchTopic(topic.name)
+    .then((result) => result.json())
     .then((result) => {
       topic.title = result.title;
       topic.excerpt = result.excerpt;

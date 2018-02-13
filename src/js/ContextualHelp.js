@@ -48,7 +48,7 @@ class ContextualHelp extends Component {
   basicView = (topic, idx) => {
     return (
       <BasicView 
-        mapToDetail='detailView1'
+        mapToDetail={`detailView-${idx}`}
         myKind='BasicView'
         key={`basicView-${idx}`}
       >
@@ -59,7 +59,6 @@ class ContextualHelp extends Component {
   };
 
   detailView = (topic, idx) => {
-    console.log('name:title:content', topic.name, ':', topic.title, ':', topic.content);
     return (
       <DetailView 
         id={`detailView-${idx}`}
@@ -75,36 +74,15 @@ class ContextualHelp extends Component {
 
 
   render() {
-    console.log(this.state.topics);
     return (
-      <div>
-        <span>Contextual Help Component</span>
-
-        <Drawer drawerOpen={this.state.drawerIsOpen} position={'right'} headerTitle="Header Title" drawerHandler={this.drawerHandler} >
-          <div>
-            {this.state.topics.map((topic, idx) => this.basicView(topic, idx))}
-            {this.state.topics.map((topic, idx) => this.detailView(topic, idx))}
+      <Drawer drawerOpen={this.state.drawerIsOpen} position={'right'} headerTitle="Header Title" drawerHandler={this.drawerHandler} >
+        <div>
+          {this.state.topics.map((topic, idx) => this.basicView(topic, idx))}
+          {this.state.topics.map((topic, idx) => this.detailView(topic, idx))}
           </div>
-        </Drawer>
-      </div>
+      </Drawer>
     )
   }
 }
-
-// {this.state.topics.map((topic, idx) => this.basicView(topic, idx))}
-// {this.state.topics.map((topic, idx) => this.detailView(topic, idx))}
-
-
-// <BasicView mapToDetail='detailView1' myKind='BasicView' >
-// <h2>Basic View 1</h2>
-// <ul>
-//   <li>hi</li>
-//   <li>there</li>
-// </ul>
-// </BasicView>
-// <DetailView id='detailView1' myKind='DetailView'>
-// <h3>Detail View 1</h3>
-// </DetailView>
-
 
 export default ContextualHelp;
