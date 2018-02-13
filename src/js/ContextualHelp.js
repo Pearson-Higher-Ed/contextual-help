@@ -46,7 +46,6 @@ class ContextualHelp extends Component {
   };
 
   basicView = (topic, idx) => {
-    debugger;
     return (
       <BasicView 
         mapToDetail='detailView1'
@@ -77,13 +76,13 @@ class ContextualHelp extends Component {
 
   render() {
     console.log(this.state.topics);
-    debugger;
     return (
       <div>
         <span>Contextual Help Component</span>
 
         <Drawer drawerOpen={this.state.drawerIsOpen} position={'right'} headerTitle="Header Title" drawerHandler={this.drawerHandler} >
           <div>
+            {this.state.topics.map((topic, idx) => this.basicView(topic, idx))}
             {this.state.topics.map((topic, idx) => this.detailView(topic, idx))}
           </div>
         </Drawer>
