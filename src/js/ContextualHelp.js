@@ -33,28 +33,79 @@ class ContextualHelp extends Component {
     this.setState({drawerIsOpen: true});
   }
 
+  addTopics = (topic) => {
+    this.helpTopicsList.addTopics(topic);
+  };
+
+  removeTopics = (topic) => {
+    this.helpTopicsList.removeTopics(topic);
+  };
+
+  removeAllTopics = () => {
+    this.helpTopicsList.removeAllTopics();
+  };
+
+  basicView = (topic, idx) => {
+    debugger;
+    return (
+      <BasicView 
+        mapToDetail='detailView1'
+        myKind='BasicView'
+        key={`basicView-${idx}`}
+      >
+       <h3 className="po-label pe-bold" >{topic.title || ''}</h3>
+       <p>{ topic.excerpt || '' }</p>
+      </BasicView>
+    )
+  };
+
+  detailView = (topic, idx) => {
+    console.log('name:title:content', topic.name, ':', topic.title, ':', topic.content);
+    return (
+      <DetailView 
+        id={`detailView-${idx}`}
+        myKind='DetailView'
+        key={`detailView-${idx}`}
+      >
+       <h2 className="pe-title">{topic.title || ''}</h2>
+       <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
+       </div>
+      </DetailView>
+    )
+  };
+
+
   render() {
+    console.log(this.state.topics);
+    debugger;
     return (
       <div>
         <span>Contextual Help Component</span>
 
         <Drawer drawerOpen={this.state.drawerIsOpen} position={'right'} headerTitle="Header Title" drawerHandler={this.drawerHandler} >
           <div>
-            <BasicView mapToDetail='detailView1'>
-              <h2>Basic View 1</h2>
-              <ul>
-                <li>hi</li>
-                <li>there</li>
-              </ul>
-            </BasicView>
-            <DetailView id='detailView1'>
-              <h3>Detail View 1</h3>
-            </DetailView>
+            {this.state.topics.map((topic, idx) => this.detailView(topic, idx))}
           </div>
         </Drawer>
       </div>
     )
   }
 }
+
+// {this.state.topics.map((topic, idx) => this.basicView(topic, idx))}
+// {this.state.topics.map((topic, idx) => this.detailView(topic, idx))}
+
+
+// <BasicView mapToDetail='detailView1' myKind='BasicView' >
+// <h2>Basic View 1</h2>
+// <ul>
+//   <li>hi</li>
+//   <li>there</li>
+// </ul>
+// </BasicView>
+// <DetailView id='detailView1' myKind='DetailView'>
+// <h3>Detail View 1</h3>
+// </DetailView>
+
 
 export default ContextualHelp;

@@ -14,18 +14,28 @@ class ContextualHelpDemoPage extends Component {
     };
 
     setTimeout(() => {
-      this.conHelp.addTopics('console/instructor/validatedinstructor');
+      // this.conHelp.addTopics('console/instructor/validatedinstructor');
+      this.contextualHelp.addTopics('console/instructor/validatedinstructor');
     }, 400);
 
     setTimeout(() => {
-      this.conHelp.addTopics('console/instructor/courseregsettings');
+      // this.conHelp.addTopics('console/instructor/courseregsettings');
+      this.contextualHelp.addTopics('console/instructor/courseregsettings');
     }, 1000);
 
     setTimeout(() => {
-      this.conHelp.addTopics(['console/instructor/courseregsettings',
+      // this.conHelp.addTopics(['console/instructor/courseregsettings',
+      //   'console/instructor/educatorresources',
+      //   'console/student/studentresources',
+      //   'invalid/topic/name',
+      //   'console/student/freetrial',
+      //   'console/student/studentresources',
+      //   'contactsupport'
+      // ]);
+      this.contextualHelp.addTopics(['console/instructor/courseregsettings',
         'console/instructor/educatorresources',
         'console/student/studentresources',
-        'invalid/topic/name',
+        // 'invalid/topic/name',
         'console/student/freetrial',
         'console/student/studentresources',
         'contactsupport'
