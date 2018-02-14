@@ -25,7 +25,7 @@ class ContextualHelpDemoPage extends Component {
       this.contextualHelp.addTopics(['console/instructor/courseregsettings',
         'console/instructor/educatorresources',
         'console/student/studentresources',
-        // 'invalid/topic/name',
+        'invalid/topic/name',
         'console/student/freetrial',
         'console/student/studentresources',
         'contactsupport'

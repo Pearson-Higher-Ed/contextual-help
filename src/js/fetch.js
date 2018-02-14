@@ -19,10 +19,7 @@ const handleResponse = (response, requestData)=> {
     throw error;
   }
 
-  return response.text().then((text) => {
-    const res = text ? JSON.parse(text) : {};
-    return res;
-  })
+  return response.json();
 };
 
 const fetch = (url) => {

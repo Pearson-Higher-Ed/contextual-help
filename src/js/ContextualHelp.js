@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Drawer, BasicView, DetailView } from '@pearson-components/drawer';
 import TopicsList from './TopicsList';
+import fetch from './fetch';
+
+import '../scss/ContextualHelp.scss';
 
 class ContextualHelp extends Component {
   constructor(props) {
@@ -21,12 +24,20 @@ class ContextualHelp extends Component {
     });
   }
 
+  _fetchTopic = (topicName) => {
+    const url = `http://context-help.pearson.com/help/de6fde00-d9d7-4e45-b506-82c01fd7202a/Out/${this.lang}/${topicName}.json`;
+    return fetch(url);
+  };
+
   _updateTopics = (newList) => {
     this.setState({ topics: newList });
   }
 
   _drawerHandler = () => {
-    this.setState({drawerIsOpen: !this.state.drawerIsOpen});
+    this.setState({
+      directTopic: this.state.drawerIsOpen ? undefined : this.state.directTopic,
+      drawerIsOpen: !this.state.drawerIsOpen
+    });
   }
 
   _openDrawer = () => {
@@ -43,6 +54,19 @@ class ContextualHelp extends Component {
 
   removeAllTopics = () => {
     this.helpTopicsList.removeAllTopics();
+  };
+
+  openHelpTopic = (topicName) => {
+    this._fetchTopic(topicName)
+    .then((result) => {
+      this.setState({
+        directTopic: { title: result.title, content: result.content },
+        drawerIsOpen: true
+      });
+    })
+    .catch(() => {
+      this.setState({drawerIsOpen: false});
+    });
   };
 
   basicView = (topic, idx) => {
@@ -76,10 +100,10 @@ class ContextualHelp extends Component {
   render() {
     return (
       <Drawer drawerOpen={this.state.drawerIsOpen} position={'right'} headerTitle="Header Title" drawerHandler={this.drawerHandler} >
-        <div>
+        <div className={this.state.directTopic ? 'displayHidden' : 'displayBlock'}>
           {this.state.topics.map((topic, idx) => this.basicView(topic, idx))}
           {this.state.topics.map((topic, idx) => this.detailView(topic, idx))}
-          </div>
+        </div>
       </Drawer>
     )
   }
