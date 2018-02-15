@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Drawer, BasicView, DetailView } from '@pearson-components/drawer';
-import TopicsList from './TopicsList';
-import fetch from './fetch';
-
-import '../scss/ContextualHelp.scss';
+import { addTopics, removeTopics, setUpdate, fetchOneTopic } from './topicsList';
 
 class ContextualHelp extends Component {
   constructor(props) {
@@ -14,65 +12,36 @@ class ContextualHelp extends Component {
       drawerIsOpen: false
     };
 
-    this.drawerHandler = this._drawerHandler.bind(this);
-    this.openDrawer = this._openDrawer.bind(this);
-
-    this.lang = props.language || 'en-us';
-    this.helpTopicsList = new TopicsList(this._updateTopics, (topicName) => {
-      const url = `http://context-help.pearson.com/help/de6fde00-d9d7-4e45-b506-82c01fd7202a/Out/${this.lang}/${topicName}.json`;
-      return fetch(url);
-    });
+    this.updateTopics = this._updateTopics.bind(this);
   }
 
-  _fetchTopic = (topicName) => {
-    const url = `http://context-help.pearson.com/help/de6fde00-d9d7-4e45-b506-82c01fd7202a/Out/${this.lang}/${topicName}.json`;
-    return fetch(url);
-  };
-
-  _updateTopics = (newList) => {
-    this.setState({ topics: newList });
+  componentDidMount() {
+    setUpdate(this.updateTopics);
+    addTopics(this.props.topics);
   }
 
-  _drawerHandler = () => {
-    this.setState({
-      directTopic: this.state.drawerIsOpen ? undefined : this.state.directTopic,
-      drawerIsOpen: !this.state.drawerIsOpen
-    });
-  }
+  componentWillReceiveProps(nextProps) {
+    const newTopics = nextProps.topics.filter((topic) => this.props.topics.indexOf(topic) === -1);
+    const droppedTopics = this.props.topics.filter((topic) => nextProps.topics.indexOf(topic) === -1);
 
-  _openDrawer = () => {
-    this.setState({drawerIsOpen: true});
-  }
+    addTopics(newTopics);
+    removeTopics(droppedTopics);
 
-  addTopics = (topic) => {
-    this.helpTopicsList.addTopics(topic);
-  };
-
-  removeTopics = (topic) => {
-    this.helpTopicsList.removeTopics(topic);
-  };
-
-  removeAllTopics = () => {
-    this.helpTopicsList.removeAllTopics();
-  };
-
-  openHelpTopic = (topicName) => {
-    this._fetchTopic(topicName)
-    .then((result) => {
-      this.setState({
-        directTopic: { title: result.title, content: result.content },
-        drawerIsOpen: true
+    if (nextProps.directTopic) {
+      fetchOneTopic(nextProps.directTopic, (topicInfo) => {
+        this.setState({directTopic: topicInfo});
       });
-    })
-    .catch(() => {
-      this.setState({drawerIsOpen: false});
-    });
+    }
+  }
+
+  _updateTopics = (newTopics) => {
+    this.setState({topics: newTopics});
   };
 
-  basicView = (topic, idx) => {
+  basicView = (topic, idx, noDetails) => {
     return (
       <BasicView 
-        mapToDetail={`detailView-${idx}`}
+        mapToDetail={noDetails ? undefined : `detailView-${idx}`}
         myKind='BasicView'
         key={`basicView-${idx}`}
       >
@@ -96,17 +65,37 @@ class ContextualHelp extends Component {
     )
   };
 
+  drawerContents = () => {
+    if (this.props.directTopic) {
+      return (
+        <div>
+          {this.basicView(this.state.directTopic || { title: '', content: ''}, 0, true)}
+        </div>
+      )
+    }
+
+    return (
+      <div>
+        {this.state.topics.map((topic, idx) => this.basicView(topic, idx))}
+        {this.state.topics.map((topic, idx) => this.detailView(topic, idx))}
+      </div>
+    )
+};
 
   render() {
     return (
-      <Drawer drawerOpen={this.state.drawerIsOpen} position={'right'} headerTitle="Header Title" drawerHandler={this.drawerHandler} >
-        <div className={this.state.directTopic ? 'displayHidden' : 'displayBlock'}>
-          {this.state.topics.map((topic, idx) => this.basicView(topic, idx))}
-          {this.state.topics.map((topic, idx) => this.detailView(topic, idx))}
-        </div>
+      <Drawer drawerOpen={this.props.showHelp} position={'right'} headerTitle="Help Topics" drawerHandler={this.props.handleHelp} >
+        {this.drawerContents()}
       </Drawer>
     )
   }
 }
+
+ContextualHelp.propTypes = {
+  directTopic: PropTypes.string,
+  handleHelp: PropTypes.func,
+  showHelp: PropTypes.bool,
+  topics: PropTypes.array
+};
 
 export default ContextualHelp;

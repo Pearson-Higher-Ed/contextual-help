@@ -1,7 +1,7 @@
 import React              from 'react';
 import { injectIntl }     from 'react-intl';
 import { messages }       from './translations/defaultMessages';
-import ContextualHelpDemoPage2 from './ContextualHelpDemoPage2';
+import ContextualHelpDemoPage from './ContextualHelpDemoPage';
 
 const IntlInjection = (props) => {
 
@@ -20,7 +20,7 @@ const IntlInjection = (props) => {
       data.text = intlText;
 
     return (
-      <ContextualHelpDemoPage2 data={data} />
+      <ContextualHelpDemoPage data={data} />
     )
 }
 
