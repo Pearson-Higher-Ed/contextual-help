@@ -23,6 +23,22 @@ export const addTopics = (topic) => {
   retrieveNextTopic();
 };
 
+// This is used only for the component demo page. It is not published
+// in the index. It allows users to test content via the demo page.
+export const demoAddTopic = (fullTopic) => {
+  if (!fullTopic) {
+    return;
+  }
+
+  const foundTopic = topics.find((element) => {
+    return element.name === fullTopic.name;
+  });
+  if (!foundTopic) {
+    topics.push(fullTopic);
+  }
+  update(topics.filter(a => !a.fetching && !a.failed).map(a => ({...a})));
+};
+
 export const removeTopics = (topic) => {
   if (!topic) {
     return;
@@ -81,7 +97,13 @@ export const setUpdate = (newUpdate) => {
 };
 
 export const setLanguage = (language) => {
-  lang = language;
+  if (language !== lang) {
+    const currentTopics = topics.map((topic) => topic.name);
+    topics.length = 0;
+    update(topics.filter(a => !a.fetching && !a.failed).map(a => ({...a})));
+    lang = language;
+    currentTopics.forEach((topic) => addTopics(topic));
+  }
 };
 
 const fetchTopic = (topicName) => {
@@ -100,7 +122,7 @@ export const fetchOneTopic = (topicName, callback) => {
       };
     callback(topic);
   })
-  .catch(() => {
+  .catch((error) => {
     callback({
       title: 'Help unavailable',
       content: 'Help for this topic is currently unavailable',

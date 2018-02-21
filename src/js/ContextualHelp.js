@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Drawer, BasicView, DetailView } from '@pearson-components/drawer';
-import { addTopics, removeTopics, setUpdate, fetchOneTopic } from './topicsList';
+import { addTopics, removeTopics, setUpdate, fetchOneTopic, setLanguage } from './topicsList';
 
 class ContextualHelp extends Component {
   constructor(props) {
@@ -32,16 +32,20 @@ class ContextualHelp extends Component {
         this.setState({directTopic: topicInfo});
       });
     }
+
+    if (nextProps.language !== this.props.language) {
+      setLanguage(nextProps.language);
+    }
   }
 
   _updateTopics = (newTopics) => {
     this.setState({topics: newTopics});
   };
 
-  basicView = (topic, idx, noDetails) => {
+  basicView = (topic, idx) => {
     return (
       <BasicView 
-        mapToDetail={noDetails ? undefined : `detailView-${idx}`}
+        mapToDetail={`detailView-${idx}`}
         myKind='BasicView'
         key={`basicView-${idx}`}
       >
@@ -65,11 +69,25 @@ class ContextualHelp extends Component {
     )
   };
 
+  directTopicView = (topic, idx) => {
+    return (
+      <BasicView 
+        mapToDetail={undefined}
+        myKind='BasicView'
+        key={`basicView-${idx}`}
+      >
+        <h2 className="pe-title">{topic.title || ''}</h2>
+        <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
+        </div>
+      </BasicView>
+    )
+  };
+
   drawerContents = () => {
     if (this.props.directTopic) {
       return (
         <div>
-          {this.basicView(this.state.directTopic || { title: '', content: ''}, 0, true)}
+          {this.directTopicView(this.state.directTopic || { title: '', content: ''}, 0)}
         </div>
       )
     }
@@ -84,7 +102,13 @@ class ContextualHelp extends Component {
 
   render() {
     return (
-      <Drawer drawerOpen={this.props.showHelp} position={'right'} headerTitle="Help Topics" drawerHandler={this.props.handleHelp} >
+      <Drawer 
+        drawerHandler={this.props.handleHelp}
+        drawerOpen={this.props.showHelp}
+        drawerTop={this.props.drawerTop}
+        position={'right'}
+        text="Help Topics"
+      >
         {this.drawerContents()}
       </Drawer>
     )
@@ -93,7 +117,9 @@ class ContextualHelp extends Component {
 
 ContextualHelp.propTypes = {
   directTopic: PropTypes.string,
+  drawerTop: PropTypes.string,
   handleHelp: PropTypes.func,
+  language: PropTypes.string,
   showHelp: PropTypes.bool,
   topics: PropTypes.array
 };

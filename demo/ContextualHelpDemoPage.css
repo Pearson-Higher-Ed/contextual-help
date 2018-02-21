@@ -1,7 +1,18 @@
-/* */
-.demo-container {
-  top: 20px;
-  position: relative;
-  height: 400px;
+ .demo-table {
+   width: 80%;
+   margin-left: 30px;
+ }
+
+.custom-excerpt {
+  width: 100%;
 }
-/* */
+
+ .demo-editor {
+  width:100%;
+}
+
+ .topics-discussion {
+  width: 80%;
+  margin-left: 30px;
+  margin-top: 20px;
+ }
