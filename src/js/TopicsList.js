@@ -1,9 +1,10 @@
-import fetch from './fetch';
+import chFetch from './chFetch';
 
 let topics = [];
 let lang = 'en-us';
 
 export const addTopics = (topic) => {
+  console.log('addTopic', topic);
   if (!topic) {
     return;
   }
@@ -20,11 +21,12 @@ export const addTopics = (topic) => {
     }
   }
 
+  console.log('addTopicEnd');
   retrieveNextTopic();
 };
 
-// This is used only for the component demo page. It is not published
-// in the index. It allows users to test content via the demo page.
+// This is used only for the component demo page. It is not published in the
+// index. It allows users to test content appearance via the demo page.
 export const demoAddTopic = (fullTopic) => {
   if (!fullTopic) {
     return;
@@ -58,21 +60,25 @@ export const removeTopics = (topic) => {
   update(topics.filter(a => !a.fetching && !a.failed).map(a => ({...a})));
 };
 
-export const getTopics = () => {
-  return topics.filter(a => !a.fetching && !a.failed).map(a => ({...a}))
+export const getTopics = (ignoreStatus) => {
+  console.log('getTopics', topics);
+  return topics.filter(a => (!a.fetching && !a.failed) || ignoreStatus).map(a => ({...a}))
 };
 
 const retrieveNextTopic = () => {
+  console.log('retrieveNextTopic');
   const topicToRetrieve = topics.find((element) => {
     return !element.title && !element.fetching && !element.failed;
   });
   if (topicToRetrieve) {
+    console.log('retrieveNextTopic', topicToRetrieve);
     retrieveTopic(topicToRetrieve);
   }
 };
 
 const retrieveTopic = (topic) => {
   topic.fetching = true;
+  console.log('retrieveTopic', topic);
 
   fetchTopic(topic.name)
   .then((result) => {
@@ -81,6 +87,7 @@ const retrieveTopic = (topic) => {
     topic.content = result.content;
     topic.fetching = false;
     update(topics.filter(a => !a.fetching && !a.failed).map(a => ({...a})));
+    console.log('fetchedTopic', topic);
   })
   .catch(() => {
     topic.failed = true;
@@ -106,9 +113,14 @@ export const setLanguage = (language) => {
   }
 };
 
+export const buildUrl = (topicName) => {
+  return `http://context-help.pearson.com/help/de6fde00-d9d7-4e45-b506-82c01fd7202a/Out/${lang}/${topicName}.json`;
+};
+
 const fetchTopic = (topicName) => {
-  const url = `http://context-help.pearson.com/help/de6fde00-d9d7-4e45-b506-82c01fd7202a/Out/${lang}/${topicName}.json`;
-  return fetch(url);
+  const url = buildUrl(topicName);
+  console.log('fetchTopic', topicName);
+  return chFetch(url);
 };
 
 export const fetchOneTopic = (topicName, callback) => {

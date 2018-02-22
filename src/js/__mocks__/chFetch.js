@@ -11,12 +11,12 @@ const helpTopics = {
   }
 };
 
-export default function fetch(url) {
+const chFetch = (url) => {
   return new Promise((resolve, reject) => {
     let lang = url.substr('http://context-help.pearson.com/help/de6fde00-d9d7-4e45-b506-82c01fd7202a/Out/'.length);
-    lang = lang.subStr(0, lang.indexOf('/'));
-    let helpTopicName = url.substr(url.lastIndexOf('/'));
-    helpTopicName.replace('.json', '');
+    let helpTopicName = lang.replace('.json', '');
+    lang = lang.substring(0, lang.indexOf('/'));
+    helpTopicName = helpTopicName.substr(lang.length + 1);
 
     process.nextTick(
       () =>
@@ -28,3 +28,5 @@ export default function fetch(url) {
     );
   });
 }
+
+export default chFetch;

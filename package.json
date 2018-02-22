@@ -66,5 +66,8 @@
     "@pearson-components/elements-sdk": "^1.8.0",
     "@pearson-components/drawer": "~1.0.0",
     "isomorphic-fetch": "^2.2.1"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/test/testConfig/enzymeConfig.js"
   }
 }

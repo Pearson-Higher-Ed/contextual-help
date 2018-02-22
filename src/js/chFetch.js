@@ -22,7 +22,7 @@ const handleResponse = (response, requestData)=> {
   return response.json();
 };
 
-const fetch = (url) => {
+const chFetch = (url) => {
   if (!url && typeof url !== 'string') {
     return
   }
@@ -50,4 +50,4 @@ const fetch = (url) => {
   });
 };
 
-export default fetch;
+export default chFetch;
