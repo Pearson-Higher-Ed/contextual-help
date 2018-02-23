@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from '@pearson-components/elements-sdk/build/dist.elements-sdk';
+import { Button, TextInput, MultiLineText } from '@pearson-components/elements-sdk/build/dist.elements-sdk';
 import { ContextualHelp } from '../index';
 
 import { addTopics, removeTopics, setUpdate } from '../index';
@@ -181,12 +181,24 @@ class ContextualHelpDemoPage extends Component {
                   btnSize="xlarge"
                   className="pe-btn--btn_small demo-button"
                   onClick={
-                      () => document.getElementById("customContext").value = '<h3>Here\'s the header</h3>\n' +
-                      '<p>Now a paragraph full of stuff. Yadda, yadda, yadda. And on and on and on it goes.</p>\n' +
-                      '<details>\n' +
-                      '  <section>Details / Section test</section>\n' +
-                      '  Now here is the text for the details portion of the test that is going on right here.\n' +
-                      '</details>'
+                      () => {
+                        document.getElementById("customContent").value = 'Implementing an Accordian within ContextualHelp' +
+                        'uses the html5 tags of summary and detail. There would generally be some amount of text that would' +
+                        'always be visible above the accordion, which is represented by this text.\n<br/>\n<br/>\n' +
+                        'Below there are a couple of accordions\n<br/>\n<br/>\n' +
+                        '<details>\n' +
+                        '  <summary>Orginaztion</summary>\n' +
+                        '  Notice that the summary tag is placed within the details tag. Then the balance of the text, that' +
+                        '  gets displayed when the section is expanded, is placed within the details tag.\n' +
+                        '</details>\n<br/>\n<br/>\n<details>\n' +
+                        '  <summary>Accessibility</summary>\n' +
+                        '  Accessibility is addressed automatically by the browser. The summary tags become tab stops' +
+                        '  to allow a keyboard user to be able to move between them and to open the section using standard' +
+                        '  accessibility techniques.'
+                        '</details>';
+                        document.getElementById("customTitle").value = 'Accordions';
+                        document.getElementById("customExcerpt").value = 'Implementing an Accordian within ContextualHelp';
+                      }
                     }
                 >Accordion example
                 </Button>
@@ -207,7 +219,7 @@ class ContextualHelpDemoPage extends Component {
                       name: 'custom/text/demo/example',
                       title: document.getElementById("customTitle").value,
                       excerpt: document.getElementById("customExcerpt").value,
-                      content: document.getElementById("customContext").value,
+                      content: document.getElementById("customContent").value,
                       fetching: false,
                       failed: false
                     };
@@ -227,23 +239,29 @@ class ContextualHelpDemoPage extends Component {
             </tr>
             <tr>
               <td>
-                topic.title
-                <br/>
-                <input id="customTitle" />
+                <TextInput
+                  id="customTitle"
+                  inputState="default"
+                  labelText="topic.title" 
+                  placeholder="Custom Title"
+                />
               </td>
               <td>
-                <label className="display-block">topic.excerpt</label>
-                <textarea id="customExcerpt" rows="3" cols="30" className="custom-excerpt">
-                </textarea>
+                <MultiLineText 
+                  id="customExcerpt"
+                  labelText="topic.excerpt"
+                  placeholder="Enter topic excerpt here."
+                />
               </td>
             </tr>
             <tr>
               <td colSpan="2" >
-                topic.content
-                <br />
-                <textarea id="customContext" rows="10" cols="50" className="demo-editor">
-                </textarea>
-              </td>
+                <MultiLineText 
+                  id="customContent"
+                  labelText="topic.content"
+                  placeholder="Enter topic content here."
+                />
+          </td>
             </tr>
           </tbody>
         </table>

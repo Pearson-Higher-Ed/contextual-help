@@ -13,7 +13,6 @@ class ContextualHelp extends Component {
     };
 
     this.updateTopics = this._updateTopics.bind(this);
-    this.handleNewProps = this._handleNewProps.bind(this);
   }
 
   componentDidMount() {
@@ -22,18 +21,6 @@ class ContextualHelp extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.handleNewProps(nextProps);
-  }
-
-  componentDidCatch(error, info) {
-    // Display fallback UI
-    this.setState({ hasError: true });
-    // You can also log the error to an error reporting service
-    console.log(error, info);
-  }
-
-  // This allows much simpler testing with enzyme shallow
-  _handleNewProps(nextProps) {
     const newTopics = nextProps.topics.filter((topic) => this.props.topics.indexOf(topic) === -1);
     const droppedTopics = this.props.topics.filter((topic) => nextProps.topics.indexOf(topic) === -1);
     addTopics(newTopics);
@@ -46,6 +33,11 @@ class ContextualHelp extends Component {
     if (nextProps.language !== this.props.language) {
       setLanguage(nextProps.language);
     }
+  }
+
+  componentDidCatch(error, info) {
+    this.setState({ hasError: true });
+    console.log(error, info);
   }
 
   _updateTopics = (newTopics) => {

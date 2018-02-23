@@ -23,8 +23,6 @@ export const addTopics = (topic) => {
   retrieveNextTopic();
 };
 
-// This is used only for the component demo page. It is not published in the
-// index. It allows users to test content appearance via the demo page.
 export const demoAddTopic = (fullTopic) => {
   if (!fullTopic) {
     return;
