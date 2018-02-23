@@ -19,12 +19,13 @@ const chFetch = (url) => {
     helpTopicName = helpTopicName.substr(lang.length + 1);
 
     process.nextTick(
-      () =>
-      helpTopics[helpTopicName]
+      () => {
+        return helpTopics[helpTopicName]
         ? resolve(helpTopics[helpTopicName])
         : reject({
           error: `Help Topic ${helpTopicName} not found.`
         })
+      }
     );
   });
 }

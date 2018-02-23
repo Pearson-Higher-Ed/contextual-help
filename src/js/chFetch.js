@@ -1,6 +1,6 @@
 import _fetch from 'isomorphic-fetch';
 
-const handleResponse = (response, requestData)=> {
+export const handleResponse = (response, requestData)=> {
   const valid = response.status >= 200 && response.status <= 399;
   if (!valid) {
     const responseData = {
@@ -26,8 +26,6 @@ const chFetch = (url) => {
   if (!url && typeof url !== 'string') {
     return
   }
-
-  const payload = {};
 
   const requestData = {
     method: 'GET',

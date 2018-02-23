@@ -72,20 +72,12 @@ const retrieveNextTopic = () => {
 };
 
 const retrieveTopic = (topic) => {
-  topic.fetching = true;
-
-  fetchTopic(topic.name)
-  .then((result) => {
-    topic.title = result.title;
-    topic.excerpt = result.excerpt;
-    topic.content = result.content;
-    topic.fetching = false;
-    update(topics.filter(a => !a.fetching && !a.failed).map(a => ({...a})));
-  })
-  .catch(() => {
-    topic.failed = true;
-    topic.fetching = false;
-  });
+  topic.title = "Test Title";
+  topic.excerpt = "Test excerpt";
+  topic.content = "Test content";
+  topic.fetching = false;
+  topic.failed = false;
+  update(topics.filter(a => !a.fetching && !a.failed).map(a => ({...a})));
 
   retrieveNextTopic();
 };

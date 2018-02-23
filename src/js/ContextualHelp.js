@@ -13,6 +13,7 @@ class ContextualHelp extends Component {
     };
 
     this.updateTopics = this._updateTopics.bind(this);
+    this.handleNewProps = this._handleNewProps.bind(this);
   }
 
   componentDidMount() {
@@ -21,18 +22,27 @@ class ContextualHelp extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    this.handleNewProps(nextProps);
+  }
+
+  componentDidCatch(error, info) {
+    // Display fallback UI
+    this.setState({ hasError: true });
+    // You can also log the error to an error reporting service
+    console.log(error, info);
+  }
+
+  // This allows much simpler testing with enzyme shallow
+  _handleNewProps(nextProps) {
     const newTopics = nextProps.topics.filter((topic) => this.props.topics.indexOf(topic) === -1);
     const droppedTopics = this.props.topics.filter((topic) => nextProps.topics.indexOf(topic) === -1);
-
     addTopics(newTopics);
     removeTopics(droppedTopics);
-
     if (nextProps.directTopic) {
       fetchOneTopic(nextProps.directTopic, (topicInfo) => {
-        this.setState({directTopic: topicInfo});
+        this.setState({ directTopic: topicInfo });
       });
     }
-
     if (nextProps.language !== this.props.language) {
       setLanguage(nextProps.language);
     }
@@ -69,12 +79,12 @@ class ContextualHelp extends Component {
     )
   };
 
-  directTopicView = (topic, idx) => {
+  directTopicView = (topic) => {
     return (
       <BasicView 
         mapToDetail={undefined}
         myKind='BasicView'
-        key={`basicView-${idx}`}
+        key={`basicView-0`}
       >
         <h2 className="pe-title">{topic.title || ''}</h2>
         <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
@@ -87,7 +97,7 @@ class ContextualHelp extends Component {
     if (this.props.directTopic) {
       return (
         <div>
-          {this.directTopicView(this.state.directTopic || { title: '', content: ''}, 0)}
+          {this.directTopicView(this.state.directTopic || { title: '', content: ''})}
         </div>
       )
     }
@@ -98,7 +108,7 @@ class ContextualHelp extends Component {
         {this.state.topics.map((topic, idx) => this.detailView(topic, idx))}
       </div>
     )
-};
+  };
 
   render() {
     return (

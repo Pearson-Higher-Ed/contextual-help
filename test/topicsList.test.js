@@ -2,8 +2,8 @@ jest.mock('../src/js/chFetch');
 
 import { fetchOneTopic, addTopics, removeTopics, getTopics, setUpdate, demoAddTopic, setLanguage, buildUrl } from '../src/js/topicsList';
 
-it('fetches one topic', () => {
-  return fetchOneTopic('help/topic/test/1', (topic) => {
+it('fetches one topic', (done) => {
+  fetchOneTopic('help/topic/test/1', (topic) => {
     expect(topic).toEqual(
       {
         title: 'Test Title 1',
@@ -11,11 +11,12 @@ it('fetches one topic', () => {
         content: 'This is a dummy help topic. It is use only for unit testing purposes.',
         fetching: false
       }
-    )
+    );
+    done();
   })
 });
 
-it('fetches handles a bad topic name', () => {
+it('fetches handles a bad topic name', (done) => {
   return fetchOneTopic('help/topic/test/99', (topic) => {
     expect(topic).toEqual(
       {
@@ -25,7 +26,8 @@ it('fetches handles a bad topic name', () => {
         fetching: false,
         failed: true
       }
-    )
+    );
+    done();
   })
 });
 
@@ -33,13 +35,6 @@ it('accomodates adding and removing individual topics', () => {
   let topics = getTopics();
   expect(topics.length).toEqual(0);
   addTopics('help/topic/test/1');
-  // let i = 0;
-  // while (i < 10) {
-  //   topics = getTopics(true);
-  //   console.log(topics);
-  //   process.nextTick(() => {});
-  //   i += 1;    
-  // }
   topics = getTopics(true);
   expect(topics.length).toEqual(1);
   removeTopics('help/topic/test/1');
@@ -91,6 +86,6 @@ it('uses language to build URL', () => {
   const fakeTopicName = 'fake/topic/name';
   const expectedUrl = `http://context-help.pearson.com/help/de6fde00-d9d7-4e45-b506-82c01fd7202a/Out/${fakeLanguage}/${fakeTopicName}.json`;
   setLanguage(fakeLanguage);
-  const url = buildUrl(topicName);
+  const url = buildUrl(fakeTopicName);
   expect(url).toEqual(expectedUrl);
 });
