@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { Drawer, BasicView, DetailView } from '@pearson-components/drawer';
 import { addTopics, removeTopics, setUpdate, fetchOneTopic, setLanguage } from './topicsList';
 
+import '../scss/ContextualHelp.scss';
+import '@pearson-components/elements-sdk';
+
 class ContextualHelp extends Component {
   constructor(props) {
     super(props);
@@ -47,12 +50,13 @@ class ContextualHelp extends Component {
   basicView = (topic, idx) => {
     return (
       <BasicView 
+        className="contextual-help-basic-view"
+        key={`basicView-${idx}`}
         mapToDetail={`detailView-${idx}`}
         myKind='BasicView'
-        key={`basicView-${idx}`}
       >
-       <h3 className="po-label pe-bold" >{topic.title || ''}</h3>
-       <p>{ topic.excerpt || '' }</p>
+        <h3 className="po-label pe-bold contextual-help-basic-view" >{topic.title || ''}</h3>
+        <p className="pe-label contextual-help-basic-view">{ topic.excerpt || '' }</p>
       </BasicView>
     )
   };
@@ -64,7 +68,7 @@ class ContextualHelp extends Component {
         myKind='DetailView'
         key={`detailView-${idx}`}
       >
-       <h2 className="pe-title">{topic.title || ''}</h2>
+       <h2 className="pe-title pe-title--small pe-bold">{topic.title || ''}</h2>
        <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
        </div>
       </DetailView>
@@ -78,7 +82,7 @@ class ContextualHelp extends Component {
         myKind='BasicView'
         key={`basicView-0`}
       >
-        <h2 className="pe-title">{topic.title || ''}</h2>
+        <h2 className="po-label pe-bold">{topic.title || ''}</h2>
         <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
         </div>
       </BasicView>

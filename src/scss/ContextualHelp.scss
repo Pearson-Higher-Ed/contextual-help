@@ -7,3 +7,29 @@
 .displayBlock {
     display: block;
 }
+
+.contextual-help-basic-view {
+    font-size: 1.0rem;
+}
+
+.drawerMain {
+    h2 {
+        margin-top: 25px;
+        margin-bottom: 25px;
+        line-height: normal;
+        color: #252525;
+    }
+
+    h3 {
+        margin-top: 25px;
+        margin-bottom: 0;
+        line-height: normal;
+        color: #252525;
+        font-size: 1.0rem;
+    }
+
+    p {
+        font-size: 1.0rem;
+        color: #6a7070;
+    }
+}
