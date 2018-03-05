@@ -22,15 +22,15 @@ module.exports = {
   },
   output: {
     path          : path.resolve(__dirname, 'build'),
-    filename      : '[name].component-name.js',
-    publicPath    : '/component-archetype/',
+    filename      : '[name].contextual-help.js',
+    publicPath    : '/contextual-help/',
     libraryTarget : 'umd'
   },
   devtool: "source-map",
   devServer: {
     host               : "0.0.0.0",
     port               : 8081,
-    publicPath         : "/component-archetype/",
+    publicPath         : "/contextual-help/",
     hot                : true,
     https              : false,
     overlay            : true,

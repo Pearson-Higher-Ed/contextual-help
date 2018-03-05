@@ -182,17 +182,17 @@ class ContextualHelpDemoPage extends Component {
                   className="pe-btn--btn_small demo-button"
                   onClick={
                       () => {
-                        document.getElementById("customContent").value = 'Implementing an Accordian within ContextualHelp' +
-                        'uses the html5 tags of summary and detail. There would generally be some amount of text that would' +
+                        document.getElementById("customContent").value = 'Implementing an Accordian within ContextualHelp ' +
+                        'uses the html5 tags of <b>summary</b> and <b>detail</b>. There would generally be some amount of text that would ' +
                         'always be visible above the accordion, which is represented by this text.\n<br/>\n<br/>\n' +
                         'Below there are a couple of accordions\n<br/>\n<br/>\n' +
                         '<details>\n' +
-                        '  <summary>Orginaztion</summary>\n' +
+                        '  <summary>Organization</summary>\n' +
                         '  Notice that the summary tag is placed within the details tag. Then the balance of the text, that' +
                         '  gets displayed when the section is expanded, is placed within the details tag.\n' +
                         '</details>\n<br/>\n<br/>\n<details>\n' +
                         '  <summary>Accessibility</summary>\n' +
-                        '  Accessibility is addressed automatically by the browser. The summary tags become tab stops' +
+                        '  Accessibility is addressed automatically by the browser. The summary tags become tab stops ' +
                         '  to allow a keyboard user to be able to move between them and to open the section using standard' +
                         '  accessibility techniques.'
                         '</details>';

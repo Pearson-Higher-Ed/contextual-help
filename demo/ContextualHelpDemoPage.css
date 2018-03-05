@@ -1,7 +1,11 @@
- .demo-table {
-   width: 80%;
-   margin-left: 30px;
- }
+body {
+  background-color: whitesmoke;
+}
+
+.demo-table {
+  width: 80%;
+  margin-left: 30px;
+}
 
 .custom-excerpt {
   width: 100%;

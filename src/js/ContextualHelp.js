@@ -4,7 +4,6 @@ import { Drawer, BasicView, DetailView } from '@pearson-components/drawer';
 import { addTopics, removeTopics, setUpdate, fetchOneTopic, setLanguage } from './topicsList';
 
 import '../scss/ContextualHelp.scss';
-import '@pearson-components/elements-sdk';
 
 class ContextualHelp extends Component {
   constructor(props) {
@@ -38,11 +37,6 @@ class ContextualHelp extends Component {
     }
   }
 
-  componentDidCatch(error, info) {
-    this.setState({ hasError: true });
-    console.log(error, info);
-  }
-
   _updateTopics = (newTopics) => {
     this.setState({topics: newTopics});
   };
@@ -50,13 +44,13 @@ class ContextualHelp extends Component {
   basicView = (topic, idx) => {
     return (
       <BasicView 
-        className="contextual-help-basic-view"
+        className="contextualHelpBasicView"
         key={`basicView-${idx}`}
         mapToDetail={`detailView-${idx}`}
         myKind='BasicView'
       >
-        <h3 className="po-label pe-bold contextual-help-basic-view" >{topic.title || ''}</h3>
-        <p className="pe-label contextual-help-basic-view">{ topic.excerpt || '' }</p>
+        <h3 className="po-label pe-bold contextualHelpBasicView" >{topic.title || ''}</h3>
+        <p className="pe-label contextualHelpBasicView">{ topic.excerpt || '' }</p>
       </BasicView>
     )
   };
@@ -113,7 +107,11 @@ class ContextualHelp extends Component {
         drawerOpen={this.props.showHelp}
         drawerTop={this.props.drawerTop}
         position={'right'}
-        text="Help Topics"
+        text={{
+          headerTitle       : "Help Topics",
+          closeButtonSRText : "Close",
+          backButtonText    : "Back",
+         }}
       >
         {this.drawerContents()}
       </Drawer>

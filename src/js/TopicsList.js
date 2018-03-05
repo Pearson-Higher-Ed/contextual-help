@@ -1,3 +1,4 @@
+import 'jspolyfill-array.prototype.find';
 import chFetch from './chFetch';
 
 let topics = [];

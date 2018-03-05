@@ -1,14 +1,10 @@
 
-.displayHidden {
-    display: none;
-}
+@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/color/_variables';
+@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/responsive-utilities/_variables';
+@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/responsive-utilities/_functions';
+@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/responsive-utilities/responsive-utilities';
 
-
-.displayBlock {
-    display: block;
-}
-
-.contextual-help-basic-view {
+.contextualHelpBasicView {
     font-size: 1.0rem;
 }
 
