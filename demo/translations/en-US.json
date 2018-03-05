@@ -1,6 +1,5 @@
 {
-  "buttonText": "say hello",
-  "placeholder": "placeholder",
-  "greeting": "Hi there!",
-  "label": "Greeting "
+  "headerTitle": "Help Topics",
+  "closeButtonSRText": "Close",
+  "backButtonText": "Back"
 }

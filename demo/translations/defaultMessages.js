@@ -4,24 +4,19 @@ import {defineMessages} from 'react-intl';
 // Default messages are 'en-US'
 //
 export const messages = defineMessages({
-  buttonText: {
-    id             : 'buttonText',
-    description    : 'this is demo button text',
-    defaultMessage : 'say hello'
+  headerTitle: {
+    id             : 'headerTitle',
+    description    : 'this is demo header text',
+    defaultMessage : 'Help Topics'
   },
-  placeholder: {
-    id             : 'placeholder',
-    description    : 'this is a demo placeholder',
-    defaultMessage : 'placeholder'
+  closeButton      : {
+    id             : 'closeButtonSRText',
+    description    : 'this is a demo close button text',
+    defaultMessage : 'Close'
   },
-  greeting: {
-    id             : 'greeting',
-    description    : 'this is a greeting',
-    defaultMessage : 'Hi There!'
-  },
-  label: {
-    id             : 'label',
-    description    : 'this is a greeting input label',
-    defaultMessage : 'Greeting '
+  backButton: {
+    id             : 'backButtonText',
+    description    : 'this is a demo back button text',
+    defaultMessage : 'Back'
   }
 });

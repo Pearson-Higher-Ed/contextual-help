@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button, TextInput, MultiLineText } from '@pearson-components/elements-sdk/build/dist.elements-sdk';
 import { ContextualHelp } from '../index';
 
@@ -26,6 +27,8 @@ class ContextualHelpDemoPage extends Component {
   }
 
   render() {
+    const text = this.props.data.text;
+
     return (
       <div className="demo-container">
         <table className="demo-table">
@@ -305,12 +308,17 @@ class ContextualHelpDemoPage extends Component {
           handleHelp={this.handleHelp}
           language={this.state.language}
           showHelp= {this.state.showHelp}
+          text={this.props.data.text}
           topics= {this.state.testTopics}
         />
       </div>
     )
   }
 }
+
+ContextualHelpDemoPage.propTypes = {
+  data: PropTypes.object
+};
 
 function _handleHelp() {
   this.setState({

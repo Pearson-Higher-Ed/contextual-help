@@ -9,10 +9,9 @@ const IntlInjection = (props) => {
 
       // do the string replacement...
       const intlText = {
-        buttonText  : intl.formatMessage(messages.buttonText),
-        placeholder : intl.formatMessage(messages.placeholder),
-        greeting    : intl.formatMessage(messages.greeting),
-        label       : intl.formatMessage(messages.label)
+        headerTitle : intl.formatMessage(messages.headerTitle),
+        closeButton : intl.formatMessage(messages.closeButton),
+        backButton  : intl.formatMessage(messages.backButton)
       }
 
       // add text to config data...

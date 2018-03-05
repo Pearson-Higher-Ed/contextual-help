@@ -1,6 +1,5 @@
 {
-  "buttonText": "dis bonjour",
-  "placeholder": "espace réservé",
-  "greeting": "Salut!",
-  "label": "Salutation "
+  "headerTitle": "Sujets d'aide",
+  "closeButtonSRText": "Fermer",
+  "backButtonText": "Arrière"
 }

@@ -101,6 +101,7 @@ class ContextualHelp extends Component {
   };
 
   render() {
+    const { text } = this.props;
     return (
       <Drawer 
         drawerHandler={this.props.handleHelp}
@@ -108,9 +109,9 @@ class ContextualHelp extends Component {
         drawerTop={this.props.drawerTop}
         position={'right'}
         text={{
-          headerTitle       : "Help Topics",
-          closeButtonSRText : "Close",
-          backButtonText    : "Back",
+          headerTitle       : text.headerTitle,
+          closeButtonSRText : text.closeButon,
+          backButtonText    : text.backButon
          }}
       >
         {this.drawerContents()}
@@ -125,6 +126,7 @@ ContextualHelp.propTypes = {
   handleHelp: PropTypes.func,
   language: PropTypes.string,
   showHelp: PropTypes.bool,
+  text: PropTypes.object,
   topics: PropTypes.array
 };
 
