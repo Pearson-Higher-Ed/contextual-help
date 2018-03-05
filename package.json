@@ -9,7 +9,7 @@
     "type": "git",
     "url": "https://github.com/Pearson-Higher-Ed/contextual-help.git"
   },
-  "main": "./build/dist.component-name.js",
+  "main": "./build/dist.contextual-help.js",
   "scripts": {
     "start": "npm run serve",
     "serve": "NODE_ENV=development webpack-dev-server --hot",

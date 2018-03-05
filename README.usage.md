@@ -4,7 +4,7 @@ This project supports [Node v4+](https://nodejs.org) and npm 2+ installed in you
 
 Install and save in your package.json:
 
-    npm install @pearson-components/[component-name] --save
+    npm install @pearson-components/[contextual-help] --save
 
 ## External Dependencies
 
