@@ -14,7 +14,11 @@ class ContextualHelp extends Component {
       drawerIsOpen: false
     };
 
-    this.updateTopics = this._updateTopics.bind(this);
+    this.updateTopics = _updateTopics.bind(this);
+    this.basicView = _basicView.bind(this);
+    this.detailView = _detailView.bind(this);
+    this.directTopicView = _directTopicView.bind(this);
+    this.drawerContents = _drawerContents.bind(this);
   }
 
   componentDidMount() {
@@ -36,69 +40,6 @@ class ContextualHelp extends Component {
       setLanguage(nextProps.language);
     }
   }
-
-  _updateTopics = (newTopics) => {
-    this.setState({topics: newTopics});
-  };
-
-  basicView = (topic, idx) => {
-    return (
-      <BasicView 
-        className="contextualHelpBasicView"
-        key={`basicView-${idx}`}
-        mapToDetail={`detailView-${idx}`}
-        myKind='BasicView'
-      >
-        <h3 className="po-label pe-bold contextualHelpBasicView" >{topic.title || ''}</h3>
-        <p className="pe-label contextualHelpBasicView">{ topic.excerpt || '' }</p>
-      </BasicView>
-    )
-  };
-
-  detailView = (topic, idx) => {
-    return (
-      <DetailView 
-        id={`detailView-${idx}`}
-        myKind='DetailView'
-        key={`detailView-${idx}`}
-      >
-       <h2 className="pe-title pe-title--small pe-bold">{topic.title || ''}</h2>
-       <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
-       </div>
-      </DetailView>
-    )
-  };
-
-  directTopicView = (topic) => {
-    return (
-      <BasicView 
-        mapToDetail={undefined}
-        myKind='BasicView'
-        key={`basicView-0`}
-      >
-        <h2 className="po-label pe-bold">{topic.title || ''}</h2>
-        <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
-        </div>
-      </BasicView>
-    )
-  };
-
-  drawerContents = () => {
-    if (this.props.directTopic) {
-      return (
-        <div>
-          {this.directTopicView(this.state.directTopic || { title: '', content: ''})}
-        </div>
-      )
-    }
-
-    return (
-      <div>
-        {this.state.topics.map((topic, idx) => this.basicView(topic, idx))}
-        {this.state.topics.map((topic, idx) => this.detailView(topic, idx))}
-      </div>
-    )
-  };
 
   render() {
     const { text } = this.props;
@@ -131,3 +72,67 @@ ContextualHelp.propTypes = {
 };
 
 export default ContextualHelp;
+
+
+function _updateTopics(newTopics) {
+  this.setState({topics: newTopics});
+};
+
+function _basicView(topic, idx) {
+  return (
+    <BasicView 
+      className="contextualHelpBasicView"
+      key={`basicView-${idx}`}
+      mapToDetail={`detailView-${idx}`}
+      myKind='BasicView'
+    >
+      <h3 className="po-label pe-bold contextualHelpBasicView" >{topic.title || ''}</h3>
+      <p className="pe-label contextualHelpBasicView">{ topic.excerpt || '' }</p>
+    </BasicView>
+  )
+};
+
+function _detailView(topic, idx) {
+      return (
+    <DetailView 
+      id={`detailView-${idx}`}
+      myKind='DetailView'
+      key={`detailView-${idx}`}
+    >
+     <h2 className="pe-title pe-title--small pe-bold">{topic.title || ''}</h2>
+     <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
+     </div>
+    </DetailView>
+  )
+};
+
+function _directTopicView(topic) {
+  return (
+    <BasicView 
+      mapToDetail={undefined}
+      myKind='BasicView'
+      key={`basicView-0`}
+    >
+      <h2 className="po-label pe-bold">{topic.title || ''}</h2>
+      <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
+      </div>
+    </BasicView>
+  )
+};
+
+function _drawerContents() {
+  if (this.props.directTopic) {
+    return (
+      <div>
+        {this.directTopicView(this.state.directTopic || { title: '', content: ''})}
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      {this.state.topics.map((topic, idx) => this.basicView(topic, idx))}
+      {this.state.topics.map((topic, idx) => this.detailView(topic, idx))}
+    </div>
+  )
+};
