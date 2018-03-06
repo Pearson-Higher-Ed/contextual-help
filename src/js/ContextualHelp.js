@@ -64,10 +64,10 @@ class ContextualHelp extends Component {
 ContextualHelp.propTypes = {
   directTopic: PropTypes.string,
   drawerTop: PropTypes.string,
-  handleHelp: PropTypes.func,
+  handleHelp: PropTypes.func.isRequired,
   language: PropTypes.string,
   showHelp: PropTypes.bool,
-  text: PropTypes.object,
+  text: PropTypes.object.isRequired,
   topics: PropTypes.array
 };
 
@@ -76,6 +76,7 @@ export default ContextualHelp;
 
 function _updateTopics(newTopics) {
   this.setState({topics: newTopics});
+  console.log('state updated', this.state.topics);
 };
 
 function _basicView(topic, idx) {

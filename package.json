@@ -1,10 +1,10 @@
 {
   "name": "@pearson-components/contextual-help",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "Contextual help for web applications.",
   "author": "Pearson Design Accelerator pearson-design-accelerator@pearson.com",
-  "license": "PEARSON PROPRIETARY AND CONFIDENTIAL INFORMATION SUBJECT TO NDA",
-  "homepage": "https://github.com/Pearson-Higher-Ed/contextual-help",
+  "license": "MIT",
+  "homepage": "https://github.com/Pearson-Higher-Ed/contextual-help/",
   "repository": {
     "type": "git",
     "url": "https://github.com/Pearson-Higher-Ed/contextual-help.git"
@@ -47,6 +47,7 @@
     "file-loader": "^1.1.6",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^22.0.5",
+    "jest-css-modules": "^1.1.0",
     "node-sass": "^4.7.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
@@ -70,6 +71,7 @@
     "jspolyfill-array.prototype.find": "^0.1.3"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/test/testConfig/enzymeConfig.js"
-  }
+    "setupTestFrameworkScriptFile": "<rootDir>/test/testConfig/enzymeConfig.js",
+    "transform": {".*": "<rootDir>/node_modules/jest-css-modules"}
+}
 }

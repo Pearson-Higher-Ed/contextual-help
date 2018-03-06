@@ -4,7 +4,17 @@ import ContextualHelp from '../src/js/ContextualHelp';
 import BasicView from '../node_modules/@pearson-components/drawer/src/js/components/BasicView';
 import { setUpdate } from '../src/js/topicsList';
 
-jest.mock('../src/js/topicsList');
+jest.mock('../src/js/topicsList', () => {
+  return {
+    addTopics: jest.fn(),
+    removeTopics: jest.fn(),
+    update: jest.fn(),
+    setUpdate: jest.fn(),
+    setLanguage: jest.fn(),
+    fetchOneTopic: jest.fn()
+  };
+});
+import { addTopics, removeTopics, fetchOneTopic } from '../src/js/topicsList';
 
 describe('ContextualHelp',() => {
   const testTopics = [
@@ -12,58 +22,92 @@ describe('ContextualHelp',() => {
     'test/topic/2',
     'test/topic/3',
   ];
-  const drawerHandler = function() {};
+  const testTopicsFilled = [
+    {
+      name: 'test/topic/1',
+      title: 'Help unavailable',
+      content: 'Help for this topic is currently unavailable',
+      excerpt: 'Help for this topic is currently unavailable',
+      fetching: false,
+      failed: false
 
-  it('updates topics in state', () => {
+    },
+    {
+      name: 'test/topic/2',
+      title: 'Help unavailable',
+      content: 'Help for this topic is currently unavailable',
+      excerpt: 'Help for this topic is currently unavailable',
+      fetching: false,
+      failed: false
+
+    },
+    {
+      name: 'test/topic/3',
+      title: 'Help unavailable',
+      content: 'Help for this topic is currently unavailable',
+      excerpt: 'Help for this topic is currently unavailable',
+      fetching: false,
+      failed: false
+
+    }
+  ];
+  const drawerHandler = function() {};
+  const text = {
+    headerTitle       : 'Help Topics',
+    closeButtonSRText : 'Close',
+    backButtonText    : 'Back'
+   };
+
+  it('updates topicsList for additions and subtractions', () => {
     const wrapper = mount(
       <ContextualHelp 
         topics={testTopics} 
         handleHelp={drawerHandler}
+        text={text}
       />
     );
-    expect(Array.isArray(wrapper.instance().state.topics)).toBeTruthy();
-    expect(wrapper.instance().state.topics.length).toBe(3);
+
+    expect(addTopics).toHaveBeenCalledTimes(1);
 
     const changedTopicList = testTopics.filter((topic) => topic != 'test/topic/2');
     wrapper.setProps({ topics: changedTopicList });
-    expect(wrapper.instance().state.topics.length).toBe(2);
+    expect(removeTopics).toHaveBeenCalledTimes(1);
   });
 
   it('should render topics', () => {
     const wrapper = mount(
       <ContextualHelp
-        topics={[]} 
         handleHelp={drawerHandler}
         showHelp={true}
+        text={text}
+        topics={[]} 
       />
     );
-    setUpdate(wrapper.instance().updateTopics);
-    expect(wrapper.find('h3').length).toBe(0);
+    expect(wrapper.find('li').length).toBe(0);
 
-    wrapper.setProps({topics: testTopics});
-    expect(wrapper.find('h3').length).toBe(3);
+    wrapper.instance().updateTopics(testTopicsFilled);
+    wrapper.setProps({ topics: testTopicsFilled.map((topic) => topic.name) });
+    expect(wrapper.find('li').length).toBe(3);
 
-    const changedTopicList = testTopics.filter((topic) => topic != 'test/topic/2');
-    wrapper.setProps({
-      topics: changedTopicList,
-      handleHelp: drawerHandler,
-      showHelp: true
-    });
-    expect(wrapper.find('h3').length).toBe(2);
+    const changedTopicList = testTopicsFilled.filter((topic) => topic.name != 'test/topic/2');
+    wrapper.instance().updateTopics(changedTopicList);
+    wrapper.setProps({ topics: changedTopicList.map((topic) => topic.name) });
+    expect(wrapper.find('li').length).toBe(2);
   });
 
   it('should render direct to topic', () => {
     const wrapper = mount(
       <ContextualHelp 
-        topics={testTopics} 
         handleHelp={drawerHandler}
         showHelp={true}
+        text={text}
+        topics={testTopics}
       />
     );
     setUpdate(wrapper.instance().updateTopics);
-    expect(wrapper.find('h2').length).toBe(0);
+    expect(wrapper.find('li').length).toBe(0);
 
     wrapper.setProps({directTopic: 'test/topic/4'});
-    expect(wrapper.find('h2').length).toBe(1);
+    expect(wrapper.find('li').length).toBe(1);
   });
 });
