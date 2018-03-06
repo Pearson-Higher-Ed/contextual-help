@@ -53,7 +53,7 @@ class ContextualHelp extends Component {
           headerTitle       : text.headerTitle,
           closeButtonSRText : text.closeButon,
           backButtonText    : text.backButon
-         }}
+        }}
       >
         {this.drawerContents()}
       </Drawer>
@@ -85,7 +85,7 @@ function _basicView(topic, idx) {
       className="contextualHelpBasicView"
       key={`basicView-${idx}`}
       mapToDetail={`detailView-${idx}`}
-      myKind='BasicView'
+      myKind="BasicView"
     >
       <h3 className="po-label pe-bold contextualHelpBasicView" >{topic.title || ''}</h3>
       <p className="pe-label contextualHelpBasicView">{ topic.excerpt || '' }</p>
@@ -94,15 +94,15 @@ function _basicView(topic, idx) {
 };
 
 function _detailView(topic, idx) {
-      return (
+  return (
     <DetailView 
       id={`detailView-${idx}`}
-      myKind='DetailView'
+      myKind="DetailView"
       key={`detailView-${idx}`}
     >
-     <h2 className="pe-title pe-title--small pe-bold">{topic.title || ''}</h2>
-     <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
-     </div>
+      <h2 className="pe-title pe-title--small pe-bold">{topic.title || ''}</h2>
+      <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
+      </div>
     </DetailView>
   )
 };
@@ -111,8 +111,8 @@ function _directTopicView(topic) {
   return (
     <BasicView 
       mapToDetail={undefined}
-      myKind='BasicView'
-      key={`basicView-0`}
+      myKind="BasicView"
+      key={'basicView-0'}
     >
       <h2 className="po-label pe-bold">{topic.title || ''}</h2>
       <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>

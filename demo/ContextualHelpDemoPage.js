@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, TextInput, MultiLineText } from '@pearson-components/elements-sdk/build/dist.elements-sdk';
 import { ContextualHelp } from '../index';
 
-import { addTopics, removeTopics, setUpdate } from '../index';
+import { addTopics, removeTopics } from '../index';
 import { demoAddTopic } from '../src/js/topicsList';
 
 import './ContextualHelpDemoPage.css';
@@ -27,8 +27,6 @@ class ContextualHelpDemoPage extends Component {
   }
 
   render() {
-    const text = this.props.data.text;
-
     return (
       <div className="demo-container">
         <table className="demo-table">
@@ -65,13 +63,13 @@ class ContextualHelpDemoPage extends Component {
                   }}
                 >Direct to topic
                 </Button>
-                </td>
-                <td>
+              </td>
+              <td>
                   Opens the drawer directly to a specific topic.
                   This is done by setting the directTopic prop to the Help Topic of interest and setting the <b>showHelp</b> prop to true.
                   Note that the <b>directTopic</b> prop needs to be cleared to allow the drawer to go back to normal operation. Consider
                   doing this in the handleHelp function that closes the drawer.
-                </td>
+              </td>
             </tr>
             <tr>
               <td>
@@ -86,7 +84,7 @@ class ContextualHelpDemoPage extends Component {
                   }}
                 >Add to state
                 </Button>
-                </td>
+              </td>
               <td>
                 Adds one topic to the Help Index via the <b>topics</b> prop.
                 This allows the parent control to maintain an array of topics that will be presented in the drawer.
@@ -184,8 +182,8 @@ class ContextualHelpDemoPage extends Component {
                   btnSize="xlarge"
                   className="pe-btn--btn_small demo-button"
                   onClick={
-                      () => {
-                        document.getElementById("customContent").value = 'Implementing an Accordian within ContextualHelp ' +
+                    () => {
+                      document.getElementById('customContent').value = 'Implementing an Accordian within ContextualHelp ' +
                         'uses the html5 tags of <b>summary</b> and <b>detail</b>. There would generally be some amount of text that would ' +
                         'always be visible above the accordion, which is represented by this text.\n<br/>\n<br/>\n' +
                         'Below there are a couple of accordions\n<br/>\n<br/>\n' +
@@ -199,10 +197,10 @@ class ContextualHelpDemoPage extends Component {
                         '  to allow a keyboard user to be able to move between them and to open the section using standard' +
                         '  accessibility techniques.'
                         '</details>';
-                        document.getElementById("customTitle").value = 'Accordions';
-                        document.getElementById("customExcerpt").value = 'Implementing an Accordian within ContextualHelp';
-                      }
+                      document.getElementById('customTitle').value = 'Accordions';
+                      document.getElementById('customExcerpt').value = 'Implementing an Accordian within ContextualHelp';
                     }
+                  }
                 >Accordion example
                 </Button>
               </td>
@@ -220,17 +218,16 @@ class ContextualHelpDemoPage extends Component {
                   onClick={() => {
                     const tempHelp = {
                       name: 'custom/text/demo/example',
-                      title: document.getElementById("customTitle").value,
-                      excerpt: document.getElementById("customExcerpt").value,
-                      content: document.getElementById("customContent").value,
+                      title: document.getElementById('customTitle').value,
+                      excerpt: document.getElementById('customExcerpt').value,
+                      content: document.getElementById('customContent').value,
                       fetching: false,
                       failed: false
                     };
                     removeTopics(tempHelp.name);
                     console.log(tempHelp);
                     setTimeout(() => demoAddTopic(tempHelp), 500);
-                  }
-                }
+                  }}
                 >Test Help Content
                 </Button>
               </td>
@@ -264,7 +261,7 @@ class ContextualHelpDemoPage extends Component {
                   labelText="topic.content"
                   placeholder="Enter topic content here."
                 />
-          </td>
+              </td>
             </tr>
           </tbody>
         </table>
