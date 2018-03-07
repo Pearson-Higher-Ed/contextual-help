@@ -149,13 +149,23 @@ document.body.dispatchEvent(new CustomEvent('o.InitComponent', {
 }));
 ```
 
+## External Dependencies
+React and ReactDOM(v0.14 or v15) are external dependencies required to use this component. They are npm-installable or availalbe from a third-party CDN.
 
-## Summary
+This component targets the styling in the Pearson Elements SDK.
 
-[This is an executive summary of why my component exists and what it does.]
+### Poly fills
+React components with internationalization use React-Intl which relies on the ECMAScript Internationalization API. This was not supported in Safari until version 10. If you are supporting Safari older than 10, there is a polyfill from Andy Earnshaw (see below).
 
-## Next Step
+CusomeEvent support in IE is also polyfilled. Because many teams are supporting both IE 11 and Safari 9, we've combined the polyfills into a single script. The example below polyfills for CustomEvent and localization for English and French:
 
-If you are a consumer of this component, see guidance on [usage](README.usage.md).
+<script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Intl.~locale.en,Intl.~locale.fr"></script>
+Be sure to include the above script (a version of it that makes sense for your project and supported browsers) on your THML page running CompoundsSDK, if you need it.
 
-If you are a contributor to this component's development, see guidance on [contributing](README.contribute.md).
+## CodeCoverage site
+After running npm test && npm start, you may view the code coverage site at: http://localhost:8081/coverage/lcov-report
+
+## Guidelines
+All submissions must be via pull request and approved before the pearson-design-accelerator@pearson.com team will merge and allow it to enter the release process. All submissions must pass this project's linting, test with 100% code coverage, and be compatible with the version(s) of React approved for the Pearson User Experience Platform.
+
+## License
