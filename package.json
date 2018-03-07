@@ -64,6 +64,7 @@
     "pearson-components",
     "contextual-help"
   ],
+<<<<<<< HEAD
   "dependencies": {
     "@pearson-components/drawer": "~1.0.0",
     "@pearson-components/elements-sdk": "^1.8.0",
@@ -74,4 +75,31 @@
     "setupTestFrameworkScriptFile": "<rootDir>/test/testConfig/enzymeConfig.js",
     "transform": {".*": "<rootDir>/node_modules/jest-css-modules"}
 }
+=======
+  "devDependencies": {
+    "@pearson-components/npm-scripts": "^0.5.6",
+    "conventional-changelog": "^1.1.0",
+    "coveralls": "^2.11.4",
+    "css-loader": "^0.23.1",
+    "expect.js": "^0.3.1",
+    "fs-extra": "^1.0.0",
+    "html-loader": "^0.4.5",
+    "karma": "^0.13.3",
+    "karma-coverage": "^0.2.6",
+    "karma-mocha": "^0.1.10",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.1.0",
+    "node-sass": "^3.4.2",
+    "pearson-elements": "^1.10.2",
+    "phantomjs-prebuilt": "^2.1.7",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "@pearson-components/drawer": "~1.0.0"
+  }
+>>>>>>> master
 }
