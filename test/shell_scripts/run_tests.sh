@@ -1,5 +1,3 @@
-#!/bin/bash
-
 echo "Trigger the Selenium tests for master branch: ux-test-platform repo...."
 
 #Step 1: API to trigger the ux-test-platform build with the below config

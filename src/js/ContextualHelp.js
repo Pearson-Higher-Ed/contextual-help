@@ -114,7 +114,7 @@ function _directTopicView(topic) {
       myKind="BasicView"
       key={'basicView-0'}
     >
-      <h2 className="po-label pe-bold">{topic.title || ''}</h2>
+      <h2 className="pe-label pe-bold">{topic.title || ''}</h2>
       <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
       </div>
     </BasicView>

@@ -12,7 +12,7 @@ export const addTopics = (topic) => {
     topic = [topic];
   }
 
-  for(var i = 0; i < topic.length; i++) {
+  for(let i = 0; i < topic.length; i++) {
     const foundTopic = topics.find((element) => {
       return element.name === topic[i];
     });
@@ -48,7 +48,7 @@ export const removeTopics = (topic) => {
     topic = [topic];
   }
 
-  for(var i = 0; i < topic.length; i++) {
+  for(let i = 0; i < topic.length; i++) {
     const foundTopic = topics.find((element) => {
       return element.name === topic[i];
     });
