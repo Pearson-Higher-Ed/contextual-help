@@ -5,9 +5,9 @@ node_js:
 - 8
 script:
 - npm run ci
-- chmod 777 ./node_modules/shell_scripts/run_selenium_ci_tests.sh
-- ./node_modules/shell_scripts/run_selenium_ci_tests.sh
+- chmod 777 ./node_modules/@pearson-components/npm-scripts/shell_scripts/run_selenium_ci_tests.sh
 - export TEST_GROUP=desktop-regression
+- ./node_modules/@pearson-components/npm-scripts/shell_scripts/run_selenium_ci_tests.sh
 
 deploy:
   provider: npm
