@@ -5,12 +5,11 @@ The contextual-help component provides for displaying help that is relevant to t
 
 UX Framework Design Page:
 
-[http://uxframework.pearson.com/c/contextual-help/]
-(http://uxframework.pearson.com/c/contextual-help/)
+[http://uxframework.pearson.com/c/contextual-help/](http://uxframework.pearson.com/c/contextual-help/)
 
 Demo Page:
-[http://pearson-higher-ed.github.io/contextual-help/]
-(http://pearson-higher-ed.github.io/contextual-help/)
+
+[http://pearson-higher-ed.github.io/contextual-help/](http://pearson-higher-ed.github.io/contextual-help/)
 
 ## Getting Started
 
