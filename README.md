@@ -33,6 +33,9 @@ npm install @pearson-components/contextual-help --save
 
 yarn add @pearson-components/contextual-help
 ```
+
+### Quick Start
+```javascript
 git clone https://github.com/Pearson-Higher-Ed/contextual-help.git
 cd contextual-help
 npm install
@@ -47,9 +50,11 @@ As you save changes to the source, the changes are automatically reloaded in the
 To use the ContextuaHelp in a React.js page:
 
 import the contextual-help:
+
 ```javascript
   import { ContextualHelp } from "@pearson-components/contextual-help";
 ```
+
 then configure the contextual-help:
 
 ```javascript
@@ -148,6 +153,21 @@ document.body.dispatchEvent(new CustomEvent('o.InitComponent', {
   }
 }));
 ```
+
+## Accessibility
+
+### Keyboard focus
+Refer to the [drawer](https://github.com/Pearson-Higher-Ed/drawer) documentation for accessibility on the drawer component. The drawer takes care of managin focus as the drawer is opened and closed.
+
+Contextual-Help uses the BasicView and the DetailView of the drawer. The BasicView is used to present a list of topics and excerpts that are clickable. Clicking on one will cause the display to a DetailView containing the full text of the help topic. Only focusable elements within the specific view that is visible are available to assistive technologies (AT) and screen readers.
+
+### Heading order
+In the main topics list (BasicView), the phrase "Help Topics" is an h2 element. The name of each topic in the topics list is an h3 element.
+
+On a specific topic (DetailView), the name of the topic is an h2 element. Any headings inside the topic should be smaller, starting with h3 for the main subtopics. They should not jump to h4, h5, or h6, but follow good content heading structure.
+
+### Accordions/disclosure widgets
+In order to include an accordion or disclosure widget inside content, the html5 <summary> and <detail> tags should be used. Placing the summary tag within the detail tag will cause the summary information only to be visible by default. Clicking on the summary will show/hide the content of the detail tag. 
 
 ## External Dependencies
 React and ReactDOM(v0.14 or v15) are external dependencies required to use this component. They are npm-installable or availalbe from a third-party CDN.
