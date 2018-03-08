@@ -70,8 +70,8 @@ this.state = {
 };
 ```
 
+ContextualHelp does not perform any translation. Hence, language specific text should be passed in. Note that the closeButton and backButton test are included to provide the verbal accessibility clues.
 ```javascript
-// The closeButton and backButton are specifically for accessibility
 const languageSpecificText = {
   headerTitle: 'Help Topics',
   closeButton: 'Close',
