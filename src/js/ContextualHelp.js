@@ -76,7 +76,6 @@ export default ContextualHelp;
 
 function _updateTopics(newTopics) {
   this.setState({topics: newTopics});
-  console.log('state updated', this.state.topics);
 };
 
 function _basicView(topic, idx) {

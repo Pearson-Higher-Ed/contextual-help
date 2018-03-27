@@ -20,24 +20,24 @@ import enUSLocaleData from 'react-intl/locale-data/en';
 //
 
 let   language = 'en-US';
-const search = window.location.search,
-      getQueryParam = (paramName, defaultValue, search) => {
-        let value = defaultValue;
-        const name = paramName.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-        const regex = new RegExp(`[\\?&]${name}=([^&#]*)`);
-        const results = regex.exec(search);
+const search = window.location.search;
+const getQueryParam = (paramName, defaultValue, search) => {
+  let value = defaultValue;
+  const name = paramName.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  const regex = new RegExp(`[\\?&]${name}=([^&#]*)`);
+  const results = regex.exec(search);
 
-        if (results) {
-          value = decodeURIComponent(results[1].replace(/\+/g, ' '));
-        }
+  if (results) {
+    value = decodeURIComponent(results[1].replace(/\+/g, ' '));
+  }
 
-        return value;
-      },
-      // Associate Language Abbreviation with JSON filename...
-      translations = {
-        'en-US' : enUSJson,
-        'fr'    : frJson
-      };
+  return value;
+};
+// Associate Language Abbreviation with JSON filename...
+const translations = {
+  'en-US' : enUSJson,
+  'fr'    : frJson
+};
 
 // Add supported languages...
 addLocaleData(frLocaleData);

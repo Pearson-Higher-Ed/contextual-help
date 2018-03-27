@@ -14,7 +14,7 @@ rules:
   new-cap: 2
   one-var: [2, never]
   quotes: [1, single]
-  space-after-keywords: 2
+  keywords-spacing: 2
   space-before-blocks: 2
 
   ## React
