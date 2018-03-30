@@ -1,12 +1,12 @@
 import ReactDOM from 'react-dom';
 import React    from 'react';
 
-import { default as ConextualHelp } from '../index';
+import { ContextualHelp } from '../index';
 
 
 document.body.addEventListener('o.InitComponent', e => {
   ReactDOM.render(
-    React.createElement(ConextualHelp, e.detail.props, e.detail.props.children)
+    React.createElement(ContextualHelp, e.detail.props, e.detail.props.children)
     , document.getElementById(e.detail.elementId)
   );
 });

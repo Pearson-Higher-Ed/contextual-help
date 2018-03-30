@@ -1,3 +1,4 @@
+/* global describe it expect jest */
 jest.mock('../src/js/chFetch', () => {
   const helpTopics = {
     'help/topic/test/1': {
@@ -22,10 +23,10 @@ jest.mock('../src/js/chFetch', () => {
       process.nextTick(
         () => {
           return helpTopics[helpTopicName]
-          ? resolve(helpTopics[helpTopicName])
-          : reject({
-            error: `Help Topic ${helpTopicName} not found.`
-          })
+            ? resolve(helpTopics[helpTopicName])
+            : reject({
+              error: `Help Topic ${helpTopicName} not found.`
+            })
         }
       );
     });
@@ -43,7 +44,7 @@ import {
   buildUrl
 } from '../src/js/topicsList';
 
-describe('topicsList',() => {
+describe('topicsList', () => {
   it('fetches one topic', (done) => {
     fetchOneTopic('help/topic/test/1', (topic) => {
       expect(topic).toEqual(
