@@ -191,7 +191,7 @@ class ContextualHelpDemoPage extends Component {
                         '  <summary>Organization</summary>\n' +
                         '  Notice that the summary tag is placed within the details tag. Then the balance of the text, that' +
                         '  gets displayed when the section is expanded, is placed within the details tag.\n' +
-                        '</details>\n<br/>\n<br/>\n<details>\n' +
+                        '</details>\n<details>\n' +
                         '  <summary>Accessibility</summary>\n' +
                         '  Accessibility is addressed automatically by the browser. The summary tags become tab stops ' +
                         '  to allow a keyboard user to be able to move between them and to open the section using standard' +

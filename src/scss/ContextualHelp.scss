@@ -12,20 +12,54 @@
     h2 {
         margin-top: 25px;
         margin-bottom: 25px;
-        line-height: normal;
+        line-height: 26px;
+        font-size: 20px;
         color: #252525;
     }
 
     h3 {
         margin-top: 25px;
         margin-bottom: 0;
-        line-height: normal;
+        line-height: 18px;
         color: #252525;
-        font-size: 1.0rem;
+        font-size: 14px;
     }
 
     p {
-        font-size: 1.0rem;
+        line-height: 18px;
+        margin-top: 0px;
+        margin-bottom: 25px;
+        font-size: 14px;
         color: #6a7070;
+    }
+
+    ul {
+        li {
+            ul {
+                li {
+                    line-height: 18px;
+                    color: #6a7070;
+                    font-size: 14px;
+                }
+
+                li:last-child {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+
+    details {
+        line-height: 18px;
+        font-size: 14px;
+        color: #6a7070;
+        margin-bottom: 25px;
+
+        summary {
+            line-height: 18px;
+            font-size: 14px;
+                color: #252525;
+            font-weight: bold;
+        }
     }
 }

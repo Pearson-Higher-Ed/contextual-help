@@ -24,6 +24,7 @@ class ContextualHelp extends Component {
   componentDidMount() {
     setUpdate(this.updateTopics);
     addTopics(this.props.topics);
+    setLanguage(this.props.language);
   }
 
   componentWillReceiveProps(nextProps) {
