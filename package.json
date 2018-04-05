@@ -65,7 +65,7 @@
     "contextual-help"
   ],
   "dependencies": {
-    "@pearson-components/drawer": "~1.0.0",
+    "@pearson-components/drawer": "^2.0.0",
     "@pearson-components/elements-sdk": "^1.8.0",
     "isomorphic-fetch": "^2.2.1",
     "jspolyfill-array.prototype.find": "^0.1.3"
