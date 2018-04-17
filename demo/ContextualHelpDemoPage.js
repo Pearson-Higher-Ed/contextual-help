@@ -319,9 +319,15 @@ ContextualHelpDemoPage.propTypes = {
 
 function _handleHelp() {
   this.setState({
-    showHelp: !this.state.showHelp,
-    directTopic: this.state.showHelp ? undefined : this.state.directTopic
+    showHelp: !this.state.showHelp
   });
+
+  setTimeout(() => {
+    this.setState({
+      directTopic: !this.state.showHelp ? undefined : this.state.directTopic
+    });
+  },
+  500);
 };
 
 export default ContextualHelpDemoPage;

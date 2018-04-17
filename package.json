@@ -65,13 +65,15 @@
     "contextual-help"
   ],
   "dependencies": {
-    "@pearson-components/drawer": "^2.0.0",
+    "@pearson-components/drawer": "^2.0.2",
     "@pearson-components/elements-sdk": "^1.8.0",
     "isomorphic-fetch": "^2.2.1",
     "jspolyfill-array.prototype.find": "^0.1.3"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/test/testConfig/enzymeConfig.js",
-    "transform": {".*": "<rootDir>/node_modules/jest-css-modules"}
-}
+    "transform": {
+      ".*": "<rootDir>/node_modules/jest-css-modules"
+    }
+  }
 }

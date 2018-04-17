@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Drawer, BasicView, DetailView } from '@pearson-components/drawer';
 import { addTopics, removeTopics, setUpdate, fetchOneTopic, setLanguage } from './topicsList';
@@ -11,7 +12,8 @@ class ContextualHelp extends Component {
 
     this.state = {
       topics: [],
-      drawerIsOpen: false
+      drawerIsOpen: false,
+      skipTo: undefined
     };
 
     this.updateTopics = _updateTopics.bind(this);
@@ -25,6 +27,7 @@ class ContextualHelp extends Component {
     setUpdate(this.updateTopics);
     addTopics(this.props.topics);
     setLanguage(this.props.language);
+    this.setState({ title: this.props.text.headerTitle})
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,11 +35,21 @@ class ContextualHelp extends Component {
     const droppedTopics = this.props.topics.filter((topic) => nextProps.topics.indexOf(topic) === -1);
     addTopics(newTopics);
     removeTopics(droppedTopics);
+
+    this.setState({ title: nextProps.directTopic ? '' : this.props.text.headerTitle });
+
+    const elements = ReactDOM.findDOMNode(this).getElementsByClassName('titleSectionHeaderBackButton');
+    if (elements.length > 0) {
+      elements[0].style.visibility = nextProps.directTopic ? 'hidden' : 'visible';
+    }
+
     if (nextProps.directTopic) {
+      const d = new Date();
       fetchOneTopic(nextProps.directTopic, (topicInfo) => {
-        this.setState({ directTopic: topicInfo });
+        this.setState({ directTopic: topicInfo, directKey: d.getTime() });
       });
     }
+
     if (nextProps.language !== this.props.language) {
       setLanguage(nextProps.language);
     }
@@ -44,19 +57,21 @@ class ContextualHelp extends Component {
 
   render() {
     const { 
-      text,
+      drawerTop,
       handleHelp,
       showHelp,
-      drawerTop
+      text
     } = this.props;
+    const skipTo = this.props.directTopic ? `detailView-${this.state.directKey}` : undefined;
     return (
       <Drawer 
         drawerHandler={handleHelp}
         drawerOpen={showHelp}
         drawerTop={drawerTop}
         position={'right'}
+        skipTo={skipTo}
         text={{
-          headerTitle       : text.headerTitle,
+          headerTitle       : this.state.title,
           closeButtonSRText : text.closeButton,
           backButtonText    : text.backButton
         }}
@@ -113,21 +128,23 @@ function _detailView(topic, idx) {
 };
 
 function _directTopicView(topic) {
+  const keyVal = this.state.directKey;
   return (
-    <BasicView 
-      mapToDetail={undefined}
-      myKind="BasicView"
-      key={'basicView-0'}
+    <DetailView 
+      id={`detailView-${keyVal}`}
+      myKind="DetailView"
+      key={`detailView-${keyVal}`}
     >
-      <h2 className="pe-label pe-bold">{topic.title || ''}</h2>
+      <h2 className="pe-title pe-title--small pe-bold">{topic.title || ''}</h2>
       <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
       </div>
-    </BasicView>
+    </DetailView>
   )
 };
 
 function _drawerContents() {
   if (this.props.directTopic) {
+
     return (
       <div>
         {this.directTopicView(this.state.directTopic || { title: '', content: ''})}

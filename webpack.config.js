@@ -17,7 +17,7 @@ module.exports = {
     demo             : [ demo ],
     dev              : [ elements, icons ],
     eventInterface   : [ eventing ],
-    dist             : [ component ],
+    dist             : [ 'babel-polyfill', component ],
     fonts            : fonts
   },
   output: {
