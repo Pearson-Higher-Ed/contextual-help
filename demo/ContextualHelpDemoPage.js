@@ -160,7 +160,7 @@ class ContextualHelpDemoPage extends Component {
                   className="pe-btn--btn_small demo-button"
                   onClick={
                     () => {
-                      document.getElementById('customContent').value = '<p>Implementing an Accordian within ContextualHelp ' +
+                      document.getElementById('customContent').value = '<p>Implementing an Accordion within ContextualHelp ' +
                         'uses the html5 tags of <b>summary</b> and <b>detail</b>. There would generally be some amount of text that would ' +
                         'always be visible above the accordion, which is represented by this text.</p>\n' +
                         '<p>Below there are a couple of accordions</p>\n' +
@@ -175,7 +175,7 @@ class ContextualHelpDemoPage extends Component {
                         '  accessibility techniques.'
                         '</details>';
                       document.getElementById('customTitle').value = 'Accordions';
-                      document.getElementById('customExcerpt').value = 'Implementing an Accordian within ContextualHelp';
+                      document.getElementById('customExcerpt').value = 'Implementing an Accordion within ContextualHelp';
                     }
                   }
                 >Accordion example
