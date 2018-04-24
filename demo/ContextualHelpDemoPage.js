@@ -13,7 +13,6 @@ class ContextualHelpDemoPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      language: 'en-us',
       testTopics: [
         'console/student/freetrial',
         'pi/forgot_creds_next',
@@ -155,28 +154,6 @@ class ContextualHelpDemoPage extends Component {
             </tr>
             <tr>
               <td>
-                <Button 
-                  btnType="cta" 
-                  btnSize="xlarge" 
-                  className="pe-btn--btn_small demo-button"
-                  onClick={() => { 
-                    this.setState({
-                      language: this.state.language === 'en-us' ? 'fr' : 'en-us'
-                    });
-                  }}
-                >French / English
-                </Button>
-              </td>
-              <td>
-                Toggles between English and French. Setting the language is done via the <b>language</b> prop.
-                Topics that are not available in the specified language will not be displayed.
-                However, the reference to the topic is maintained, so switching to a language that 
-                includes that topic will be displayed.
-                Note in this example that not all are available in French.
-              </td>
-            </tr>
-            <tr>
-              <td>
                 <Button
                   btnType="cta" 
                   btnSize="xlarge"
@@ -303,10 +280,11 @@ class ContextualHelpDemoPage extends Component {
           directTopic={this.state.directTopic}
           drawerTop="61px"
           handleHelp={this.handleHelp}
-          language={this.state.language}
+          defaultLanguage={'en-us'}
           showHelp= {this.state.showHelp}
           text={this.props.data.text}
           topics= {this.state.testTopics}
+          intl={this.props.intl}
         />
       </div>
     )
@@ -314,7 +292,8 @@ class ContextualHelpDemoPage extends Component {
 }
 
 ContextualHelpDemoPage.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
+  intl: PropTypes.object.isRequired
 };
 
 function _handleHelp() {

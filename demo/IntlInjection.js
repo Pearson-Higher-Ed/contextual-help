@@ -19,7 +19,7 @@ const IntlInjection = (props) => {
   data.text = intlText;
 
   return (
-    <ContextualHelpDemoPage data={data} />
+    <ContextualHelpDemoPage data={data} intl={intl} />
   )
 }
 

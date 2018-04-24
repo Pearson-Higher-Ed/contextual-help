@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import toLower from 'lodash/toLower';
 import { Drawer, BasicView, DetailView } from '@pearson-components/drawer';
 import { addTopics, removeTopics, setUpdate, fetchOneTopic, setLanguage } from './topicsList';
 
@@ -25,8 +26,11 @@ class ContextualHelp extends Component {
 
   componentDidMount() {
     setUpdate(this.updateTopics);
+    setLanguage(this.props.defaultLanguage || 'en-us');
+    if (this.props.intl && this.props.intl.locale) {
+      setLanguage(toLower(this.props.intl.locale));
+    }
     addTopics(this.props.topics);
-    setLanguage(this.props.language);
     this.setState({ title: this.props.text.headerTitle})
   }
 
@@ -86,7 +90,8 @@ ContextualHelp.propTypes = {
   directTopic: PropTypes.string,
   drawerTop: PropTypes.string,
   handleHelp: PropTypes.func.isRequired,
-  language: PropTypes.string,
+  intl: PropTypes.object.isRequired,
+  defaultLanguage: PropTypes.string,
   showHelp: PropTypes.bool,
   text: PropTypes.object.isRequired,
   topics: PropTypes.array
@@ -120,7 +125,7 @@ function _detailView(topic, idx) {
       myKind="DetailView"
       key={`detailView-${idx}`}
     >
-      <h2 className="pe-title pe-title--small pe-bold">{topic.title || ''}</h2>
+      <h2 className="pe-title">{topic.title || ''}</h2>
       <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
       </div>
     </DetailView>
@@ -135,7 +140,7 @@ function _directTopicView(topic) {
       myKind="DetailView"
       key={`detailView-${keyVal}`}
     >
-      <h2 className="pe-title pe-title--small pe-bold">{topic.title || ''}</h2>
+      <h2 className="pe-title">{topic.title || ''}</h2>
       <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
       </div>
     </DetailView>
