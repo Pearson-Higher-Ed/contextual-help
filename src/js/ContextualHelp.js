@@ -40,13 +40,6 @@ class ContextualHelp extends Component {
     addTopics(newTopics);
     removeTopics(droppedTopics);
 
-    this.setState({ title: nextProps.directTopic ? '' : this.props.text.headerTitle });
-
-    const elements = ReactDOM.findDOMNode(this).getElementsByClassName('titleSectionHeaderBackButton');
-    if (elements.length > 0) {
-      elements[0].style.visibility = nextProps.directTopic ? 'hidden' : 'visible';
-    }
-
     if (nextProps.directTopic) {
       const d = new Date();
       fetchOneTopic(nextProps.directTopic, (topicInfo) => {

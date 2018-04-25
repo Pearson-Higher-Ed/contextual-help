@@ -43,7 +43,7 @@
         }
 
         li:last-child {
-          margin-bottom: 10px;
+          margin-bottom: 25px;
         }
       }
 
@@ -55,7 +55,7 @@
         }
 
         li:last-child {
-          margin-bottom: 10px;
+          margin-bottom: 25px;
         }
       }
     }
@@ -66,12 +66,14 @@
       font-size: 14px;
       color: #6a7070;
       margin-bottom: 25px;
+      margin-left: 15px;
 
       summary {
         line-height: 18px;
         font-size: 14px;
-          color: #252525;
+        color: #252525;
         font-weight: bold;
+        margin-left: -15px;
       }
   }
 }

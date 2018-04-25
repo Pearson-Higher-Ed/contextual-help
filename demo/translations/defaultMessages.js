@@ -17,6 +17,6 @@ export const messages = defineMessages({
   backButton: {
     id             : 'backButtonText',
     description    : 'this is a demo back button text',
-    defaultMessage : 'Back'
+    defaultMessage : 'Back to Help Topics'
   }
 });
