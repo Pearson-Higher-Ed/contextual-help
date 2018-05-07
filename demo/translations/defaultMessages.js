@@ -12,7 +12,7 @@ export const messages = defineMessages({
   closeButton      : {
     id             : 'closeButtonSRText',
     description    : 'this is a demo close button text',
-    defaultMessage : 'Close'
+    defaultMessage : 'Close Help Topics'
   },
   backButton: {
     id             : 'backButtonText',

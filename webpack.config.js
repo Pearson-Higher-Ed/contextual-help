@@ -11,13 +11,15 @@ const elements          = `${__dirname}/node_modules/@pearson-components/element
 const fontsDir          = `${__dirname}/node_modules/@pearson-components/elements-sdk/build/fonts/`;
 const fonts             = fs.readdirSync(fontsDir, 'utf-8').map(font => fontsDir + font);
 
+// demo             : [ 'babel-polyfill', demo ],
+
 
 module.exports = {
   entry: {
     demo             : [ demo ],
     dev              : [ elements, icons ],
     eventInterface   : [ eventing ],
-    dist             : [ 'babel-polyfill', component ],
+    dist             : [ component ],
     fonts            : fonts
   },
   output: {

@@ -27,11 +27,10 @@ class ContextualHelp extends Component {
   componentDidMount() {
     setUpdate(this.updateTopics);
     setLanguage(this.props.defaultLanguage || 'en-us');
-    if (this.props.intl && this.props.intl.locale) {
-      setLanguage(toLower(this.props.intl.locale));
+    if (this.props.locale) {
+      setLanguage(toLower(this.props.locale));
     }
     addTopics(this.props.topics);
-    this.setState({ title: this.props.text.headerTitle})
   }
 
   componentWillReceiveProps(nextProps) {
@@ -61,14 +60,15 @@ class ContextualHelp extends Component {
     } = this.props;
     const skipTo = this.props.directTopic ? `detailView-${this.state.directKey}` : undefined;
     return (
-      <Drawer 
+      <Drawer
         drawerHandler={handleHelp}
         drawerOpen={showHelp}
         drawerTop={drawerTop}
+        id="contextualHelpDrawer"
         position={'right'}
         skipTo={skipTo}
         text={{
-          headerTitle       : this.state.title,
+          headerTitle       : text.headerTitle,
           closeButtonSRText : text.closeButton,
           backButtonText    : text.backButton
         }}
@@ -83,8 +83,8 @@ ContextualHelp.propTypes = {
   directTopic: PropTypes.string,
   drawerTop: PropTypes.string,
   handleHelp: PropTypes.func.isRequired,
-  intl: PropTypes.object.isRequired,
   defaultLanguage: PropTypes.string,
+  locale: PropTypes.string,
   showHelp: PropTypes.bool,
   text: PropTypes.object.isRequired,
   topics: PropTypes.array

@@ -281,10 +281,10 @@ class ContextualHelpDemoPage extends Component {
           drawerTop="61px"
           handleHelp={this.handleHelp}
           defaultLanguage={'en-us'}
-          showHelp= {this.state.showHelp}
+          showHelp={this.state.showHelp}
           text={this.props.data.text}
-          topics= {this.state.testTopics}
-          intl={this.props.intl}
+          topics={this.state.testTopics}
+          locale={this.props.intl.locale}
         />
       </div>
     )
