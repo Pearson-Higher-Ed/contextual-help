@@ -29,8 +29,17 @@ class ContextualHelpDemoPage extends Component {
     return (
       <div className="demo-container">
         <table className="demo-table">
+          <caption>Developer Information</caption>
+          <thead>
+            <tr>
+              <th scope="col" >Column Headers</th>
+              <th scope="col" >Demo Button</th>
+              <th scope="col" >Description</th>
+            </tr>
+          </thead>
           <tbody>
             <tr>
+              <th scope="row">Show Help</th>
               <td>
                 <Button 
                   btnType="cta"
@@ -42,13 +51,14 @@ class ContextualHelpDemoPage extends Component {
                 >Show Help
                 </Button>
               </td>
-              <td>
+              <td role="presentation">
                   Opens the drawer with the Help Index displayed.
                   This is done by setting the <b>showHelp</b> prop (via local state) to true. 
                   The drawer is closed via the 'x' on the drawer.
               </td>
             </tr>
             <tr>
+              <th scope="row">Direct to Topic</th>
               <td>
                 <Button 
                   btnType="cta" 
@@ -63,7 +73,7 @@ class ContextualHelpDemoPage extends Component {
                 >Direct to topic
                 </Button>
               </td>
-              <td>
+              <td role="presentation">
                   Opens the drawer directly to a specific topic.
                   This is done by setting the directTopic prop to the Help Topic of interest and setting the <b>showHelp</b> prop to true.
                   Note that the <b>directTopic</b> prop needs to be cleared to allow the drawer to go back to normal operation. Consider
@@ -71,6 +81,7 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
+              <th scope="row">Add to state</th>
               <td>
                 <Button 
                   btnType="cta" 
@@ -91,6 +102,7 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
+              <th scope="row">Remove from state</th>
               <td>
                 <Button
                   btnType="cta"
@@ -111,6 +123,7 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
+              <th scope="row">Add Topics</th>
               <td>
                 <Button 
                   btnType="cta" 
@@ -132,6 +145,7 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
+              <th scope="row">Remove Topics</th>
               <td>
                 <Button 
                   btnType="cta" 
@@ -153,6 +167,7 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
+              <th scope="row">Accordion Example</th>
               <td>
                 <Button
                   btnType="cta" 
@@ -187,6 +202,7 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
+              <th scope="row"></th>
               <td>
                 <Button
                   btnType="cta"
@@ -215,6 +231,7 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
+              <th scope="row"></th>
               <td>
                 <TextInput
                   id="customTitle"
@@ -232,6 +249,7 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
+              <th scope="row"></th>
               <td colSpan="2" >
                 <MultiLineText 
                   id="customContent"
@@ -246,7 +264,7 @@ class ContextualHelpDemoPage extends Component {
         <div className="topics-discussion">
           <h2>Topics List</h2>
           <h4>Unique entries</h4>
-          <p>
+          <p role="presentation">
             ContextualHelp will not present a topic more that once. Whenever a topic is added,
             a check is made to see if that topic has already been included.
             If so, it will not be added again. Attempts to remove topics that do not exist will be ignored.
