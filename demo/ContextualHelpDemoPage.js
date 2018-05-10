@@ -29,17 +29,8 @@ class ContextualHelpDemoPage extends Component {
     return (
       <div className="demo-container">
         <table className="demo-table">
-          <caption>Developer Information</caption>
-          <thead>
-            <tr>
-              <th scope="col" >Column Headers</th>
-              <th scope="col" >Demo Button</th>
-              <th scope="col" >Description</th>
-            </tr>
-          </thead>
           <tbody>
             <tr>
-              <th scope="row">Show Help</th>
               <td>
                 <Button 
                   btnType="cta"
@@ -58,7 +49,6 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
-              <th scope="row">Direct to Topic</th>
               <td>
                 <Button 
                   btnType="cta" 
@@ -81,7 +71,6 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
-              <th scope="row">Add to state</th>
               <td>
                 <Button 
                   btnType="cta" 
@@ -102,7 +91,6 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
-              <th scope="row">Remove from state</th>
               <td>
                 <Button
                   btnType="cta"
@@ -123,7 +111,6 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
-              <th scope="row">Add Topics</th>
               <td>
                 <Button 
                   btnType="cta" 
@@ -145,7 +132,6 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
-              <th scope="row">Remove Topics</th>
               <td>
                 <Button 
                   btnType="cta" 
@@ -167,7 +153,6 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
-              <th scope="row">Accordion Example</th>
               <td>
                 <Button
                   btnType="cta" 
@@ -202,7 +187,6 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
-              <th scope="row"></th>
               <td>
                 <Button
                   btnType="cta"
@@ -231,7 +215,6 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
-              <th scope="row"></th>
               <td>
                 <TextInput
                   id="customTitle"
@@ -249,7 +232,6 @@ class ContextualHelpDemoPage extends Component {
               </td>
             </tr>
             <tr>
-              <th scope="row"></th>
               <td colSpan="2" >
                 <MultiLineText 
                   id="customContent"
