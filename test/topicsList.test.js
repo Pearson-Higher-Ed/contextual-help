@@ -44,7 +44,7 @@ import {
   buildUrl
 } from '../src/js/TopicsList';
 
-describe('topicsList', () => {
+describe('TopicsList', () => {
   it('fetches one topic', (done) => {
     fetchOneTopic('help/topic/test/1', (topic) => {
       expect(topic).toEqual(

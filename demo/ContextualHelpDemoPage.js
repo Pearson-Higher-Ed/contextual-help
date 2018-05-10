@@ -4,7 +4,7 @@ import { Button, TextInput, MultiLineText } from '@pearson-components/elements-s
 import { ContextualHelp } from '../index';
 
 import { addTopics, removeTopics } from '../index';
-import { demoAddTopic } from '../src/js/topicsList';
+import { demoAddTopic } from '../src/js/TopicsList';
 
 import './ContextualHelpDemoPage.css';
 
