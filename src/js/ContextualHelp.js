@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import toLower from 'lodash/toLower';
 import { Drawer, BasicView, DetailView } from '@pearson-components/drawer';
-import { addTopics, removeTopics, setUpdate, fetchOneTopic, setLanguage } from './topicsList';
+import { addTopics, removeTopics, setUpdate, fetchOneTopic, setLanguage } from './TopicsList';
 
 import '../scss/ContextualHelp.scss';
 

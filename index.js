@@ -4,4 +4,4 @@ export {
   removeTopics,
   getTopics,
   setUpdate,
-  setLanguage } from './src/js/topicsList';
+  setLanguage } from './src/js/TopicsList';

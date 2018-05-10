@@ -42,7 +42,7 @@ import {
   demoAddTopic,
   setLanguage,
   buildUrl
-} from '../src/js/topicsList';
+} from '../src/js/TopicsList';
 
 describe('topicsList', () => {
   it('fetches one topic', (done) => {
