@@ -1,7 +1,6 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import ContextualHelp from '../src/js/ContextualHelp';
-import BasicView from '../node_modules/@pearson-components/drawer/src/js/components/BasicView';
 import { setUpdate } from '../src/js/topicsList';
 
 jest.mock('../src/js/topicsList', () => {
@@ -14,13 +13,13 @@ jest.mock('../src/js/topicsList', () => {
     fetchOneTopic: jest.fn()
   };
 });
-import { addTopics, removeTopics, fetchOneTopic } from '../src/js/topicsList';
+import { addTopics, removeTopics } from '../src/js/topicsList';
 
-describe('ContextualHelp',() => {
+describe('ContextualHelp', () => {
   const testTopics = [
     'test/topic/1',
     'test/topic/2',
-    'test/topic/3',
+    'test/topic/3'
   ];
   const testTopicsFilled = [
     {
@@ -56,7 +55,7 @@ describe('ContextualHelp',() => {
     headerTitle       : 'Help Topics',
     closeButtonSRText : 'Close',
     backButtonText    : 'Back'
-   };
+  };
 
   it('updates topicsList for additions and subtractions', () => {
     const wrapper = mount(
@@ -69,27 +68,27 @@ describe('ContextualHelp',() => {
 
     expect(addTopics).toHaveBeenCalledTimes(1);
 
-    const changedTopicList = testTopics.filter((topic) => topic != 'test/topic/2');
+    const changedTopicList = testTopics.filter((topic) => topic !== 'test/topic/2');
     wrapper.setProps({ topics: changedTopicList });
     expect(removeTopics).toHaveBeenCalledTimes(1);
   });
 
   it('should render topics', () => {
     const wrapper = mount(
-      <ContextualHelp
-        handleHelp={drawerHandler}
-        showHelp={true}
-        text={text}
+      <ContextualHelp 
         topics={[]} 
+        handleHelp={drawerHandler}
+        text={text}
       />
     );
+
     expect(wrapper.find('li').length).toBe(0);
 
     wrapper.instance().updateTopics(testTopicsFilled);
     wrapper.setProps({ topics: testTopicsFilled.map((topic) => topic.name) });
     expect(wrapper.find('li').length).toBe(3);
 
-    const changedTopicList = testTopicsFilled.filter((topic) => topic.name != 'test/topic/2');
+    const changedTopicList = testTopicsFilled.filter((topic) => topic.name !== 'test/topic/2');
     wrapper.instance().updateTopics(changedTopicList);
     wrapper.setProps({ topics: changedTopicList.map((topic) => topic.name) });
     expect(wrapper.find('li').length).toBe(2);
@@ -99,7 +98,6 @@ describe('ContextualHelp',() => {
     const wrapper = mount(
       <ContextualHelp 
         handleHelp={drawerHandler}
-        showHelp={true}
         text={text}
         topics={testTopics}
       />
