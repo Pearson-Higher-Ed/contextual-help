@@ -1,207 +1,193 @@
-# contextual-help [![Build Status](https://travis-ci.org/Pearson-Higher-Ed/contextual-help.svg?branch=master)](https://travis-ci.org/Pearson-Higher-Ed/contextual-help) [![Coverage Status](https://coveralls.io/repos/Pearson-Higher-Ed/contextual-help/badge.svg?branch=master&service=github)](https://coveralls.io/github/Pearson-Higher-Ed/contextual-help?branch=master)
+[![Build Status](https://travis-ci.org/Pearson-Higher-Ed/contextual-help.svg?branch=master)](https://travis-ci.org/Pearson-Higher-Ed/contextual-help)
+## ContextualHelp
 
-## Notice
+The contextual-help component provides for displaying help that is relevant to the users current actions within the context of the page. It uses the drawer component to keep this information hidden unless requested by the user.
 
-This current version of Contextual-Help (v2+) is using the new ElementsSDK (v1+) version, which is a breaking change due to Pearson rebranding. [Latest drawer rebranding styles](http://pearson-higher-ed.github.io/design/c/drawer/) and [latest con-help rebranding styles](http://pearson-higher-ed.github.io/design/c/contextual-help/) and [running demo](http://pearson-higher-ed.github.io/contextual-help/).
+UX Framework Design Page:
 
-### Icons
+[http://uxframework.pearson.com/c/contextual-help/](http://uxframework.pearson.com/c/contextual-help/)
 
-The new ElementsSDK uses an svg sprite for icons. Normally the sprite can remain in your code directory the way images and fonts do, except that IE 11 and some Android webkit-based browsers won't show the icons that way. Instead, including the actual sprite on the page will allow these browsers to work. You have the choice of either:
+Demo Page:
 
-* manually adding the sprite (found in `/icons/`) in your HTML (ideally as the first child of the &lt;body&gt; element)
-* use the example JavaScript found in the demo's `index.html`
+[http://pearson-higher-ed.github.io/contextual-help/](http://pearson-higher-ed.github.io/contextual-help/)
 
-The advantage of the script is it allows caching of the (currently) 84kb-sized sprite.
+## Getting Started
 
-## How to Consume in an Application
+Initial Machine Setup
+Install Git.
+Install Node 6.0.0 or greater - Need to run multiple verions of Node? Use nvm.
+On a Mac? You're all set. If you're on Windows, complete the steps for your OS below.
+On Windows:
 
-Platform requirements: npm 2+ and the [Elements SDK](https://www.npmjs.com/package/pearson-elements)
+Install Ruby as the runtime engine for SCSS.
+Install Python 2.7. Some node modules may rely on node-gyp, which requires Python on Windows.
+On Chrome browser:
 
-	> npm i --save @pearson-components/contextual-help
+Optionally, install React developer tools.
 
-### Integration with @pearson-components/app-header
+installing the component:
+```javascript
 
-Most commonly, contextual-help is used with the app-header component, which emits the `oAppHeader.help.toggle` event when the Help link is clicked. Contextual-help, when initialized, will automatically check for app-header in the DOM, and it will then add the app-header event listener.
+npm install @pearson-components/contextual-help --save
 
-To successfully integrate with app-header, **initialize the app-header first**, and then initialize contextual-help next as described below. The order of the app-header and contextual-help drawer in the HTML doesn't matter; **it's the initialization order that matters**.
-
-### Script Include (Preferred)
-
-The JavaScript bundle is available in /node_modules/@pearson-components/contextual-help/build/dist.contextual-help.js.
-
-Add the following script include to your web page:
-
-```html
-<script src="path/to/dist.contextual-help.js"></script>
+yarn add @pearson-components/contextual-help
 ```
 
-Additionally if an application is not using NPM to consume the contextual-help component, the code can be included via a CDN.
+### Quick Start
+```javascript
+git clone https://github.com/Pearson-Higher-Ed/contextual-help.git
+cd contextual-help
+npm install
+npm start
+```
+Naviage to http://localhost:8081/contextual-help/, where the spawned Node server hosts a webpack-generated SPA using React Router for defining how to render the components.
 
-```html
-<script src="https://unpkg.com/@pearson-components/contextual-help@2.2.4/build/dist.contextual-help.js"></script>
+As you save changes to the source, the changes are automatically reloaded in the browser.
+
+### Usage
+
+To use the ContextuaHelp in a React.js page:
+
+import the contextual-help:
+
+```javascript
+  import { ContextualHelp } from "@pearson-components/contextual-help";
 ```
 
-Initialize contextual-help in your JavaScript (after app-header initialization):
+then configure the contextual-help:
 
-```js
-document.dispatchEvent(new CustomEvent('o.InitContextualHelp'));
+```javascript
+this.state = {
+  directTopic: undefined,
+  language: 'en-us',
+  showHelp: false,
+  helpTopics: [
+    'console/student/freetrial',
+    'pi/forgot_creds/next',
+    'contactsupport'
+  ]
+};
 ```
 
-The config property options are outlined further down in this README.
-
-### CommonJS
-
-This method requires a web dependency bundler, such as webpack or browserify.
-
-After installing the component from npm:
-
-```js
-var ContextualHelp = require('@pearson-components/contextual-help');
-ContextualHelp.init();
+ContextualHelp does not perform any translation. Hence, language specific text should be passed in. Note that the closeButton and backButton test are included to provide the verbal accessibility clues.
+```javascript
+const languageSpecificText = {
+  headerTitle: 'Help Topics',
+  closeButton: 'Close',
+  backButton: 'Back'
+};
 ```
 
-## Example Configuration
+```javascript
+<ContextualHelp
+  directTopic={this.state.directTopic}
+  drawerTop="61px"
+  handleHelp={this.handleHelp}
+  intl={{ locale: 'en-us' }}
+  defaultLanguage={this.state.language}
+  showHelp={this.state.showHelp}
+  text={languageSpecificText}
+  topics={this.state.helpTopics}
+>
+```
 
-Start by adding a list of help topics to display, via configuration script element.
+sample handler:
+```javascript
+_helpHandler = () => {
+  this.setState({
+    showHelp: !this.state.showHelp,
+    directTopic: undefined
+  });
+}
+```
 
-```html
-<script type="application/json" data-o-contextual-help-config>
-  {
-    "helpTopics": [
-      "console/student/freetrial",
-      "console/student/studentresources",
-      "console/student/contactsupport"
-    ]
+ContextualHelp exists within a drawer component and the visibility is controlled by the showHelp property. A close 'X' is presented at the top of the drawer which executes the helpHandler.
+
+ContextualHelp operates in one of two modes based upon the directTopic property. While this property is undefined, a list of topics (defined by the array passed to the topics property) will be presented. Each topic title will be displayed along with an excerpt. Clicking on a topic will replace the list of topics with the content of the topic selected. A Back button at the top of the control allows the user to go back to the list of topics.
+
+When the directTopic property is set that topic will be presented in the drawer with no option to go back to the topic list. Hence, it is a good idea in the helpHandler to set the directTopic property back to undefined.
+
+props for ContextualHelp:
+```javascript
+  directTopic     : String  - portion of url that is specific to the topic.
+  drawerTop       : String  - adjust the underlying drawer top property default "61px"
+  handleHelp      : Function  - (required) sets state of showHelp to true or false
+  defaultLanguage : String    - portion of the url that is specific to the language of the topic.
+  intl            : Object    - include a property of locale that must comply with language nameing standards ('en-us', 'fr', etc.)
+  showHelp        : Boolean   - (required) sets visibility of drawer default false
+  text            : Object    - text passed in for the title of the drawer and for accessibility vocalization of the buttons. Note that internationalization is the responsibility of the consuming code.
+  topics          : Array     - array of strings which are the portion of the url that is specific to each topic.
+```
+
+## Test
+The project is wired to unit test with [Jest](https://facebook.github.io/jest/).
+
+```javascript
+npm test
+```
+After running npm test && npm start, you may view the code coverage site at: http://localhost:8081/coverage/lcov-report
+
+## Event Instantiation
+Non React Apps may use the event harness by pulling in the eventInterface from the build directory. to instantiate a component use this format:
+
+```javascript
+document.body.dispatchEvent(new CustomEvent('o.InitComponent', {
+  detail: {
+    elementId: 'contextual-help',
+    props: {
+      directTopic: undefined,
+      drawerTop: "61px",
+      handleHelp: () => {},
+      defaultLanguage: 'en-us',
+      intl: {{ locale: 'en-us' }},
+      showHelp: true,
+      text: {
+        backButton:   'Back',
+        closeButton:  'Close',
+        headerTitle:  'Help Topics'
+      },
+      topics: [
+        'console/student/freetrial',
+        'pi/forgot_creds/next',
+        'contactsupport'
+      ]
+    }
   }
-</script>
+}));
 ```
-
-This gives contextual-help something to load.  The topics list is presented in order and the values are derived from the path of the files at http://context-help.pearson.com/help/de6fde00-d9d7-4e45-b506-82c01fd7202a in the /Out/ directory without the language code.  The language code can be set dynamically in this component and its addition to the fetch URL is managed for you.
-
-Do not include the filename extension in the list of configured topics.
-
-This module will automatically inject and initialize itself on the page, with an ID of 'o-contextual-help-drawer'.  The object itself will then be added on to the same element as .oContextualHelp.  So, to access the object after it's initialized, simply use the following.
-
-```js
-document.getElementById('o-contextual-help-drawer').oContextualHelp;
-```
-
-## Initialization
-
-This module will initialize when o.InitContextualHelp fires.  It can be manually initialized with the static `init()` method.
-
-## API
-
-### Methods
-
-`open()`
-
-Opens the drawer.
-
-`close()`
-
-Closes the drawer.
-
-`toggle()`
-
-Toggles the current state of the drawer.
-
-`setLanguage(langCode)`
-
-Sets the internal member variable for use in fetching content.  Default is 'en-us'. Other acceptable parameters are 'es' and 'fr'.
-
-`openHelpTopic(topicId)`
-
-Directly opens the help contents to a specific topic.  This will bypass the list and is also used internally to go from the help topic list to the help topic contents.
-
-`addTopics(topic || [topic, topic, ...])`
-
-Add a topic or topics to the internal array of topics to display in the list.
-
-`removeTopics(topic || [topic, topic, ...])`
-
-Remove a topic or topics to the internal array of topics to display in the list.
-
-`removeAllTopics()`
-
-Empty the internal help topic array.
-
-`getTopics()`
-
-Returns the internal help topic array.
-
-### Events
-
-Refer to the [drawer](https://github.com/Pearson-Higher-Ed/drawer) documentation for the supported events.  Be aware that IE 11 does not support `CustomEvent`. If you want to use `CustomEvent` (as seen in `demo.js`), you will need to add the CustomEvent polyfill script to your HTML page:
-
-```html
-<script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent"></script>
-```
-
-
-```js
-document.getElementById('o-contextual-help-drawer').addEventListener('oDrawer.open', function (e) {
-  // Do something
-});
-```
-
-### How do I debug?
-
-Source maps are enabled for the webpack dev server. Using **Chrome dev tools** - open the "Sources" tab, navigate to `top/webpack://./`, and you will find the original source files for which you can set breakpoints in Chrome's debugger.
 
 ## Accessibility
 
 ### Keyboard focus
+Refer to the [drawer](https://github.com/Pearson-Higher-Ed/drawer) documentation for accessibility on the drawer component. The drawer takes care of managin focus as the drawer is opened and closed.
 
-Refer to the [drawer](https://github.com/Pearson-Higher-Ed/drawer) documentation for accessibility on the drawer element. The drawer takes care of managing focus as the drawer is opened and closed, assuming all the links or buttons which trigger the drawer have a `data-open`, `data-close`, or `data-toggle` attribute and that is set to the string "drawer".
-
-In contextual-help, there are at least 2 layers inside: one listing the help topics, and one with dedicated topic information. Only focusable elements within the visible layer should be reachable with keyboard focus and by assistive tech (AT) such as screen readers. When another layer slides into view, the now-invisible layer should no longer be available to keyboard or AT, and keyboard focus will move to the new layer.
-
-When the default contextual-help (topics list) is opened, focus will be on the "Close Help" button. When a specific topic is opened, focus will be on the "Back to Help Topics" button. Focus will cycle through only the visible layer. If the specific-topic layer was triggered by clicking on a help topic from within contextual help, then clicking "Back to Help Topics" will bring keyboard focus back to that topic. Otherwise, focus moves to the "Close Help" button.
+Contextual-Help uses the BasicView and the DetailView of the drawer. The BasicView is used to present a list of topics and excerpts that are clickable. Clicking on one will cause the display to a DetailView containing the full text of the help topic. Only focusable elements within the specific view that is visible are available to assistive technologies (AT) and screen readers.
 
 ### Heading order
+In the main topics list (BasicView), the phrase "Help Topics" is an h2 element. The name of each topic in the topics list is an h3 element.
 
-In the main topics list section, the phrase "Help Topics" is an h2 element. The name of each topic in the topics list is an h3 element.
-
-In the specific-topic section, the name of the topic is an h2 element. Any headings inside the topic should be an h3 or smaller, starting with h3 for the main subtopics. They should not jump to h4, h5, or h6, but follow good content heading structure.
+On a specific topic (DetailView), the name of the topic is an h2 element. Any headings inside the topic should be smaller, starting with h3 for the main subtopics. They should not jump to h4, h5, or h6, but follow good content heading structure.
 
 ### Accordions/disclosure widgets
+In order to include an accordion or disclosure widget inside content, the html5 <summary> and <detail> tags should be used. Placing the summary tag within the detail tag will cause the summary information only to be visible by default. Clicking on the summary will show/hide the content of the detail tag. 
 
-In order to include an accordion or disclosure widget inside content, the following must be included for it to work correctly:
-The div surrounding all the content which has the accordions must have a class of `o-contextual-help__accordion`. This tells JavaScript to run the accordion function.
+## External Dependencies
+React and ReactDOM(v0.14 or v15) are external dependencies required to use this component. They are npm-installable or availalbe from a third-party CDN.
 
-The path of the icon might be different for you locally. If the icon doesn't appear, check the path.
+This component targets the styling in the Pearson Elements SDK.
 
-The clickable elements which reveal/hide the content must be buttons, however these buttons likely make sense to be inside headings if the clickable text is heading text. Example:
+### Poly fills
+React components with internationalization use React-Intl which relies on the ECMAScript Internationalization API. This was not supported in Safari until version 10. If you are supporting Safari older than 10, there is a polyfill from Andy Earnshaw (see below).
 
-```
-<div class="o-contextual-help__accordion">
-<h3>
-  <button class="o-disclosure pe-label pe-label--bold" aria-controls="...an id here..." aria-expanded="false">
-    <svg aria-hidden="true" focusable="false" class="pe-icon--pivot-close-18">
-      <use xlink:href="#pivot-close-18"></use>
-    </svg>
-    Heading Text Here
-  </button>
-</h3>
+CusomeEvent support in IE is also polyfilled. Because many teams are supporting both IE 11 and Safari 9, we've combined the polyfills into a single script. The example below polyfills for CustomEvent and localization for English and French:
 
-...
+<script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Intl.~locale.en,Intl.~locale.fr"></script>
+Be sure to include the above script (a version of it that makes sense for your project and supported browsers) on your THML page running CompoundsSDK, if you need it.
 
-<div id="...an id here..." class="o-panel--closed">Hidden content here...</div>
+## CodeCoverage site
+After running npm test && npm start, you may view the code coverage site at: http://localhost:8081/coverage/lcov-report
 
-...
-
-</div>
-```
-
-The id of the div must be unique on the page and match the `aria-controls` attribute of its button and must have a class of either "o-panel--closed" (if it is default hidden) or "o-panel--opened" if it is by default open (if this is the case, the associated button above must have its `aria-expanded` attribute set to "true").
-
-When the button is clicked and the matching div becomes visible, focus remains on the button, the button's `aria-expanded` attribute turns to "true" and the class name of the hidden content becomes `o-panel--opened`.
-
-## Contributions
-
-Please review the [guidelines](https://github.com/Pearson-Higher-Ed/docs/blob/master/origami-contributions.md) for contributing before getting started.
+## Guidelines
+All submissions must be via pull request and approved before the pearson-design-accelerator@pearson.com team will merge and allow it to enter the release process. All submissions must pass this project's linting, test with 100% code coverage, and be compatible with the version(s) of React approved for the Pearson User Experience Platform.
 
 ## License
-
-This software is published by Pearson Education under the [MIT license](LICENSE).

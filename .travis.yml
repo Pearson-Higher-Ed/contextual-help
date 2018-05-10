@@ -2,11 +2,11 @@ language: node_js
 sudo: false
 node_js:
 - 6
+- 8
 script:
 - npm run ci
-- chmod 777 ./node_modules/@pearson-components/npm-scripts/shell_scripts/run_selenium_ci_tests.sh
-- export TEST_GROUP=desktop-regression
-- ./node_modules/@pearson-components/npm-scripts/shell_scripts/run_selenium_ci_tests.sh
+
+
 deploy:
   provider: npm
   email: pearson-design-accelerator@pearson.com
@@ -18,4 +18,4 @@ deploy:
     tags: true
 env:
   global:
-  - secure: fCJbfmJ9SymrVjyXTm6BLOfFzd8Z8t9gGg8XhhoKxDJ+yjBXMzLTTYuiflJQuPHfzbJmLGZd7nFllBDBE2BdoHrgX9uf09y+3lq2d7Nyi3Z9z6bW7mcnKaek2n5bKBpMK82lh5TCgHPdlX9N+rkmTLXCwhPAIb8K8QwDRxof0PaqXkxDVNYwaZZlwkk2rbBTXuDFdIeHA1pT57k4okip0iIsJNNJ0NgD3AdU89RPxmoDhsBgbDzSgcCZGWbRfFGtniNQxmFnQW0fDkT0Qsmg/sUcHydk818q87reSSb3yR9Tk5S+UnLrDRyTUMdfe95iSic8MOUL0PspDex9SzEJTw+MZ7l3anF3U8w6iLcB5+P2f7VobDj85P9fIdNR6iDmgDFpRT4YyqOF5HZ7j9rvGBMFP+kdsXY6VVXZ+7Qs5+td8Ku+E5+crGZeATAJYdbb6nfK5p/+HPNPd7gc/VQUj7sQQ5x2ZTB3hP7o0aneq+bOiOm8ga8OvcSqKmfOPY5qft1KeeIKK+LmQRJtIkLZftzLCwRRXmnK38p4/d3izu6VOUqbydAAdDfVtEG2oUfYmboTdmcC0Pb0xDhUuXdPYGKvxY3xPvLMWf7Sd4XXJ6brMPlI1ApIq+LYq4hpRMoYOv0mDbdgI/MuiN5M17KWiXkcJtYjKly/Uc9N6MsjA2A=
+    secure: fCJbfmJ9SymrVjyXTm6BLOfFzd8Z8t9gGg8XhhoKxDJ+yjBXMzLTTYuiflJQuPHfzbJmLGZd7nFllBDBE2BdoHrgX9uf09y+3lq2d7Nyi3Z9z6bW7mcnKaek2n5bKBpMK82lh5TCgHPdlX9N+rkmTLXCwhPAIb8K8QwDRxof0PaqXkxDVNYwaZZlwkk2rbBTXuDFdIeHA1pT57k4okip0iIsJNNJ0NgD3AdU89RPxmoDhsBgbDzSgcCZGWbRfFGtniNQxmFnQW0fDkT0Qsmg/sUcHydk818q87reSSb3yR9Tk5S+UnLrDRyTUMdfe95iSic8MOUL0PspDex9SzEJTw+MZ7l3anF3U8w6iLcB5+P2f7VobDj85P9fIdNR6iDmgDFpRT4YyqOF5HZ7j9rvGBMFP+kdsXY6VVXZ+7Qs5+td8Ku+E5+crGZeATAJYdbb6nfK5p/+HPNPd7gc/VQUj7sQQ5x2ZTB3hP7o0aneq+bOiOm8ga8OvcSqKmfOPY5qft1KeeIKK+LmQRJtIkLZftzLCwRRXmnK38p4/d3izu6VOUqbydAAdDfVtEG2oUfYmboTdmcC0Pb0xDhUuXdPYGKvxY3xPvLMWf7Sd4XXJ6brMPlI1ApIq+LYq4hpRMoYOv0mDbdgI/MuiN5M17KWiXkcJtYjKly/Uc9N6MsjA2A=

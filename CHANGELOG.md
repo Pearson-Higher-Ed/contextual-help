@@ -1,3 +1,10 @@
+<a name="3.0.0"></a>
+## [3.0.0](https://github.com/Pearson-Higher-Ed/contextual-help/compare/v2.2.4...v3.0.0) (2018-03-07)
+
+### Features
+
+* Rewrote as React Component ([b964608](https://github.com/Pearson-Higher-Ed/contextual-help/commit/b964608))
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/Pearson-Higher-Ed/contextual-help/compare/v2.2.4...v2.3.0) (2018-02-08)
 
@@ -222,6 +229,5 @@
 ### Features
 
 * added example help content as demos/src/demo-test-content.txt ([eb22c57](https://github.com/Pearson-Higher-Ed/contextual-help/commit/eb22c57))
-
 
 
