@@ -4,7 +4,8 @@ node_js:
 - 6
 - 8
 script:
-- ./node_modules/@pearson-components/npm-scripts/shell_scripts/run_selenium_ci_tests.sh
+- npm run ci
+
 
 deploy:
   provider: npm
