@@ -1,9 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import ContextualHelp from '../src/js/ContextualHelp';
-import { setUpdate } from '../src/js/topicsList';
+import { setUpdate } from '../src/js/TopicsList';
 
-jest.mock('../src/js/topicsList', () => {
+jest.mock('../src/js/TopicsList', () => {
   return {
     addTopics: jest.fn(),
     removeTopics: jest.fn(),
@@ -13,7 +13,7 @@ jest.mock('../src/js/topicsList', () => {
     fetchOneTopic: jest.fn()
   };
 });
-import { addTopics, removeTopics } from '../src/js/topicsList';
+import { addTopics, removeTopics } from '../src/js/TopicsList';
 
 describe('ContextualHelp', () => {
   const testTopics = [
