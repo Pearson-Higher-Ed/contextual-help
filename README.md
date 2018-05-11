@@ -59,7 +59,7 @@ then configure the contextual-help:
 ```javascript
 this.state = {
   directTopic: undefined,
-  language: 'en-us',
+  locale: 'en-us',
   showHelp: false,
   helpTopics: [
     'console/student/freetrial',
@@ -73,8 +73,8 @@ ContextualHelp does not perform any translation. Hence, language specific text s
 ```javascript
 const languageSpecificText = {
   headerTitle: 'Help Topics',
-  closeButton: 'Close',
-  backButton: 'Back'
+  closeButton: 'Close Help Topics',
+  backButton: 'Back to Help Topics'
 };
 ```
 
@@ -83,8 +83,7 @@ const languageSpecificText = {
   directTopic={this.state.directTopic}
   drawerTop="61px"
   handleHelp={this.handleHelp}
-  intl={{ locale: 'en-us' }}
-  defaultLanguage={this.state.language}
+  locale={'en-us'}
   showHelp={this.state.showHelp}
   text={languageSpecificText}
   topics={this.state.helpTopics}
@@ -109,11 +108,10 @@ When the directTopic property is set that topic will be presented in the drawer 
 
 props for ContextualHelp:
 ```javascript
-  directTopic     : String  - portion of url that is specific to the topic.
-  drawerTop       : String  - adjust the underlying drawer top property default "61px"
+  directTopic     : String    - portion of url that is specific to the topic.
+  drawerTop       : String    - adjust the underlying drawer top property default "61px"
   handleHelp      : Function  - (required) sets state of showHelp to true or false
-  defaultLanguage : String    - portion of the url that is specific to the language of the topic.
-  intl            : Object    - include a property of locale that must comply with language nameing standards ('en-us', 'fr', etc.)
+  locale          : string    - must comply with language nameing standards ('en-us', 'fr', etc.)
   showHelp        : Boolean   - (required) sets visibility of drawer default false
   text            : Object    - text passed in for the title of the drawer and for accessibility vocalization of the buttons. Note that internationalization is the responsibility of the consuming code.
   topics          : Array     - array of strings which are the portion of the url that is specific to each topic.
@@ -138,8 +136,7 @@ document.body.dispatchEvent(new CustomEvent('o.InitComponent', {
       directTopic: undefined,
       drawerTop: "61px",
       handleHelp: () => {},
-      defaultLanguage: 'en-us',
-      intl: {{ locale: 'en-us' }},
+      locale: "en-us",
       showHelp: true,
       text: {
         backButton:   'Back',
