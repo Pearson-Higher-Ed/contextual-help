@@ -139,8 +139,8 @@ document.body.dispatchEvent(new CustomEvent('o.InitComponent', {
       locale: "en-us",
       showHelp: true,
       text: {
-        backButton:   'Back',
-        closeButton:  'Close',
+        backButton:   'Back to Help Topics',
+        closeButton:  'Close Help Topics',
         headerTitle:  'Help Topics'
       },
       topics: [
@@ -166,7 +166,7 @@ In the main topics list (BasicView), the phrase "Help Topics" is an h2 element. 
 On a specific topic (DetailView), the name of the topic is an h2 element. Any headings inside the topic should be smaller, starting with h3 for the main subtopics. They should not jump to h4, h5, or h6, but follow good content heading structure.
 
 ### Accordions/disclosure widgets
-In order to include an accordion or disclosure widget inside content, the html5 <summary> and <detail> tags should be used. Placing the summary tag within the detail tag will cause the summary information only to be visible by default. Clicking on the summary will show/hide the content of the detail tag. 
+In order to include an accordion or disclosure widget inside content, the html5 <summary> and <detail> tags should be used. Placing the summary tag within the detail tag will cause the summary information only to be visible by default. Clicking on the summary will show/hide the content of the detail tag.
 
 ## External Dependencies
 React and ReactDOM(v0.14 or v15) are external dependencies required to use this component. They are npm-installable or availalbe from a third-party CDN.
