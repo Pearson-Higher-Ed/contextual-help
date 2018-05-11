@@ -1,16 +1,20 @@
-<a name="3.0.1"></a>
-## [3.0.1](https://github.com/Pearson-Higher-Ed/contextual-help/compare/v3.0.0...v3.0.1) (2018-05-11)
-
-
-### Bug Fixes
-
-* Correct README.md errors ([b7480e2](https://github.com/Pearson-Higher-Ed/contextual-help/commit/b7480e2))
-* Correct README.md errors ([03429b8](https://github.com/Pearson-Higher-Ed/contextual-help/commit/03429b8))
+<a name="3.0.2"></a>
+## [3.0.2](https://github.com/Pearson-Higher-Ed/contextual-help/compare/v3.0.0...v3.0.2) (2018-05-11)
 
 
 
 <a name="3.0.0"></a>
-# [3.0.0](https://github.com/Pearson-Higher-Ed/contextual-help/compare/v2.2.4...v3.0.0) (2018-05-10)
+# [3.0.0](https://github.com/Pearson-Higher-Ed/contextual-help/compare/v2.2.5...v3.0.0) (2018-05-10)
+
+
+
+<a name="2.2.5"></a>
+## [2.2.5](https://github.com/Pearson-Higher-Ed/contextual-help/compare/v2.3.0...v2.2.5) (2018-05-10)
+
+
+### Bug Fixes
+
+* add conventional-changelog ([e6395e1](https://github.com/Pearson-Higher-Ed/contextual-help/commit/e6395e1))
 
 
 
