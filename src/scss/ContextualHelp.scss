@@ -9,6 +9,8 @@
 }
 
 .drawerMain {
+  cursor: default;
+
   h2 {
     margin-top: 25px;
     margin-bottom: 25px;
@@ -23,6 +25,7 @@
     line-height: 18px;
     color: #252525;
     font-size: 14px;
+    cursor: pointer;
   }
 
   p {
@@ -75,5 +78,9 @@
         font-weight: bold;
         margin-left: -15px;
       }
+  }
+
+  button {
+    cursor: pointer;
   }
 }
