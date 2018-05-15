@@ -1,3 +1,13 @@
+<a name="3.0.3"></a>
+## [3.0.3](https://github.com/Pearson-Higher-Ed/contextual-help/compare/v3.0.2...v3.0.3) (2018-05-15)
+
+
+### Bug Fixes
+
+* correct wrong cursors ([1ffc618](https://github.com/Pearson-Higher-Ed/contextual-help/commit/1ffc618))
+
+
+
 <a name="3.0.2"></a>
 ## [3.0.2](https://github.com/Pearson-Higher-Ed/contextual-help/compare/v3.0.0...v3.0.2) (2018-05-11)
 
