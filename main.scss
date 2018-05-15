@@ -2,6 +2,8 @@
 @import 'node_modules/pearson-elements/scss/elements/color/variables';
 @import 'node_modules/pearson-elements/scss/elements/typography/variables';
 
+$border-style: 1px solid $pe-color-alto;
+
 /*focus styles*/
 .mouseDetected .o-drawer a,
 .mouseDetected .o-drawer button {
@@ -68,7 +70,7 @@
 .o-contextual-help__header {
   padding-bottom: 25px;
   margin-bottom: 25px;
-  border-bottom: 1px solid $pe-color-alto;
+  border-bottom: $border-style;
 
   &:after {
     content: '';
@@ -125,7 +127,7 @@
   margin-bottom: 0;
 }
 
-.o-contextual-help__topic {
+.o-contextual-help__topic, .o-contextual-help__feedback {
   h2 {
     margin-bottom: 25px;
   }
@@ -169,5 +171,40 @@
   }
   .o-panel--opened {
     display: block;
+  }
+}
+
+.o-contextual-help__feedback {
+  padding-top: 24px;
+  border-top: $border-style;
+  margin-top: 24px;
+  button, textarea {
+    margin-top: 20px;
+  }
+  .pe-btn--btn_small:last-child {
+    margin-left: 16px;
+  }
+  textarea {
+    width: 100%;
+    border: $border-style;
+    border-radius: 2px;
+  }
+  .pe-btn__primary--btn_small {
+    display: block;
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .zero-opacity {
+    opacity: 0;
+  }
+
+  .feedback-step-one, .feedback-step-two {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
   }
 }

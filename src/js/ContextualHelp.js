@@ -6,6 +6,7 @@ var XHR = require('./xhr/main');
 var helpTemplate = require('../html/helpT.html');
 var topicExcerptTemplate = require('../html/excerptT.html');
 var topicTemplate = require('../html/contentT.html');
+var feedbackTemplate = require('../html/feedbackT.html');
 
 
 function ContextualHelp(el) {
@@ -292,11 +293,28 @@ ContextualHelp.prototype.openHelpTopic = function(topic) {
       if (!cData) {
         return;
       }
-      contentTarget.innerHTML = topicTemplate;
+      contentTarget.innerHTML = topicTemplate + feedbackTemplate;
       contentTarget.querySelector('h2').innerHTML = cData.title;
-      var contentCT = contentTarget.querySelector('div');
+      var contentCT = contentTarget.querySelector('h2+div');
       contentCT.innerHTML = cData.content;
     });
+
+    var helpfulBtns = contentTarget.querySelectorAll('.feedback-step-one button'),
+        stepOne = contentTarget.querySelector('.feedback-step-one'),
+        stepTwo = contentTarget.querySelector('.feedback-step-two');
+
+        helpfulBtns.forEach((btn, index) => {
+          btn.onclick = function() {
+            stepOne.classList.add('zero-opacity');
+            setTimeout(function() {
+              stepOne.classList.add('hidden');
+              if (index == 1) {
+                stepTwo.classList.remove('hidden');
+                stepTwo.classList.remove('zero-opacity');
+              }
+            }, 500);
+          }
+        })
 
     if (contentTarget.querySelector('.o-contextual-help__accordion')) {
       this.accordion();
