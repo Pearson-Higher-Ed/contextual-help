@@ -176,7 +176,7 @@ This component targets the styling in the Pearson Elements SDK.
 ### Poly fills
 React components with internationalization use React-Intl which relies on the ECMAScript Internationalization API. This was not supported in Safari until version 10. If you are supporting Safari older than 10, there is a polyfill from Andy Earnshaw (see below).
 
-CusomeEvent support in IE is also polyfilled. Because many teams are supporting both IE 11 and Safari 9, we've combined the polyfills into a single script. The example below polyfills for CustomEvent and localization for English and French:
+CustomEvent support in IE is also polyfilled. Because many teams are supporting both IE 11 and Safari 9, we've combined the polyfills into a single script. The example below polyfills for CustomEvent and localization for English and French:
 
 <script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Intl.~locale.en,Intl.~locale.fr"></script>
 Be sure to include the above script (a version of it that makes sense for your project and supported browsers) on your THML page running CompoundsSDK, if you need it.
