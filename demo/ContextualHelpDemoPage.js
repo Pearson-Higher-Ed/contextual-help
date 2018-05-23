@@ -281,10 +281,11 @@ class ContextualHelpDemoPage extends Component {
           drawerTop="61px"
           handleHelp={this.handleHelp}
           defaultLanguage={'en-us'}
+          locale={this.props.intl.locale}
           showHelp={this.state.showHelp}
           text={this.props.data.text}
           topics={this.state.testTopics}
-          locale={this.props.intl.locale}
+          topicViewed={({ title, fullElement }) => { console.log(title); console.log(fullElement.innerHTML); }}
         />
       </div>
     )

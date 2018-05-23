@@ -19,6 +19,7 @@ class ContextualHelp extends Component {
 
     this.updateTopics = _updateTopics.bind(this);
     this.basicView = _basicView.bind(this);
+    this.basicViewHandler = _basicViewHandler.bind(this);
     this.detailView = _detailView.bind(this);
     this.directTopicView = _directTopicView.bind(this);
     this.drawerContents = _drawerContents.bind(this);
@@ -61,6 +62,7 @@ class ContextualHelp extends Component {
     const skipTo = this.props.directTopic ? `detailView-${this.state.directKey}` : undefined;
     return (
       <Drawer
+        basicViewClick={this.basicViewHandler}
         drawerHandler={handleHelp}
         drawerOpen={showHelp}
         drawerTop={drawerTop}
@@ -87,7 +89,8 @@ ContextualHelp.propTypes = {
   locale: PropTypes.string,
   showHelp: PropTypes.bool,
   text: PropTypes.object.isRequired,
-  topics: PropTypes.array
+  topics: PropTypes.array,
+  topicViewed: PropTypes.func
 };
 
 export default ContextualHelp;
@@ -127,6 +130,15 @@ function _detailView(topic, idx) {
 
 function _directTopicView(topic) {
   const keyVal = this.state.directKey;
+  if (this.props.topicViewed && topic.title !== '') {
+    setTimeout(() => {
+      const el = document.getElementById(`detailView-${keyVal}`);
+      if (el && this.props.showHelp) {
+        this.props.topicViewed({ title: topic.title, fullElement: el });
+      }
+    }, 100);
+  }
+
   return (
     <DetailView 
       id={`detailView-${keyVal}`}
@@ -156,4 +168,16 @@ function _drawerContents() {
       {this.state.topics.map((topic, idx) => this.detailView(topic, idx))}
     </div>
   )
+};
+
+function _basicViewHandler(e) {
+  if (this.props.topicViewed) {
+    const tempElement = document.createElement('html');
+    tempElement.innerHTML = e.currentTarget.innerHTML;
+    const h3tags = tempElement.getElementsByTagName('h3');
+    if (h3tags.length <= 0) {
+      return;
+    }
+    this.props.topicViewed({ fullElement: e.currentTarget, title: h3tags[0].textContent })
+  }
 };

@@ -115,6 +115,7 @@ props for ContextualHelp:
   showHelp        : Boolean   - (required) sets visibility of drawer default false
   text            : Object    - text passed in for the title of the drawer and for accessibility vocalization of the buttons. Note that internationalization is the responsibility of the consuming code.
   topics          : Array     - array of strings which are the portion of the url that is specific to each topic.
+  topicViewed     : Function  - will be called (with two parameters: title and fullElement) when a topic is viewed. Can be used for logging.
 ```
 
 ## Test
