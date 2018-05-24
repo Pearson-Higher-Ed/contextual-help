@@ -1,8 +1,4 @@
-
-@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/color/_variables';
-@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/responsive-utilities/_variables';
-@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/responsive-utilities/_functions';
-@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/responsive-utilities/responsive-utilities';
+@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements';
 
 .contextualHelpBasicView {
   font-size: 1.0rem;
@@ -14,35 +10,25 @@
   h2 {
     margin-top: 25px;
     margin-bottom: 25px;
-    line-height: 26px;
-    font-size: 20px;
-    color: #252525;
   }
 
   h3 {
     margin-top: 25px;
     margin-bottom: 0;
-    line-height: 18px;
-    color: #252525;
-    font-size: 14px;
     cursor: pointer;
   }
 
   p {
-    line-height: 18px;
     margin-top: 0px;
     margin-bottom: 25px;
-    font-size: 14px;
-    color: #6a7070;
+    @extend .pe-label--secondary;
   }
 
   ul {
     li {
       ul {
         li {
-          line-height: 18px;
-          color: #6a7070;
-          font-size: 14px;
+          @extend .pe-label--secondary;
         }
 
         li:last-child {
@@ -52,9 +38,7 @@
 
       ol {
         li {
-          line-height: 18px;
-          color: #6a7070;
-          font-size: 14px;
+          @extend .pe-label--secondary;
         }
 
         li:last-child {
@@ -65,17 +49,13 @@
   }
 
   details {
-      line-height: 18px;
-      font-size: 14px;
-      color: #6a7070;
+      @extend .pe-label--secondary;
       margin-bottom: 25px;
       margin-left: 15px;
 
       summary {
-        line-height: 18px;
-        font-size: 14px;
-        color: #252525;
-        font-weight: bold;
+        @extend .pe-label;
+        @extend .pe-label--bold;
         margin-left: -15px;
       }
   }

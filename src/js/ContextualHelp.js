@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import toLower from 'lodash/toLower';
 import { Drawer, BasicView, DetailView } from '@pearson-components/drawer';
 import { addTopics, removeTopics, setUpdate, fetchOneTopic, setLanguage } from './TopicsList';
+import Feedback from './Feedback';
 
 import '../scss/ContextualHelp.scss';
 
@@ -124,6 +125,7 @@ function _detailView(topic, idx) {
       <h2 className="pe-title">{topic.title || ''}</h2>
       <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
       </div>
+      <Feedback/>
     </DetailView>
   )
 };

@@ -1,0 +1,33 @@
+@import '../../node_modules/@pearson-components/elements-sdk/src/styles/elements/color/_variables';
+$border-style: 1px solid $pe-color-alto;
+
+.pe-contextual-feedback {
+  border-top: $border-style;
+  margin-top: 24px;
+  .feedback-confirm, button, textarea {
+    margin-top: 20px;
+  }
+  .pe-btn--btn_small:last-child {
+    margin-left: 16px;
+  }
+  
+  .pe-btn__primary--btn_small {
+    display: block;
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  .static-pe-alert-inline {
+    width: 260px;
+    padding: 0 14px;
+    box-sizing: border-box;
+    button {
+      display: none;
+      visibility: hidden;
+    }
+  }
+  .static-alert-content- {
+    padding-right: 0;
+    margin-bottom: 14px;
+  }
+}
