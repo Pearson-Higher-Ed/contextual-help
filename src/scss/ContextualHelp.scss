@@ -8,6 +8,10 @@
   font-size: 1.0rem;
 }
 
+.contextualHelpExcerpt:after {
+  content: "\2026"
+}
+
 .drawerMain {
   cursor: default;
   width: 280px;
