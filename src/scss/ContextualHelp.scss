@@ -10,6 +10,7 @@
 
 .drawerMain {
   cursor: default;
+  width: 280px;
 
   h2 {
     margin-top: 25px;
@@ -30,7 +31,7 @@
 
   p {
     line-height: 18px;
-    margin-top: 0px;
+    margin-top: 0;
     margin-bottom: 25px;
     font-size: 14px;
     color: #6a7070;
@@ -39,26 +40,33 @@
   ul {
     li {
       ul {
+        list-style-type: disc;
+        -webkit-padding-start: 20px;
+        margin-top: 0;
+        margin-bottom: 25px;
+        -webkit-padding-start: 20px;
+
         li {
           line-height: 18px;
           color: #6a7070;
           font-size: 14px;
-        }
-
-        li:last-child {
-          margin-bottom: 25px;
         }
       }
 
       ol {
+        -webkit-padding-start: 20px;
+        padding-bottom: 25px;
+
         li {
           line-height: 18px;
           color: #6a7070;
           font-size: 14px;
-        }
+          padding-left: 10px;
+          margin-left: -5px;
 
-        li:last-child {
-          margin-bottom: 25px;
+          p {
+            margin-bottom: 0;
+          }
         }
       }
     }
@@ -82,5 +90,9 @@
 
   button {
     cursor: pointer;
+  }
+
+  .contentSection {
+    padding: 0;
   }
 }

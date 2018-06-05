@@ -16,7 +16,8 @@ class ContextualHelpDemoPage extends Component {
       testTopics: [
         'console/student/freetrial',
         'pi/forgot_creds_next',
-        'contactsupport'
+        'contactsupport',
+        'console/changeemail'
       ],
       showHelp: false,
       directTopic: undefined
