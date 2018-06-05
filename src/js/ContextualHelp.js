@@ -109,7 +109,7 @@ function _basicView(topic, idx) {
       myKind="BasicView"
     >
       <h3 className="po-label pe-bold contextualHelpBasicView" >{topic.title || ''}</h3>
-      <p className="pe-label contextualHelpBasicView">{ topic.excerpt || '' }</p>
+      <p className="pe-label contextualHelpBasicView contextualHelpExcerpt">{ topic.excerpt || '' }</p>
     </BasicView>
   )
 };
