@@ -108,8 +108,8 @@ function _basicView(topic, idx) {
       mapToDetail={`detailView-${idx}`}
       myKind="BasicView"
     >
-      <h3 className="po-label pe-bold contextualHelpBasicView" >{topic.title || ''}</h3>
-      <p className="pe-label contextualHelpBasicView contextualHelpExcerpt">{ topic.excerpt || '' }</p>
+      <h3 className="po-label pe-bold contextualHelpBasicView" dangerouslySetInnerHTML={{__html: topic.title || ''}}></h3>
+      <p className="pe-label contextualHelpBasicView contextualHelpExcerpt" dangerouslySetInnerHTML={{__html: topic.excerpt.split('<\\').join('<') || ''}}></p>
     </BasicView>
   )
 };
@@ -121,8 +121,8 @@ function _detailView(topic, idx) {
       myKind="DetailView"
       key={`detailView-${idx}`}
     >
-      <h2 className="pe-title">{topic.title || ''}</h2>
-      <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
+      <h2 className="pe-title" dangerouslySetInnerHTML={{__html: topic.title || ''}}></h2>
+      <div dangerouslySetInnerHTML={{__html: topic.content.split('<\\').join('<') || ''}}>
       </div>
     </DetailView>
   )
@@ -145,8 +145,8 @@ function _directTopicView(topic) {
       myKind="DetailView"
       key={`detailView-${keyVal}`}
     >
-      <h2 className="pe-title">{topic.title || ''}</h2>
-      <div dangerouslySetInnerHTML={{__html: topic.content || ''}}>
+      <h2 className="pe-title" dangerouslySetInnerHTML={{__html: topic.title || ''}}></h2>
+      <div dangerouslySetInnerHTML={{__html: topic.content.split('<\\').join('<') || ''}}>
       </div>
     </DetailView>
   )
