@@ -13,7 +13,6 @@ class ContextualHelp extends Component {
 
     this.state = {
       topics: [],
-      drawerIsOpen: false,
       skipTo: undefined
     };
 
