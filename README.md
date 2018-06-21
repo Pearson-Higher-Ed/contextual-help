@@ -63,7 +63,7 @@ this.state = {
   showHelp: false,
   helpTopics: [
     'console/student/freetrial',
-    'pi/forgot_creds/next',
+    'pi/forgot_creds_next',
     'contactsupport'
   ]
 };
@@ -146,7 +146,7 @@ document.body.dispatchEvent(new CustomEvent('o.InitComponent', {
       },
       topics: [
         'console/student/freetrial',
-        'pi/forgot_creds/next',
+        'pi/forgot_creds_next',
         'contactsupport'
       ]
     }
