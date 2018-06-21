@@ -1,3 +1,8 @@
+<a name="3.0.14"></a>
+## [3.0.14](https://github.com/Pearson-Higher-Ed/contextual-help/compare/v3.0.13...v3.0.14) (2018-06-21)
+
+
+
 <a name="3.0.13"></a>
 ## [3.0.13](https://github.com/Pearson-Higher-Ed/contextual-help/compare/v3.0.12...v3.0.13) (2018-06-20)
 
