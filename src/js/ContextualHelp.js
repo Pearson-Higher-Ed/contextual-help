@@ -121,7 +121,7 @@ function _detailView(topic, idx) {
       key={`detailView-${idx}`}
     >
       <h2 className="pe-title" dangerouslySetInnerHTML={{__html: topic.title || ''}}></h2>
-      <div dangerouslySetInnerHTML={{__html: topic.content.split('<\\').join('<') || ''}}>
+      <div className="detailViewBody" dangerouslySetInnerHTML={{__html: topic.content.split('<\\').join('<') || ''}}>
       </div>
     </DetailView>
   )
@@ -145,7 +145,7 @@ function _directTopicView(topic) {
       key={`detailView-${keyVal}`}
     >
       <h2 className="pe-title" dangerouslySetInnerHTML={{__html: topic.title || ''}}></h2>
-      <div dangerouslySetInnerHTML={{__html: topic.content.split('<\\').join('<') || ''}}>
+      <div className="detailViewBody" dangerouslySetInnerHTML={{__html: topic.content.split('<\\').join('<') || ''}}>
       </div>
     </DetailView>
   )
