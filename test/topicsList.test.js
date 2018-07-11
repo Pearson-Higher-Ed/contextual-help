@@ -15,7 +15,7 @@ jest.mock('../src/js/chFetch', () => {
   
   return (url) => {
     return new Promise((resolve, reject) => {
-      let lang = url.substr('http://context-help.pearson.com/help/de6fde00-d9d7-4e45-b506-82c01fd7202a/Out/'.length);
+      let lang = url.substr('http://help.pearsoncmg.com/csh/'.length);
       let helpTopicName = lang.replace('.json', '');
       lang = lang.substring(0, lang.indexOf('/'));
       helpTopicName = helpTopicName.substr(lang.length + 1);
@@ -127,7 +127,7 @@ describe('TopicsList', () => {
   it('uses language to build URL', () => {
     const fakeLanguage = 'humpseyFrats';
     const fakeTopicName = 'fake/topic/name';
-    const expectedUrl = `http://help.pearsoncmg.com/csh/humpseyFrats/${fakeLanguage}/${fakeTopicName}.json`;
+    const expectedUrl = `http://help.pearsoncmg.com/csh/${fakeLanguage}/${fakeTopicName}.json`;
     setLanguage(fakeLanguage);
     const url = buildUrl(fakeTopicName);
     expect(url).toEqual(expectedUrl);
