@@ -127,7 +127,7 @@ describe('TopicsList', () => {
   it('uses language to build URL', () => {
     const fakeLanguage = 'humpseyFrats';
     const fakeTopicName = 'fake/topic/name';
-    const expectedUrl = `http://context-help.pearson.com/help/de6fde00-d9d7-4e45-b506-82c01fd7202a/Out/${fakeLanguage}/${fakeTopicName}.json`;
+    const expectedUrl = `http://help.pearsoncmg.com/csh/humpseyFrats/${fakeLanguage}/${fakeTopicName}.json`;
     setLanguage(fakeLanguage);
     const url = buildUrl(fakeTopicName);
     expect(url).toEqual(expectedUrl);
