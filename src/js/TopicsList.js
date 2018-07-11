@@ -76,17 +76,17 @@ const retrieveTopic = (topic) => {
   topic.fetching = true;
 
   fetchTopic(topic.name)
-  .then((result) => {
-    topic.title = result.title;
-    topic.excerpt = result.excerpt;
-    topic.content = result.content;
-    topic.fetching = false;
-    update(topics.filter(a => !a.fetching && !a.failed).map(a => ({...a})));
-  })
-  .catch(() => {
-    topic.failed = true;
-    topic.fetching = false;
-  });
+    .then((result) => {
+      topic.title = result.title;
+      topic.excerpt = result.excerpt;
+      topic.content = result.content;
+      topic.fetching = false;
+      update(topics.filter(a => !a.fetching && !a.failed).map(a => ({...a})));
+    })
+    .catch(() => {
+      topic.failed = true;
+      topic.fetching = false;
+    });
 
   retrieveNextTopic();
 };
@@ -108,7 +108,7 @@ export const setLanguage = (language) => {
 };
 
 export const buildUrl = (topicName) => {
-  return `http://context-help.pearson.com/help/de6fde00-d9d7-4e45-b506-82c01fd7202a/Out/${lang}/${topicName}.json`;
+  return `http://help.pearsoncmg.com/csh/${lang}/${topicName}.json`;
 };
 
 const fetchTopic = (topicName) => {
@@ -118,22 +118,22 @@ const fetchTopic = (topicName) => {
 
 export const fetchOneTopic = (topicName, callback) => {
   fetchTopic(topicName)
-  .then((result) => {
-    const topic = {
-      title: result.title,
-      excerpt: result.excerpt,
-      content: result.content,
-      fetching: false
+    .then((result) => {
+      const topic = {
+        title: result.title,
+        excerpt: result.excerpt,
+        content: result.content,
+        fetching: false
       };
-    callback(topic);
-  })
-  .catch((error) => {
-    callback({
-      title: 'Help unavailable',
-      content: 'Help for this topic is currently unavailable',
-      excerpt: 'Help for this topic is currently unavailable',
-      fetching: false,
-      failed: true
+      callback(topic);
+    })
+    .catch((error) => {
+      callback({
+        title: 'Help unavailable',
+        content: 'Help for this topic is currently unavailable',
+        excerpt: 'Help for this topic is currently unavailable',
+        fetching: false,
+        failed: true
+      });
     });
-  });
 };
