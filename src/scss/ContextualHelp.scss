@@ -8,6 +8,10 @@
   font-size: 1.0rem;
 }
 
+.contextualHelpExcerpt {
+  cursor: pointer;
+}
+
 .contextualHelpExcerpt:after {
   content: "\2026"
 }
