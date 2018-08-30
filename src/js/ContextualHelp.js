@@ -61,6 +61,7 @@ class ContextualHelp extends Component {
     const skipTo = this.props.directTopic ? `detailView-${this.state.directKey}` : undefined;
     return (
       <Drawer
+        appRootId={this.props.appRootId}
         basicViewClick={this.basicViewHandler}
         drawerHandler={handleHelp}
         drawerOpen={showHelp}
@@ -89,7 +90,8 @@ ContextualHelp.propTypes = {
   showHelp: PropTypes.bool,
   text: PropTypes.object.isRequired,
   topics: PropTypes.array,
-  topicViewed: PropTypes.func
+  topicViewed: PropTypes.func,
+  appRootId : PropTypes.string.isRequired
 };
 
 export default ContextualHelp;

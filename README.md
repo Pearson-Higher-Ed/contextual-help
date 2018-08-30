@@ -80,6 +80,7 @@ const languageSpecificText = {
 
 ```javascript
 <ContextualHelp
+  appRootId="appRoot"
   directTopic={this.state.directTopic}
   drawerTop="61px"
   handleHelp={this.handleHelp}
@@ -108,6 +109,7 @@ When the directTopic property is set that topic will be presented in the drawer 
 
 props for ContextualHelp:
 ```javascript
+  appRootId       : String    - id of the root element of the React tree (see Accessibility below)
   directTopic     : String    - portion of url that is specific to the topic.
   drawerTop       : String    - adjust the underlying drawer top property default "61px"
   handleHelp      : Function  - (required) sets state of showHelp to true or false
@@ -134,6 +136,7 @@ document.body.dispatchEvent(new CustomEvent('o.InitComponent', {
   detail: {
     elementId: 'contextual-help',
     props: {
+      appRootId: "appRoot",
       directTopic: undefined,
       drawerTop: "61px",
       handleHelp: () => {},
@@ -157,7 +160,10 @@ document.body.dispatchEvent(new CustomEvent('o.InitComponent', {
 ## Accessibility
 
 ### Keyboard focus
+
 Refer to the [drawer](https://github.com/Pearson-Higher-Ed/drawer) documentation for accessibility on the drawer component. The drawer takes care of managin focus as the drawer is opened and closed.
+
+Among the the required properties on the ContextualHelp component is the appRootId. This value is passed through to the drawer component and is used to identify the root element for the React tree for the application. (Note that the drawer for the ContextualHelp component will be placed outside of this tree.) An aria-hidden property will be applied to this app root element when the drawer is open to allow the screen reader to stay focused within the drawer. Additional information can be found in the documentation for the drawer component as mentioned in the previous paragraph.
 
 Contextual-Help uses the BasicView and the DetailView of the drawer. The BasicView is used to present a list of topics and excerpts that are clickable. Clicking on one will cause the display to a DetailView containing the full text of the help topic. Only focusable elements within the specific view that is visible are available to assistive technologies (AT) and screen readers.
 

@@ -278,6 +278,7 @@ class ContextualHelpDemoPage extends Component {
         </div>
 
         <ContextualHelp
+          appRootId="conHelpDemo"
           directTopic={this.state.directTopic}
           drawerTop="61px"
           handleHelp={this.handleHelp}
