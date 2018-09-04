@@ -1,19 +1,55 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import ContextualHelp from '../src/js/ContextualHelp';
-import { setUpdate } from '../src/js/TopicsList';
 
 jest.mock('../src/js/TopicsList', () => {
   return {
-    addTopics: jest.fn(),
+    addTopics: jest.fn((topic) => {
+      if (!topic) {
+        return;
+      }
+      if (typeof topic === 'string') {
+        topic = [topic];
+      }
+      const topics = [];
+      for(let i = 0; i < topic.length; i++) {
+        topics.push({
+          name: topic[i],
+          title: 'Title for' + topic[i],
+          content: 'Help for this topic is currently unavailable',
+          excerpt: 'Help for this topic is currently unavailable',
+          fetching: false,
+          failed: false
+        });
+      }
+    }),
     removeTopics: jest.fn(),
     update: jest.fn(),
+    mockUpdate: jest.fn(),
     setUpdate: jest.fn(),
     setLanguage: jest.fn(),
-    fetchOneTopic: jest.fn()
+    fetchOneTopic: jest.fn((topicName, callback) => {
+      callback({
+        name: topicName,
+        title: 'Dummy Direct Help',
+        content: 'Help for this topic is currently unavailable',
+        excerpt: 'Help for this topic is currently unavailable',
+        fetching: false,
+        failed: false
+      });
+    })
   };
 });
-import { addTopics, removeTopics } from '../src/js/TopicsList';
+import { addTopics, removeTopics, setUpdate, fetchOneTopic } from '../src/js/TopicsList';
+
+jest.mock('@pearson-components/drawer', () => {
+  return {
+    Drawer: jest.fn((props) => { return (<div>{props.children}</div>); }),
+    BasicView: jest.fn((props) => { return (<div></div>); }),
+    DetailView: jest.fn(() => { return (<div></div>); })
+  };
+});
+import { Drawer, BasicView, DetailView } from '@pearson-components/drawer';
 
 describe('ContextualHelp', () => {
   const testTopics = [
@@ -57,9 +93,16 @@ describe('ContextualHelp', () => {
     backButtonText    : 'Back'
   };
 
+  beforeEach(() => {
+    DetailView.mockClear();
+    BasicView.mockClear();
+    Drawer.mockClear();
+  });
+
   it('updates topicsList for additions and subtractions', () => {
-    const wrapper = mount(
-      <ContextualHelp 
+    const wrapper = shallow(
+      <ContextualHelp
+        appRootId="none"
         topics={testTopics} 
         handleHelp={drawerHandler}
         text={text}
@@ -75,37 +118,36 @@ describe('ContextualHelp', () => {
 
   it('should render topics', () => {
     const wrapper = mount(
-      <ContextualHelp 
-        topics={[]} 
+      <ContextualHelp
+        appRootId={'none'}
+        topics={testTopicsFilled} 
         handleHelp={drawerHandler}
         text={text}
       />
     );
 
-    expect(wrapper.find('li').length).toBe(0);
-
     wrapper.instance().updateTopics(testTopicsFilled);
-    wrapper.setProps({ topics: testTopicsFilled.map((topic) => topic.name) });
-    expect(wrapper.find('li').length).toBe(3);
 
-    const changedTopicList = testTopicsFilled.filter((topic) => topic.name !== 'test/topic/2');
-    wrapper.instance().updateTopics(changedTopicList);
-    wrapper.setProps({ topics: changedTopicList.map((topic) => topic.name) });
-    expect(wrapper.find('li').length).toBe(2);
+    expect(BasicView).toHaveBeenCalledTimes(3);
   });
 
   it('should render direct to topic', () => {
     const wrapper = mount(
       <ContextualHelp 
+        appRootId="none"
+        directTopic={undefined}
         handleHelp={drawerHandler}
         text={text}
-        topics={testTopics}
+        topics={[]}
       />
     );
+
     setUpdate(wrapper.instance().updateTopics);
     expect(wrapper.find('li').length).toBe(0);
 
     wrapper.setProps({directTopic: 'test/topic/4'});
-    expect(wrapper.find('li').length).toBe(1);
+    expect(fetchOneTopic).toHaveBeenCalledTimes(1);
+    expect(fetchOneTopic.mock.calls[0][0]).toEqual('test/topic/4');
+    expect(DetailView).toHaveBeenCalledTimes(1);
   });
 });

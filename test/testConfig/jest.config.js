@@ -21,5 +21,6 @@ module.exports = {
   "testPathIgnorePatterns": [
     "<rootDir>/(build|node_modules|demo|coverage)/"
   ],
-  "verbose": true
+  "verbose": true,
+  "testURL": "http://localhost/"
 }
