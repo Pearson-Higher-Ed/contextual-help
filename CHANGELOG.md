@@ -1,3 +1,17 @@
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/Pearson-Higher-Ed/contextual-help/compare/v3.0.17...v3.1.0) (2018-09-04)
+
+
+### Bug Fixes
+
+* another jest test problem fix attempt ([951d405](https://github.com/Pearson-Higher-Ed/contextual-help/commit/951d405))
+* broken test ([97f088a](https://github.com/Pearson-Higher-Ed/contextual-help/commit/97f088a))
+* broken tests ([1db9f98](https://github.com/Pearson-Higher-Ed/contextual-help/commit/1db9f98))
+* New jest entry goes in jest config not package.json ([00b2026](https://github.com/Pearson-Higher-Ed/contextual-help/commit/00b2026))
+* testing jest problem solution ([616cf5e](https://github.com/Pearson-Higher-Ed/contextual-help/commit/616cf5e))
+
+
+
 <a name="3.0.17"></a>
 ## [3.0.17](https://github.com/Pearson-Higher-Ed/contextual-help/compare/v3.0.16...v3.0.17) (2018-07-11)
 
