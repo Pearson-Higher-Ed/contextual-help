@@ -155,7 +155,6 @@ function _directTopicView(topic) {
 
 function _drawerContents() {
   if (this.props.directTopic) {
-
     return (
       <div>
         {this.directTopicView(this.state.directTopic || { title: '', content: ''})}
