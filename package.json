@@ -76,6 +76,7 @@
     "setupTestFrameworkScriptFile": "<rootDir>/test/testConfig/enzymeConfig.js",
     "transform": {
       ".*": "<rootDir>/node_modules/jest-css-modules"
-    }
+    },
+    "testURL": "http://localhost/"
   }
 }
