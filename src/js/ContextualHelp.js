@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import toLower from 'lodash/toLower';
 import { Drawer, BasicView, DetailView } from '@pearson-components/drawer';
