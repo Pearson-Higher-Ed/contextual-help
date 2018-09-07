@@ -108,7 +108,7 @@ export const setLanguage = (language) => {
 };
 
 export const buildUrl = (topicName) => {
-  return `http://help.pearsoncmg.com/csh/${lang}/${topicName}.json`;
+  return `https://help.pearsoncmg.com/csh/${lang}/${topicName}.json`;
 };
 
 const fetchTopic = (topicName) => {
