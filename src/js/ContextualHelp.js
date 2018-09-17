@@ -25,14 +25,11 @@ class ContextualHelp extends Component {
 
   componentDidMount() {
     const element = document.getElementById('o-contextual-help-drawer');
-    console.log('element is', element);
-    console.log('props.setDirectTopic', this.props.setDirectTopic);
     if (element && this.props.setDirectTopic) {
       element.oContextualHelp = {
         openHelpTopic: (directTopic) => { this.props.setDirectTopic(directTopic); }
       };
     }
-    console.log('element is', element);
 
     setUpdate(this.updateTopics);
     setLanguage(this.props.defaultLanguage || 'en-us');
