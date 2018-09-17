@@ -284,6 +284,12 @@ class ContextualHelpDemoPage extends Component {
           handleHelp={this.handleHelp}
           defaultLanguage={'en-us'}
           locale={this.props.intl.locale}
+          setDirectTopic={(topic) => { 
+            this.setState({
+              directTopic: topic,
+              showHelp: true
+            });
+          }}
           showHelp={this.state.showHelp}
           text={this.props.data.text}
           topics={this.state.testTopics}

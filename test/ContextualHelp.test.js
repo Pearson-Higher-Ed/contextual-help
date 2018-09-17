@@ -150,4 +150,28 @@ describe('ContextualHelp', () => {
     expect(fetchOneTopic.mock.calls[0][0]).toEqual('test/topic/4');
     expect(DetailView).toHaveBeenCalledTimes(1);
   });
+
+  // it('should accomodate the legacy o-contextual-help-drawer function openHelpTopic', () => {
+  //   const mockOpenHelpTopic = jest.fn();
+
+  //   const wrapper = mount(
+  //     <ContextualHelp 
+  //       appRootId="none"
+  //       directTopic={undefined}
+  //       handleHelp={drawerHandler}
+  //       setDirectTopic={mockOpenHelpTopic}
+  //       text={text}
+  //       topics={[]}
+  //     />
+  //   );
+
+  //   const target = wrapper.find('#o-contextual-help-drawer');
+
+  //   console.log('found it', target.debug());
+  //   expect(target).toBeTruthy();
+
+  //   target.oContextualHelp.openHelpTopic('dummy/topic/path');
+  //   expect(mockOpenHelpTopic.mock.calls.length).toBe(1);
+  //   expect(mockOpenHelpTopic.mock.calls[0][0]).toEqual('dummy/topic/path');
+  // });
 });

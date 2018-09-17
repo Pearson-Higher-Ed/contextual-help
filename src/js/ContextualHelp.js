@@ -24,6 +24,16 @@ class ContextualHelp extends Component {
   }
 
   componentDidMount() {
+    const element = document.getElementById('o-contextual-help-drawer');
+    console.log('element is', element);
+    console.log('props.setDirectTopic', this.props.setDirectTopic);
+    if (element && this.props.setDirectTopic) {
+      element.oContextualHelp = {
+        openHelpTopic: (directTopic) => { this.props.setDirectTopic(directTopic); }
+      };
+    }
+    console.log('element is', element);
+
     setUpdate(this.updateTopics);
     setLanguage(this.props.defaultLanguage || 'en-us');
     if (this.props.locale) {
@@ -65,7 +75,7 @@ class ContextualHelp extends Component {
         drawerHandler={handleHelp}
         drawerOpen={showHelp}
         drawerTop={drawerTop}
-        id="contextualHelpDrawer"
+        id="o-contextual-help-drawer"
         position={'right'}
         skipTo={skipTo}
         text={{
@@ -81,16 +91,17 @@ class ContextualHelp extends Component {
 }
 
 ContextualHelp.propTypes = {
+  appRootId : PropTypes.string.isRequired,
+  defaultLanguage: PropTypes.string,
   directTopic: PropTypes.string,
   drawerTop: PropTypes.string,
   handleHelp: PropTypes.func.isRequired,
-  defaultLanguage: PropTypes.string,
   locale: PropTypes.string,
+  setDirectTopic: PropTypes.func,
   showHelp: PropTypes.bool,
   text: PropTypes.object.isRequired,
   topics: PropTypes.array,
-  topicViewed: PropTypes.func,
-  appRootId : PropTypes.string.isRequired
+  topicViewed: PropTypes.func
 };
 
 export default ContextualHelp;
