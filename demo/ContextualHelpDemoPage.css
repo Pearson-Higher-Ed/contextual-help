@@ -5,6 +5,10 @@ body {
 .demo-table {
   width: 80%;
   margin-left: 30px;
+  
+  tr td:first-child {
+  	min-width: 200px;
+  }
 }
 
 .custom-excerpt {
