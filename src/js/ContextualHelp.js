@@ -52,8 +52,8 @@ class ContextualHelp extends Component {
       });
     }
 
-    if (nextProps.language !== this.props.language) {
-      setLanguage(nextProps.language);
+    if (nextProps.locale !== this.props.locale) {
+      setLanguage(nextProps.locale);
     }
   }
 
