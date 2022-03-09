@@ -77,6 +77,7 @@ class ContextualHelp extends Component {
         skipTo={skipTo}
         text={{
           headerTitle       : text.headerTitle,
+          headerTitleSR     : (text.headerTitleSR || text.headerTitle),
           closeButtonSRText : text.closeButton,
           backButtonText    : text.backButton
         }}
